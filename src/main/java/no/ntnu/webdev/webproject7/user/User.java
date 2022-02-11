@@ -14,35 +14,42 @@ public class User {
         this.password = password;
     }
 
-    private String getId() {
+    public User(String id, String email, String password) {
+        this.id = id;
+        this.admin = false;
+        this.email = email;
+        this.password = password;
+    }
+
+    public String getId() {
         return this.id;
     }
 
-    private void setId(String id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    private boolean isAdmin() {
+    public boolean isAdmin() {
         return this.admin;
     }
 
-    private void setAdmin(boolean admin) {
+    public void setAdmin(boolean admin) {
         this.admin = admin;
     }
 
-    private String getEmail() {
+    public String getEmail() {
         return this.email;
     }
 
-    private void setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    private String getPassword() {
+    public String getPassword() {
         return this.password;
     }
 
-    private void setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 }
