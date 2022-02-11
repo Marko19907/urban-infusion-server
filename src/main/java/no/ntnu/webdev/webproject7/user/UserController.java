@@ -47,10 +47,10 @@ public class UserController {
     public ResponseEntity<String> delete(@PathVariable String id) {
         return this.userService.removeUser(id)
                 ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("")
     public ResponseEntity<String> update(@RequestBody User user) {
         return this.userService.updateUser(user)
                 ? new ResponseEntity<>(HttpStatus.OK)
