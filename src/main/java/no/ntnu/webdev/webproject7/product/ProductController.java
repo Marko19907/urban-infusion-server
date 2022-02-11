@@ -1,9 +1,8 @@
 package no.ntnu.webdev.webproject7.product;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,6 +18,27 @@ public class ProductController {
     @GetMapping("")
     public List<Product> getAllProducts() {
         return this.productService.getAllProducts();
+    }
+
+    @PostMapping("")
+    public ResponseEntity<String> addProduct(Product product) {
+        return this.productService.addProduct(product)
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @PutMapping("")
+    public ResponseEntity<String> updateProduct(Product product) {
+        return this.productService.updateProduct(product)
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable String id) {
+        return this.productService.deleteProduct(id)
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
 }

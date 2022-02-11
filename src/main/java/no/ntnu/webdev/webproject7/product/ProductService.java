@@ -4,6 +4,7 @@ import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class ProductService {
     private final List<Product> products;
@@ -17,7 +18,26 @@ public class ProductService {
                 ));
     }
 
+    public boolean addProduct(Product product) {
+        if (this.products.contains(product)) {
+            return false;
+        }
+        return this.products.add(product);
+    }
+
     public List<Product> getAllProducts() {
         return this.products;
+    }
+
+    public boolean updateProduct(Product product) {
+        if (!this.products.contains(product)) {
+            return false;
+        }
+        this.products.set(this.products.indexOf(product), product);
+        return true;
+    }
+
+    public boolean deleteProduct(String id) {
+        this.products.removeIf(product -> Objects.equals(product.getId(), id));
     }
 }
