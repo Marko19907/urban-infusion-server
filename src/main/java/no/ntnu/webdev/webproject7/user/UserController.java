@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
-public class UserController {d
+public class UserController {
 
     private final UserService userService;
 
