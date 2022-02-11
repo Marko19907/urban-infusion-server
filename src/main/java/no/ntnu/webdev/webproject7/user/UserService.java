@@ -13,6 +13,13 @@ public class UserService {
         this.initializeTestData();
     }
 
+    private void initializeTestData() {
+        this.users.addAll(Arrays.asList(
+                new User("1", false, "mail1@example.com", "123"),
+                new User("2", true, "mail2@example.com", "321")
+        ));
+    }
+
     public boolean addUser(User user) {
         // Guard condition
         if (user == null || this.getUserByID(user.getId()) != null) {
@@ -44,10 +51,4 @@ public class UserService {
         return this.users;
     }
 
-    private void initializeTestData() {
-        this.users.addAll(Arrays.asList(
-                new User("1", false, "mail1@example.com", "123"),
-                new User("2", true, "mail2@example.com", "321")
-        ));
-    }
 }

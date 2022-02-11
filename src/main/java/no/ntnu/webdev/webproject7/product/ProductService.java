@@ -1,6 +1,5 @@
 package no.ntnu.webdev.webproject7.product;
 
-import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,6 +37,6 @@ public class ProductService {
     }
 
     public boolean deleteProduct(String id) {
-        this.products.removeIf(product -> Objects.equals(product.getId(), id));
+        return this.products.removeIf(product -> Objects.equals(product.getId(), id));
     }
 }
