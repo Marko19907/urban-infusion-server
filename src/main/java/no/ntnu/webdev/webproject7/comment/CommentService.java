@@ -2,44 +2,61 @@ package no.ntnu.webdev.webproject7.comment;
 
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.time.LocalDate;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class CommentService {
     private final List<Comment> comments;
+    private final CommentRepository commentRepository;
 
-    public CommentService() {
+    public CommentService(CommentRepository commentRepository) {
         this.comments = new ArrayList<>(
                 Arrays.asList(
                         new Comment("0", "0", "0", "Superb!", LocalDate.now()),
                         new Comment("1", "0", "1", "Tasted okay", LocalDate.of(2022, 2, 1)),
                         new Comment("2", "1", "2", "I recommend!", LocalDate.of(2021, 8, 15))));
+        this.commentRepository = commentRepository;
+    }
+
+    public Comment getCommentById(String id) {
+        // Guard condition
+        if (id == null) {
+            return null;
+        }
+        Optional<Comment> result = this.commentRepository.findById(id);
+        return result.orElse(null);
     }
 
     public boolean addComment(Comment comment) {
-        if (this.comments.contains(comment)) {
+        if (comment == null) {
             return false;
         }
-        return this.comments.add(comment);
+        this.commentRepository.save(comment);
+        return this.getCommentById(comment.getId()) != null;
     }
 
     public List<Comment> getAllComments() {
-        return this.comments;
+        return StreamSupport
+                .stream(this.commentRepository.findAll().spliterator(), false)
+                .collect(Collectors.toList());
     }
 
     public boolean updateComment(Comment comment) {
-        if (!this.deleteComment(comment.getId())) {
+        if (comment == null) {
             return false;
         }
-        this.comments.add(comment);
+        this.commentRepository.save(comment);
         return true;
     }
 
     public boolean deleteComment(String id) {
-        return this.comments.removeIf(comment -> Objects.equals(comment.getId(), id));
+        if (id == null) {
+            return false;
+        }
+        this.commentRepository.deleteById(id);
+        return this.getCommentById(id) == null;
     }
 }
