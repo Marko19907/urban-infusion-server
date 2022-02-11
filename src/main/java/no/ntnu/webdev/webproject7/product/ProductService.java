@@ -29,10 +29,10 @@ public class ProductService {
     }
 
     public boolean updateProduct(Product product) {
-        if (!this.products.contains(product)) {
+        if (!this.deleteProduct(product.getId())) {
             return false;
         }
-        this.products.set(this.products.indexOf(product), product);
+        this.products.add(product);
         return true;
     }
 

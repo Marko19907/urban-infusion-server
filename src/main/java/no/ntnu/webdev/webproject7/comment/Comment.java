@@ -3,13 +3,13 @@ import java.time.LocalDate;
 
 public class Comment {
 
-    private int id;
-    private int productId;
-    private int userId;
+    private String id;
+    private String productId;
+    private String userId;
     private String text;
     private LocalDate date;
 
-    public Comment(int id, int productId, int userId, String text, LocalDate date) {
+    public Comment(String id, String productId, String userId, String text, LocalDate date) {
         this.id = id;
         this.productId = productId;
         this.userId = userId;
@@ -19,27 +19,27 @@ public class Comment {
 
 
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

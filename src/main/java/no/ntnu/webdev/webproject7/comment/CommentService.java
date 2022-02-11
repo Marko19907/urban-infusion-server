@@ -1,8 +1,5 @@
 package no.ntnu.webdev.webproject7.comment;
 
-import no.ntnu.webdev.webproject7.comment.Comment;
-import org.apache.tomcat.jni.Local;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,9 +12,9 @@ public class CommentService {
     public CommentService() {
         this.comments = new ArrayList<>(
                 Arrays.asList(
-                        new Comment(0, 0, 0, "Superb!", LocalDate.now()),
-                        new Comment(1, 0, 1, "Tasted okay", LocalDate.of(2022, 02, 01)),
-                        new Comment(2, 1, 2, "I recommend!", LocalDate.of(2021, 8, 15))));
+                        new Comment("0", "0", "0", "Superb!", LocalDate.now()),
+                        new Comment("1", "0", "1", "Tasted okay", LocalDate.of(2022, 2, 1)),
+                        new Comment("2", "1", "2", "I recommend!", LocalDate.of(2021, 8, 15))));
     }
 
     public boolean addComment(Comment comment) {
@@ -32,10 +29,10 @@ public class CommentService {
     }
 
     public boolean updateComment(Comment comment) {
-        if (!this.comments.contains(comment)) {
+        if (!this.deleteComment(comment.getId())) {
             return false;
         }
-        this.comments.set(this.comments.indexOf(comment), comment);
+        this.comments.add(comment);
         return true;
     }
 
