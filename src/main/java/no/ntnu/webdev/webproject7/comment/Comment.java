@@ -1,8 +1,12 @@
 package no.ntnu.webdev.webproject7.comment;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
+@Entity
 public class Comment {
 
+    @Id
     private String id;
     private String productId;
     private String userId;
@@ -17,7 +21,7 @@ public class Comment {
         this.date = date;
     }
 
-
+    protected Comment() {}
 
     public String getId() {
         return id;

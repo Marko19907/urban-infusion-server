@@ -1,8 +1,11 @@
 package no.ntnu.webdev.webproject7.product;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 public class Product {
+    @Id
     private String id;
     private Double price;
     private Double discount;
@@ -20,6 +23,8 @@ public class Product {
         this.description = description;
         this.weight = weight;
     }
+
+    protected Product() {}
 
     public String getId() {
         return id;

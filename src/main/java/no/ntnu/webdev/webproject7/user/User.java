@@ -3,7 +3,9 @@ package no.ntnu.webdev.webproject7.user;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+@Entity
 public class User {
+    @Id
     private String id;
     private boolean admin;
     private String email;
@@ -15,6 +17,8 @@ public class User {
         this.email = email;
         this.password = password;
     }
+
+    protected User() {}
 
     public String getId() {
         return this.id;
