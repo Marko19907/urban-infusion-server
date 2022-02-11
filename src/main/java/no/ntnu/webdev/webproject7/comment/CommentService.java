@@ -16,9 +16,8 @@ public class CommentService {
         this.comments = new ArrayList<>(
                 Arrays.asList(
                         new Comment(0, 0, 0, "Superb!", LocalDate.now()),
-                        new Comment(1, 0, 1, "Tasted okay", LocalDate.of(2022, 02, 01),
-                        new Comment(2, 1, 2, "I recommend!", LocalDate.of(2021, 8, 15))
-                ));
+                        new Comment(1, 0, 1, "Tasted okay", LocalDate.of(2022, 02, 01)),
+                        new Comment(2, 1, 2, "I recommend!", LocalDate.of(2021, 8, 15))));
     }
 
     public boolean addComment(Comment comment) {
