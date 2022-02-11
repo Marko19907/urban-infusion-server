@@ -1,11 +1,14 @@
 package no.ntnu.webdev.webproject7.comment;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.time.LocalDate;
 
+@Service
 public class CommentService {
     private final List<Comment> comments;
 

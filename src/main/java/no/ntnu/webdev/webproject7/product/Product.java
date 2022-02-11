@@ -1,5 +1,7 @@
 package no.ntnu.webdev.webproject7.product;
 
+import javax.persistence.Entity;
+
 public class Product {
     private String id;
     private Double price;

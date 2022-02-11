@@ -1,7 +1,9 @@
 package no.ntnu.webdev.webproject7.user;
 
-public class User {
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+public class User {
     private String id;
     private boolean admin;
     private String email;

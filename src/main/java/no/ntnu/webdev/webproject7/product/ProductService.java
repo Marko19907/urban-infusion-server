@@ -1,9 +1,12 @@
 package no.ntnu.webdev.webproject7.product;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Service
 public class ProductService {
     private final List<Product> products;
 
