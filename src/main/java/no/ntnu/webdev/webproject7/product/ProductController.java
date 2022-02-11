@@ -21,14 +21,14 @@ public class ProductController {
     }
 
     @PostMapping("")
-    public ResponseEntity<String> addProduct(Product product) {
+    public ResponseEntity<String> addProduct(@RequestBody Product product) {
         return this.productService.addProduct(product)
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping("")
-    public ResponseEntity<String> updateProduct(Product product) {
+    public ResponseEntity<String> updateProduct(@RequestBody Product product) {
         return this.productService.updateProduct(product)
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.BAD_REQUEST);

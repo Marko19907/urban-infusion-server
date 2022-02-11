@@ -26,14 +26,14 @@ public class CommentController {
     }
 
     @PostMapping("")
-    public ResponseEntity<String> addProduct(Comment comment) {
+    public ResponseEntity<String> addProduct(@RequestBody Comment comment) {
         return this.commentService.addComment(comment)
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping("")
-    public ResponseEntity<String> updateComment(Comment comment){
+    public ResponseEntity<String> updateComment(@RequestBody Comment comment){
         return this.commentService.updateComment(comment)
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.BAD_REQUEST);

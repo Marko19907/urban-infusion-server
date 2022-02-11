@@ -1,17 +1,15 @@
 package no.ntnu.webdev.webproject7.product;
 
-import java.sql.Blob;
-
 public class Product {
     private String id;
-    private float price;
-    private float discount;
-    private Blob image;
+    private Double price;
+    private Double discount;
+    private String image;
     private String title;
     private String description;
     private String weight;
 
-    public Product(String id, float price, float discount, Blob image, String title, String description, String weight) {
+    public Product(String id, Double price, Double discount, String image, String title, String description, String weight) {
         this.id = id;
         this.price = price;
         this.discount = discount;
@@ -29,27 +27,27 @@ public class Product {
         this.id = id;
     }
 
-    public float getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public float getDiscount() {
+    public Double getDiscount() {
         return discount;
     }
 
-    public void setDiscount(float discount) {
+    public void setDiscount(Double discount) {
         this.discount = discount;
     }
 
-    public Blob getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Blob image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -77,3 +75,5 @@ public class Product {
         this.weight = weight;
     }
 }
+
+
