@@ -16,8 +16,8 @@ public class ProductController {
     }
 
     @GetMapping("")
-    public List<Product> getAllProducts() {
-        return this.productService.getAllProducts();
+    public ResponseEntity<List<Product>> getAllProducts() {
+        return new ResponseEntity<>(this.productService.getAllProducts(), HttpStatus.OK);
     }
 
     @PostMapping("")

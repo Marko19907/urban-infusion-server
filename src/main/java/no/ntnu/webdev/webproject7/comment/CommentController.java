@@ -21,13 +21,15 @@ public class CommentController {
     }
 
     @GetMapping("")
-    public List<Comment> getAllComments() {
-        return this.commentService.getAllComments();
+    public ResponseEntity<List<Comment>> getAllComments() {
+        return new ResponseEntity<>(this.commentService.getAllComments(), HttpStatus.OK);
     }
 
     @PostMapping("")
-    public void addProduct(Comment comment) {
-        this.commentService.addComment(comment);
+    public ResponseEntity<String> addProduct(Comment comment) {
+        return this.commentService.addComment(comment)
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping("")
