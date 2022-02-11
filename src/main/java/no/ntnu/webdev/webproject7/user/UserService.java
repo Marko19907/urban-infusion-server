@@ -44,8 +44,8 @@ public class UserService {
         if (user == null || this.getUserByID(user.getId()) == null) {
             return false;
         }
-        final int index = this.users.indexOf(user);
-        this.users.set(index, user);
+        this.removeUser(user.getId());
+        this.users.add(user);
         return true;
     }
 
