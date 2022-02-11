@@ -14,13 +14,6 @@ public class User {
         this.password = password;
     }
 
-    public User(String id, String email, String password) {
-        this.id = id;
-        this.admin = false;
-        this.email = email;
-        this.password = password;
-    }
-
     public String getId() {
         return this.id;
     }
