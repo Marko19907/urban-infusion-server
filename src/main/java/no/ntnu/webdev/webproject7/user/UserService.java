@@ -1,9 +1,12 @@
 package no.ntnu.webdev.webproject7.user;
 
+import org.springframework.stereotype.Service;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+@Service
 public class UserService {
 
     private final List<User> users;
@@ -36,6 +39,16 @@ public class UserService {
         return this.users.removeIf(user -> id.equals(user.getId()));
     }
 
+    public boolean updateUser(User user) {
+        // Guard condition
+        if (user == null || this.getUserByID(user.getId()) == null) {
+            return false;
+        }
+        final int index = this.users.indexOf(user);
+        this.users.set(index, user);
+        return true;
+    }
+
     public User getUserByID(String id) {
         // Guard condition
         if (id == null) {
@@ -50,5 +63,4 @@ public class UserService {
     public List<User> getUsers() {
         return this.users;
     }
-
 }
