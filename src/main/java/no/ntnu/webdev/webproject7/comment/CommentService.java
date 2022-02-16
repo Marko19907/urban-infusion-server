@@ -1,10 +1,10 @@
 package no.ntnu.webdev.webproject7.comment;
 
+import no.ntnu.webdev.webproject7.utilities.Utilities;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
 
 @Service
 public class CommentService {
@@ -34,9 +34,7 @@ public class CommentService {
     }
 
     public List<Comment> getAllComments() {
-        return StreamSupport
-                .stream(this.commentRepository.findAll().spliterator(), false)
-                .toList();
+        return Utilities.iterableToList(this.commentRepository.findAll());
     }
 
     public boolean updateComment(Comment comment) {
