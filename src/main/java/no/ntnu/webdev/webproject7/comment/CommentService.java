@@ -1,6 +1,5 @@
 package no.ntnu.webdev.webproject7.comment;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,8 +8,13 @@ import java.util.stream.StreamSupport;
 
 @Service
 public class CommentService {
-    @Autowired
-    private CommentRepository commentRepository;
+    private final CommentRepository commentRepository;
+
+    public CommentService(CommentRepository commentRepository) {
+        this.commentRepository = commentRepository;
+
+        this.commentRepository.save(new Comment("1", "100", "1000", "Comment text", null));
+    }
 
     public Comment getCommentById(String id) {
         // Guard condition
