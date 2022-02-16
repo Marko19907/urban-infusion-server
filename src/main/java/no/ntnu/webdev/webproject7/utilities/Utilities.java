@@ -5,7 +5,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-public class Utilities {
+public final class Utilities {
+
+    /**
+     * Private constructor to avoid object initialization.
+     */
+    private Utilities() {
+    }
 
     /**
      * Converts the given Iterable to a List
