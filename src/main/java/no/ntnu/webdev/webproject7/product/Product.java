@@ -27,7 +27,7 @@ public class Product {
     protected Product() {}
 
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(String id) {
@@ -35,7 +35,7 @@ public class Product {
     }
 
     public Double getPrice() {
-        return price;
+        return this.price;
     }
 
     public void setPrice(Double price) {
@@ -43,7 +43,7 @@ public class Product {
     }
 
     public Double getDiscount() {
-        return discount;
+        return this.discount;
     }
 
     public void setDiscount(Double discount) {
@@ -51,7 +51,7 @@ public class Product {
     }
 
     public String getImage() {
-        return image;
+        return this.image;
     }
 
     public void setImage(String image) {
@@ -59,7 +59,7 @@ public class Product {
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public void setTitle(String title) {
@@ -67,7 +67,7 @@ public class Product {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
@@ -75,7 +75,7 @@ public class Product {
     }
 
     public String getWeight() {
-        return weight;
+        return this.weight;
     }
 
     public void setWeight(String weight) {

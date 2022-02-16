@@ -24,7 +24,7 @@ public class Comment {
     protected Comment() {}
 
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(String id) {
@@ -32,7 +32,7 @@ public class Comment {
     }
 
     public String getProductId() {
-        return productId;
+        return this.productId;
     }
 
     public void setProductId(String productId) {
@@ -40,7 +40,7 @@ public class Comment {
     }
 
     public String getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public void setUserId(String userId) {
@@ -48,7 +48,7 @@ public class Comment {
     }
 
     public String getText() {
-        return text;
+        return this.text;
     }
 
     public void setText(String text) {
@@ -56,7 +56,7 @@ public class Comment {
     }
 
     public LocalDate getDate() {
-        return date;
+        return this.date;
     }
 
     public void setDate(LocalDate date) {
