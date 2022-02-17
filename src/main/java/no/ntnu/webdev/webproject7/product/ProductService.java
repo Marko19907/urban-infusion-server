@@ -28,10 +28,11 @@ public class ProductService {
     }
 
     public boolean addProduct(Product product) {
-        if (product == null) {
+        if (product == null || this.getProductById(product.getId()) != null) {
             return false;
         }
-        return this.productRepository.save(product).equals(product);
+        this.productRepository.save(product);
+        return this.getProductById(product.getId()) != null;
     }
 
     public boolean updateProduct(Product product) {
