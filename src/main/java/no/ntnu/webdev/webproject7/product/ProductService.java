@@ -1,44 +1,54 @@
 package no.ntnu.webdev.webproject7.product;
 
+import no.ntnu.webdev.webproject7.utilities.Utilities;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
-    private final List<Product> products;
+    private final ProductRepository productRepository;
 
-    public ProductService() {
-        this.products = new ArrayList<>(
-                Arrays.asList(
-                        new Product("0", 12.99, 0.5, null, "", "", ""),
-                        new Product("1", 15.99, 0.3, null, "", "", ""),
-                        new Product("2", 20.99, 0.2, null, "", "", "")
-                ));
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+        this.productRepository.save(new Product("0", 12.99, 0.5, null, "", "", ""));
+    }
+
+    public Product getCommentById(String id) {
+        // Guard condition
+        if (id == null) {
+            return null;
+        }
+        Optional<Product> result = this.productRepository.findById(id);
+        return result.orElse(null);
     }
 
     public boolean addProduct(Product product) {
-        if (this.products.contains(product)) {
+        if (product == null) {
             return false;
         }
-        return this.products.add(product);
+        this.productRepository.save(product);
+        return this.getCommentById(product.getId()) != null;
     }
 
     public List<Product> getAllProducts() {
-        return this.products;
+        return Utilities.iterableToList(this.productRepository.findAll());
     }
 
     public boolean updateProduct(Product product) {
-        if (!this.deleteProduct(product.getId())) {
+        if (product == null) {
             return false;
         }
-        this.products.add(product);
+        this.productRepository.save(product);
         return true;
     }
 
     public boolean deleteProduct(String id) {
-        return this.products.removeIf(product -> product.getId().equals(id));
+        if (id == null) {
+            return false;
+        }
+        this.productRepository.deleteById(id);
+        return this.getCommentById(id) == null;
     }
 }
