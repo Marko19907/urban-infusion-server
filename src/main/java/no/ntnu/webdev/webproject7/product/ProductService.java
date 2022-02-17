@@ -15,7 +15,11 @@ public class ProductService {
         this.productRepository.save(new Product("0", 12.99, 0.5, null, "", "", ""));
     }
 
-    public Product getCommentById(String id) {
+    public List<Product> getAllProducts() {
+        return Utilities.iterableToList(this.productRepository.findAll());
+    }
+
+    public Product getProductById(String id) {
         // Guard condition
         if (id == null) {
             return null;
@@ -28,12 +32,7 @@ public class ProductService {
         if (product == null) {
             return false;
         }
-        this.productRepository.save(product);
-        return this.getCommentById(product.getId()) != null;
-    }
-
-    public List<Product> getAllProducts() {
-        return Utilities.iterableToList(this.productRepository.findAll());
+        return this.productRepository.save(product).equals(product);
     }
 
     public boolean updateProduct(Product product) {
@@ -49,6 +48,6 @@ public class ProductService {
             return false;
         }
         this.productRepository.deleteById(id);
-        return this.getCommentById(id) == null;
+        return this.getProductById(id) == null;
     }
 }

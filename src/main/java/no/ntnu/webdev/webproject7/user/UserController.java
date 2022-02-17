@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("users")
 public class UserController {
     private final UserService userService;
 
@@ -23,8 +23,8 @@ public class UserController {
     }
 
     @GetMapping("")
-    public List<User> getAll() {
-        return this.userService.getUsers();
+    public ResponseEntity<List<User>> getAll() {
+        return new ResponseEntity<>(this.userService.getAllUsers(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -36,15 +36,8 @@ public class UserController {
     }
 
     @PostMapping("")
-    public ResponseEntity<String> add(@RequestBody User user) {
+    public ResponseEntity<String> addOne(@RequestBody User user) {
         return this.userService.addUser(user)
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable String id) {
-        return this.userService.removeUser(id)
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
@@ -54,5 +47,12 @@ public class UserController {
         return this.userService.updateUser(user)
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable String id) {
+        return this.userService.deleteUser(id)
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }
