@@ -12,14 +12,14 @@ public class UserService {
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.userRepository.save(new User("1", false, "mail1@example.com", "123"));
+        this.userRepository.save(new User("0", false, "some_email@gmail.com", "124"));
     }
 
     public List<User> getAllUsers() {
         return Utilities.iterableToList(this.userRepository.findAll());
     }
 
-    public User getUserByID(String id) {
+    public User getUserById(String id) {
         // Guard condition
         if (id == null) {
             return null;
@@ -29,7 +29,6 @@ public class UserService {
     }
 
     public boolean addUser(User user) {
-        // Guard condition
         if (user == null) {
             return false;
         }
@@ -37,7 +36,6 @@ public class UserService {
     }
 
     public boolean updateUser(User user) {
-        // Guard condition
         if (user == null) {
             return false;
         }
@@ -46,11 +44,10 @@ public class UserService {
     }
 
     public boolean deleteUser(String id) {
-        // Guard condition
         if (id == null) {
             return false;
         }
         this.userRepository.deleteById(id);
-        return this.getUserByID(id) == null;
+        return this.getUserById(id) == null;
     }
 }

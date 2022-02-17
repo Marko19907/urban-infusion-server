@@ -11,7 +11,7 @@ public class User {
     private String email;
     private String password;
 
-    public User(String id, boolean admin, String email, String password) {
+    public User(String id, Boolean admin, String email, String password) {
         this.id = id;
         this.admin = admin;
         this.email = email;
@@ -21,23 +21,23 @@ public class User {
     protected User() {}
 
     public String getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(String id) {
         this.id = id;
     }
 
-    public boolean isAdmin() {
-        return this.admin;
+    public Boolean getAdmin() {
+        return admin;
     }
 
-    public void setAdmin(boolean admin) {
+    public void setAdmin(Boolean admin) {
         this.admin = admin;
     }
 
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     public void setEmail(String email) {
@@ -45,7 +45,7 @@ public class User {
     }
 
     public String getPassword() {
-        return this.password;
+        return password;
     }
 
     public void setPassword(String password) {
