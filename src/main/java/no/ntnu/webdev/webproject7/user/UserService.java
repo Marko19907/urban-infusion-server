@@ -1,26 +1,31 @@
 package no.ntnu.webdev.webproject7.user;
 
+import no.ntnu.webdev.webproject7.utilities.Utilities;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
 
-    private final List<User> users;
+    private final UserRepository userRepository;
 
-    public UserService() {
-        this.users = new LinkedList<>();
-        this.initializeTestData();
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+
+        //userRepository.save(new User("1", false, "mail1@example.com", "123"));
+        //userRepository.save(new User("2", true, "mail2@example.com", "321"));
+
+        //this.initializeTestData();
     }
 
     private void initializeTestData() {
-        this.users.addAll(Arrays.asList(
-                new User("1", false, "mail1@example.com", "123"),
-                new User("2", true, "mail2@example.com", "321")
-        ));
+        Arrays.asList(
+                new User("1", true, "mail1@example.com", "123"),
+                new User("2", false, "mail2@example.com", "321")
+        ).forEach(this::addUser);
     }
 
     public boolean addUser(User user) {
@@ -28,7 +33,7 @@ public class UserService {
         if (user == null || this.getUserByID(user.getId()) != null) {
             return false;
         }
-        return this.users.add(user);
+        return this.userRepository.save(user).equals(user);
     }
 
     public boolean removeUser(String id) {
@@ -36,7 +41,8 @@ public class UserService {
         if (id == null) {
             return false;
         }
-        return this.users.removeIf(user -> id.equals(user.getId()));
+        this.userRepository.deleteById(id);
+        return this.getUserByID(id) == null;
     }
 
     public boolean updateUser(User user) {
@@ -44,8 +50,7 @@ public class UserService {
         if (user == null || this.getUserByID(user.getId()) == null) {
             return false;
         }
-        this.removeUser(user.getId());
-        this.users.add(user);
+        this.userRepository.save(user);
         return true;
     }
 
@@ -54,13 +59,11 @@ public class UserService {
         if (id == null) {
             return null;
         }
-        return this.users.stream()
-                .filter(user -> id.equals(user.getId()))
-                .findFirst()
-                .orElse(null);
+        Optional<User> result = this.userRepository.findById(id);
+        return result.orElse(null);
     }
 
     public List<User> getUsers() {
-        return this.users;
+        return Utilities.iterableToList(this.userRepository.findAll());
     }
 }
