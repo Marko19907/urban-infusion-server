@@ -12,8 +12,7 @@ public class ProductService {
 
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
-        this.productRepository.save(new Product("0", 12.99, 0.5, null, "", "", ""));
-    }
+        }
 
     public List<Product> getAllProducts() {
         return Utilities.iterableToList(this.productRepository.findAll());

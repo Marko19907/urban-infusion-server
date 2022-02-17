@@ -13,8 +13,7 @@ public class CommentService {
     public CommentService(CommentRepository commentRepository) {
         this.commentRepository = commentRepository;
 
-        this.commentRepository.save(new Comment("1", "100", "1000", "Comment text", null));
-    }
+         }
 
     public Comment getCommentById(String id) {
         // Guard condition

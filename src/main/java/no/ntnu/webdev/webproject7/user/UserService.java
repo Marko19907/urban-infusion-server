@@ -12,7 +12,6 @@ public class UserService {
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.userRepository.save(new User("0", false, "some_email@gmail.com", "124"));
     }
 
     public List<User> getAllUsers() {
