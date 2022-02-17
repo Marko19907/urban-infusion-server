@@ -16,26 +16,26 @@ public class ProductController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<Product>> getAllProducts() {
+    public ResponseEntity<List<Product>> getAll() {
         return new ResponseEntity<>(this.productService.getAllProducts(), HttpStatus.OK);
     }
 
     @PostMapping("")
-    public ResponseEntity<String> addProduct(@RequestBody Product product) {
+    public ResponseEntity<String> addOne(@RequestBody Product product) {
         return this.productService.addProduct(product)
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping("")
-    public ResponseEntity<String> updateProduct(@RequestBody Product product) {
+    public ResponseEntity<String> update(@RequestBody Product product) {
         return this.productService.updateProduct(product)
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteProduct(@PathVariable String id) {
+    public ResponseEntity<String> delete(@PathVariable String id) {
         return this.productService.deleteProduct(id)
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.BAD_REQUEST);

@@ -16,7 +16,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-
     private final UserService userService;
 
     public UserController(UserService userService) {
@@ -29,7 +28,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUser(@PathVariable String id) {
+    public ResponseEntity<User> getOne(@PathVariable String id) {
         User user = this.userService.getUserByID(id);
         return (user != null)
                 ? new ResponseEntity<>(user, HttpStatus.OK)

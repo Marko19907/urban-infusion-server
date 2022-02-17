@@ -15,17 +15,7 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
 
-        //userRepository.save(new User("1", false, "mail1@example.com", "123"));
-        //userRepository.save(new User("2", true, "mail2@example.com", "321"));
-
-        //this.initializeTestData();
-    }
-
-    private void initializeTestData() {
-        Arrays.asList(
-                new User("1", true, "mail1@example.com", "123"),
-                new User("2", false, "mail2@example.com", "321")
-        ).forEach(this::addUser);
+        this.userRepository.save(new User("1", false, "mail1@example.com", "123"));
     }
 
     public boolean addUser(User user) {
