@@ -4,6 +4,7 @@ import no.ntnu.webdev.webproject7.utilities.Utilities;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -31,8 +32,8 @@ public class ProductService {
         if (product == null || this.getProductById(product.getId()) != null) {
             return false;
         }
-        this.productRepository.save(product);
-        return this.getProductById(product.getId()) != null;
+        Product saved = this.productRepository.save(product);
+        return Objects.equals(product.getId(), saved.getId());
     }
 
     public boolean updateProduct(Product product) {

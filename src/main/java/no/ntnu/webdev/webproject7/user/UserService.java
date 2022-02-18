@@ -1,9 +1,11 @@
 package no.ntnu.webdev.webproject7.user;
 
+import no.ntnu.webdev.webproject7.product.Product;
 import no.ntnu.webdev.webproject7.utilities.Utilities;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -31,7 +33,8 @@ public class UserService {
         if (userEntity == null) {
             return false;
         }
-        return this.userRepository.save(userEntity).equals(userEntity);
+        UserEntity saved = this.userRepository.save(userEntity);
+        return Objects.equals(userEntity.getId(), saved.getId());
     }
 
     public boolean updateUser(UserEntity userEntity) {
