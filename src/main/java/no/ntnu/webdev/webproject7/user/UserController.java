@@ -16,20 +16,20 @@ public class UserController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<User>> getAll() {
+    public ResponseEntity<List<UserEntity>> getAll() {
         return new ResponseEntity<>(this.userService.getAllUsers(), HttpStatus.OK);
     }
 
     @PostMapping("")
-    public ResponseEntity<String> addOne(@RequestBody User user) {
-        return this.userService.addUser(user)
+    public ResponseEntity<String> addOne(@RequestBody UserEntity userEntity) {
+        return this.userService.addUser(userEntity)
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping("")
-    public ResponseEntity<String> update(@RequestBody User user) {
-        return this.userService.updateUser(user)
+    public ResponseEntity<String> update(@RequestBody UserEntity userEntity) {
+        return this.userService.updateUser(userEntity)
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }

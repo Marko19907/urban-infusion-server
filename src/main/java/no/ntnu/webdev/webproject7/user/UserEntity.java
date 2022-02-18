@@ -4,21 +4,21 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class User {
+public class UserEntity {
     @Id
     private String id;
     private Boolean admin;
     private String email;
     private String password;
 
-    public User(String id, Boolean admin, String email, String password) {
+    public UserEntity(String id, Boolean admin, String email, String password) {
         this.id = id;
         this.admin = admin;
         this.email = email;
         this.password = password;
     }
 
-    protected User() {}
+    protected UserEntity() {}
 
     public String getId() {
         return id;

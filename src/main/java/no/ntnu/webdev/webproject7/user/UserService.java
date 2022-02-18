@@ -14,31 +14,31 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> getAllUsers() {
+    public List<UserEntity> getAllUsers() {
         return Utilities.iterableToList(this.userRepository.findAll());
     }
 
-    public User getUserById(String id) {
+    public UserEntity getUserById(String id) {
         // Guard condition
         if (id == null) {
             return null;
         }
-        Optional<User> result = this.userRepository.findById(id);
+        Optional<UserEntity> result = this.userRepository.findById(id);
         return result.orElse(null);
     }
 
-    public boolean addUser(User user) {
-        if (user == null) {
+    public boolean addUser(UserEntity userEntity) {
+        if (userEntity == null) {
             return false;
         }
-        return this.userRepository.save(user).equals(user);
+        return this.userRepository.save(userEntity).equals(userEntity);
     }
 
-    public boolean updateUser(User user) {
-        if (user == null) {
+    public boolean updateUser(UserEntity userEntity) {
+        if (userEntity == null) {
             return false;
         }
-        this.userRepository.save(user);
+        this.userRepository.save(userEntity);
         return true;
     }
 
