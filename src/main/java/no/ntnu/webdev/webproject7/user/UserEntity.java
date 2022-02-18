@@ -21,7 +21,7 @@ public class UserEntity {
     protected UserEntity() {}
 
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(String id) {
@@ -29,7 +29,7 @@ public class UserEntity {
     }
 
     public Boolean getAdmin() {
-        return admin;
+        return this.admin;
     }
 
     public void setAdmin(Boolean admin) {
@@ -37,7 +37,7 @@ public class UserEntity {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
@@ -45,7 +45,7 @@ public class UserEntity {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
