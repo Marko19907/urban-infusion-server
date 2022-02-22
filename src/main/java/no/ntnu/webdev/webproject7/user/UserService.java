@@ -1,12 +1,12 @@
 package no.ntnu.webdev.webproject7.user;
 
-import no.ntnu.webdev.webproject7.product.Product;
-import no.ntnu.webdev.webproject7.utilities.Utilities;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
+import static no.ntnu.webdev.webproject7.utilities.UtilitiesKt.iterableToList;
 
 @Service
 public class UserService {
@@ -17,7 +17,7 @@ public class UserService {
     }
 
     public List<UserEntity> getAllUsers() {
-        return Utilities.iterableToList(this.userRepository.findAll());
+        return iterableToList(this.userRepository.findAll());
     }
 
     public UserEntity getUserById(String id) {

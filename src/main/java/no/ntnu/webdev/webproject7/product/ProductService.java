@@ -1,11 +1,12 @@
 package no.ntnu.webdev.webproject7.product;
 
-import no.ntnu.webdev.webproject7.utilities.Utilities;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
+import static no.ntnu.webdev.webproject7.utilities.UtilitiesKt.iterableToList;
 
 @Service
 public class ProductService {
@@ -16,7 +17,7 @@ public class ProductService {
         }
 
     public List<Product> getAllProducts() {
-        return Utilities.iterableToList(this.productRepository.findAll());
+        return iterableToList(this.productRepository.findAll());
     }
 
     public Product getProductById(String id) {

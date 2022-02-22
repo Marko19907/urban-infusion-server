@@ -1,10 +1,11 @@
 package no.ntnu.webdev.webproject7.comment;
 
-import no.ntnu.webdev.webproject7.utilities.Utilities;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import static no.ntnu.webdev.webproject7.utilities.UtilitiesKt.iterableToList;
 
 @Service
 public class CommentService {
@@ -33,7 +34,7 @@ public class CommentService {
     }
 
     public List<Comment> getAllComments() {
-        return Utilities.iterableToList(this.commentRepository.findAll());
+        return iterableToList(this.commentRepository.findAll());
     }
 
     public boolean updateComment(Comment comment) {
