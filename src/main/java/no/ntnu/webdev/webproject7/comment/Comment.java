@@ -1,4 +1,5 @@
 package no.ntnu.webdev.webproject7.comment;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.time.LocalDate;
@@ -21,7 +22,8 @@ public class Comment {
         this.date = date;
     }
 
-    protected Comment() {}
+    protected Comment() {
+    }
 
     public String getId() {
         return this.id;
@@ -63,4 +65,3 @@ public class Comment {
         this.date = date;
     }
 }
-
