@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*
 class CommentController(private val commentService: CommentService) {
 
     @get:GetMapping("")
-    val allComments: ResponseEntity<List<Comment>>
+    val all: ResponseEntity<List<Comment>>
         get() = ResponseEntity(commentService.allComments, HttpStatus.OK)
 
     @PostMapping("")
