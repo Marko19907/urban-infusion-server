@@ -13,17 +13,17 @@ class CommentController(private val commentService: CommentService) {
         get() = ResponseEntity(commentService.allComments, HttpStatus.OK)
 
     @PostMapping("")
-    fun addProduct(@RequestBody comment: Comment): ResponseEntity<String> {
+    fun addOne(@RequestBody comment: Comment): ResponseEntity<String> {
         return if (commentService.addComment(comment)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST)
     }
 
     @PutMapping("")
-    fun updateComment(@RequestBody comment: Comment): ResponseEntity<String> {
+    fun update(@RequestBody comment: Comment): ResponseEntity<String> {
         return if (commentService.updateComment(comment)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST)
     }
 
     @DeleteMapping("/{id}")
-    fun deleteComment(@PathVariable id: String): ResponseEntity<String> {
+    fun delete(@PathVariable id: String): ResponseEntity<String> {
         return if (commentService.deleteComment(id)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST)
     }
 }
