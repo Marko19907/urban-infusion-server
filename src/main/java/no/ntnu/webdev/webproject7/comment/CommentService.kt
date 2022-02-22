@@ -6,20 +6,17 @@ import org.springframework.stereotype.Service
 @Service
 class CommentService(private val commentRepository: CommentRepository) {
     fun getCommentById(id: String?): Comment? {
-        // Guard condition
         if (id == null) {
             return null
         }
-        val result = commentRepository.findById(id)
-        return result.orElse(null)
+        return commentRepository.findById(id).orElse(null)
     }
 
     fun addComment(comment: Comment?): Boolean {
-        if (comment == null) {
+        if (comment == null || getCommentById(comment.id) != null) {
             return false
         }
-        commentRepository.save(comment)
-        return getCommentById(comment.id) != null
+        return commentRepository.save(comment).id == comment.id
     }
 
     val allComments: List<Comment>

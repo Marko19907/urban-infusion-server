@@ -9,20 +9,17 @@ class UserService(private val userRepository: UserRepository) {
         get() = iterableToList(userRepository.findAll());
 
     private fun getUserById(id: String?): UserEntity? {
-        // Guard condition
         if (id == null) {
             return null
         }
-        val result = userRepository.findById(id)
-        return result.orElse(null)
+        return userRepository.findById(id).orElse(null)
     }
 
     fun addUser(userEntity: UserEntity?): Boolean {
-        if (userEntity == null) {
+        if (userEntity == null || getUserById(userEntity.id) != null) {
             return false
         }
-        val saved = userRepository.save(userEntity)
-        return userEntity.id == saved.id
+        return userRepository.save(userEntity).id == userEntity.id
     }
 
     fun updateUser(userEntity: UserEntity?): Boolean {

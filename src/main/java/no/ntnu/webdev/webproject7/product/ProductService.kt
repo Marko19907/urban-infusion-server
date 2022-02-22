@@ -10,20 +10,17 @@ class ProductService(private val productRepository: ProductRepository) {
         get() = iterableToList(productRepository.findAll())
 
     fun getProductById(id: String?): Product? {
-        // Guard condition
         if (id == null) {
             return null
         }
-        val result = productRepository.findById(id)
-        return result.orElse(null)
+        return productRepository.findById(id).orElse(null)
     }
 
     fun addProduct(product: Product?): Boolean {
         if (product == null || getProductById(product.id) != null) {
             return false
         }
-        val saved = productRepository.save(product)
-        return product.id == saved.id
+        return productRepository.save(product).id == product.id
     }
 
     fun updateProduct(product: Product?): Boolean {
