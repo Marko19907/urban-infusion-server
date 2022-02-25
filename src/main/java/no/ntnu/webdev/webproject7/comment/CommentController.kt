@@ -6,4 +6,4 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("comments")
-class CommentController(commentService: CommentService) : CrudController<Comment, String>(commentService)
+class CommentController(commentService: CommentService) : CrudController<Comment, CommentId>(commentService)

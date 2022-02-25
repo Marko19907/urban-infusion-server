@@ -9,10 +9,12 @@ import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 
+typealias CommentId = String;
+
 @Entity
-class Comment : CrudModel<String> {
+class Comment : CrudModel<CommentId> {
     @Id
-    override var id: String? = null
+    override var id: CommentId? = null
 
     @ManyToOne
     @JoinColumn(name = "product_id")
@@ -24,7 +26,7 @@ class Comment : CrudModel<String> {
     var text: String? = null
     var date: LocalDate? = null
 
-    constructor(id: String?, product: Product?, user: UserEntity?, text: String?, date: LocalDate?) {
+    constructor(id: CommentId?, product: Product?, user: UserEntity?, text: String?, date: LocalDate?) {
         this.id = id
         this.product = product
         this.user = user
