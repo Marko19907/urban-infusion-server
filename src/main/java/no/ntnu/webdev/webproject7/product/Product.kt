@@ -18,7 +18,7 @@ class Product : CrudModel<ProductId> {
     var weight: String? = null
 
     constructor(
-        id: String?,
+        id: ProductId?,
         price: Double?,
         discount: Double?,
         image: String?,

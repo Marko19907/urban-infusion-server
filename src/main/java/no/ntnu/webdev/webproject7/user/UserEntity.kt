@@ -14,7 +14,7 @@ class UserEntity : CrudModel<UserEntityId> {
     var email: String? = null
     var password: String? = null
 
-    constructor(id: String?, admin: Boolean?, email: String?, password: String?) {
+    constructor(id: UserEntityId?, admin: Boolean?, email: String?, password: String?) {
         this.id = id
         this.admin = admin
         this.email = email
