@@ -5,10 +5,12 @@ import org.springframework.data.repository.CrudRepository
 open class CrudService<EntityType : CrudModel<ID>, ID>(
     private val repository: CrudRepository<EntityType, ID>
 ) {
-    val all: List<EntityType>
-        get() = repository.findAll().toList();
+    fun all(): List<EntityType> {
+        return repository.findAll().toList();
+    }
 
-    fun getById(id: ID): EntityType? {
+    fun getById(id: ID?): EntityType? {
+        if (id == null) return null;
         return repository.findById(id).orElse(null);
     }
 

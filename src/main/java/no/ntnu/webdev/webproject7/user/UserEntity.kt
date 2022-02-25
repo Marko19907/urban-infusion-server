@@ -5,11 +5,19 @@ import javax.persistence.Entity
 import javax.persistence.Id
 
 @Entity
-class UserEntity(
-    @Id override var id: String,
-    var admin: Boolean,
-    var email: String,
-    var password: String
-) : CrudModel<String> {
-   protected constructor() : this("", false, "", "");
+class UserEntity : CrudModel<String> {
+    @Id
+    override var id: String? = null
+    var admin: Boolean? = null
+    var email: String? = null
+    var password: String? = null
+
+    constructor(id: String?, admin: Boolean?, email: String?, password: String?) {
+        this.id = id
+        this.admin = admin
+        this.email = email
+        this.password = password
+    }
+
+    protected constructor() {}
 }

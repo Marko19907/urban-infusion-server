@@ -9,7 +9,7 @@ open class CrudController<EntityType : CrudModel<ID>, ID>(
 ) {
     @GetMapping("")
     fun all(): ResponseEntity<List<EntityType>> {
-        return ResponseEntity(service.all, HttpStatus.OK)
+        return ResponseEntity(service.all(), HttpStatus.OK)
     }
 
     @PostMapping("")
