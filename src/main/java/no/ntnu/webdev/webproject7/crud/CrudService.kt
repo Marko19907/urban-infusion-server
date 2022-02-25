@@ -18,7 +18,7 @@ open class CrudService<EntityType : CrudModel<ID>, ID>(
     }
 
     fun update(entity: EntityType): Boolean {
-        repository.save(entity)
+        repository.save(entity);
         return true
     }
 
