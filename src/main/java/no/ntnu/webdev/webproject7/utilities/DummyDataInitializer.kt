@@ -44,12 +44,6 @@ class DummyDataInitializer(
 
 
         arrayOf(
-            comment1,
-            comment2,
-            comment3
-        ).forEach { commentRepository.save(it) }
-
-        arrayOf(
                 product1,
                 product2,
                 product3
@@ -60,6 +54,12 @@ class DummyDataInitializer(
                 user2,
                 user3
         ).forEach { userRepository.save(it) }
+
+        arrayOf(
+                comment1,
+                comment2,
+                comment3
+        ).forEach { commentRepository.save(it) }
 
         logger.info("Test data initialized");
     }
