@@ -1,6 +1,5 @@
 package no.ntnu.webdev.webproject7.crud
 
-import org.hibernate.PropertyValueException
 import org.springframework.data.repository.CrudRepository
 
 open class CrudService<EntityType : CrudModel<ID>, ID>(

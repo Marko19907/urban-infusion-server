@@ -1,9 +1,8 @@
 package no.ntnu.webdev.webproject7.product
 
 import no.ntnu.webdev.webproject7.crud.CrudController
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("products")

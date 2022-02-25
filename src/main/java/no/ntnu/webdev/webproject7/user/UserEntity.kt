@@ -1,6 +1,7 @@
 package no.ntnu.webdev.webproject7.user
 
 import no.ntnu.webdev.webproject7.crud.CrudModel
+import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Id
@@ -27,6 +28,6 @@ class UserEntity(
     protected constructor() : this(null)
 
     override fun validate(): Boolean {
-        return arrayOf(id, admin, email, password).all { e -> e != null }
+        return objectsNotNull(id, admin, email, password);
     }
 }

@@ -3,6 +3,7 @@ package no.ntnu.webdev.webproject7.comment
 import no.ntnu.webdev.webproject7.crud.CrudModel
 import no.ntnu.webdev.webproject7.product.Product
 import no.ntnu.webdev.webproject7.user.UserEntity
+import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import java.time.LocalDate
 import javax.persistence.*
 
@@ -33,6 +34,6 @@ class Comment(
     protected constructor() : this(null)
 
     override fun validate(): Boolean {
-        return arrayOf(id, text, date).any { e -> e != null }
+        return objectsNotNull(id, text); // TODO: The date is not being checked for null!
     }
 }
