@@ -13,17 +13,17 @@ class ProductController(private val productService: ProductService) {
         get() = ResponseEntity(productService.allProducts, HttpStatus.OK)
 
     @PostMapping("")
-    fun addOne(@RequestBody product: Product?): ResponseEntity<String> {
+    fun addOne(@RequestBody product: Product): ResponseEntity<String> {
         return if (productService.addProduct(product)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST)
     }
 
     @PutMapping("")
-    fun update(@RequestBody product: Product?): ResponseEntity<String> {
+    fun update(@RequestBody product: Product): ResponseEntity<String> {
         return if (productService.updateProduct(product)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST)
     }
 
     @DeleteMapping("/{id}")
-    fun delete(@PathVariable id: String?): ResponseEntity<String> {
+    fun delete(@PathVariable id: String): ResponseEntity<String> {
         return if (productService.deleteProduct(id)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST)
     }
 }
