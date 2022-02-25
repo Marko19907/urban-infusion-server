@@ -4,35 +4,33 @@ import no.ntnu.webdev.webproject7.crud.CrudModel
 import no.ntnu.webdev.webproject7.product.Product
 import no.ntnu.webdev.webproject7.user.UserEntity
 import java.time.LocalDate
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.JoinColumn
-import javax.persistence.ManyToOne
+import javax.persistence.*
 
 typealias CommentId = String;
 
 @Entity
-class Comment : CrudModel<CommentId> {
+class Comment(
     @Id
-    override var id: CommentId? = null
+    @Column(nullable = false)
+    override var id: CommentId? = null,
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    var product: Product? = null
+    var product: Product? = null,
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    var user: UserEntity? = null
-    var text: String? = null
+    var user: UserEntity? = null,
+
+    @Column(nullable = false)
+    var text: String? = null,
+
+    @Column(nullable = false)
     var date: LocalDate? = null
+) : CrudModel<CommentId> {
+    protected constructor() : this(null)
 
-    constructor(id: CommentId?, product: Product?, user: UserEntity?, text: String?, date: LocalDate?) {
-        this.id = id
-        this.product = product
-        this.user = user
-        this.text = text
-        this.date = date
+    override fun validate(): Boolean {
+        return arrayOf(id, text, date).any { e -> e != null }
     }
-
-    protected constructor()
 }

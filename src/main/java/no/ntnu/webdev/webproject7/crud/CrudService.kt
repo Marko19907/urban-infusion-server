@@ -1,5 +1,6 @@
 package no.ntnu.webdev.webproject7.crud
 
+import org.hibernate.PropertyValueException
 import org.springframework.data.repository.CrudRepository
 
 open class CrudService<EntityType : CrudModel<ID>, ID>(
@@ -15,13 +16,14 @@ open class CrudService<EntityType : CrudModel<ID>, ID>(
     }
 
     fun add(entity: EntityType): Boolean {
-        if (entity.id == null || getById(entity.id) != null) return false
+        if (!entity.validate() || getById(entity.id) != null) return false
         return repository.save(entity).id == entity.id
     }
 
     fun update(entity: EntityType): Boolean {
+        if (!entity.validate()) return false;
         repository.save(entity);
-        return true
+        return true;
     }
 
     fun delete(id: ID): Boolean {
