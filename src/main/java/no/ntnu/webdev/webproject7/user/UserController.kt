@@ -6,4 +6,4 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("users")
-class UserController(userService: UserService) : CrudController<UserEntity, String>(userService)
+class UserController(userService: UserService) : CrudController<UserEntity, UserEntityId>(userService)

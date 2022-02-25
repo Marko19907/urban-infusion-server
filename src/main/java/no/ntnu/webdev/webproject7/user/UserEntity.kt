@@ -4,10 +4,12 @@ import no.ntnu.webdev.webproject7.crud.CrudModel
 import javax.persistence.Entity
 import javax.persistence.Id
 
+typealias UserEntityId = String;
+
 @Entity
-class UserEntity : CrudModel<String> {
+class UserEntity : CrudModel<UserEntityId> {
     @Id
-    override var id: String? = null
+    override var id: UserEntityId? = null
     var admin: Boolean? = null
     var email: String? = null
     var password: String? = null
