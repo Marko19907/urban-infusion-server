@@ -19,5 +19,5 @@ class UserEntity : CrudModel<String> {
         this.password = password
     }
 
-    protected constructor() {}
+    protected constructor()
 }
