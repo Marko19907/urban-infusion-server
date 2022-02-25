@@ -1,11 +1,13 @@
 package no.ntnu.webdev.webproject7.comment;
 
+import no.ntnu.webdev.webproject7.crud.CrudModel;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Entity
-public class Comment {
+public class Comment implements CrudModel<String> {
 
     @Id
     private String id;

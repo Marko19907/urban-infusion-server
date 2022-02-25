@@ -1,10 +1,12 @@
 package no.ntnu.webdev.webproject7.user;
 
+import no.ntnu.webdev.webproject7.crud.CrudModel;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class UserEntity {
+public class UserEntity implements CrudModel<String> {
     @Id
     private String id;
     private Boolean admin;

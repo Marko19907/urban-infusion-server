@@ -1,10 +1,13 @@
 package no.ntnu.webdev.webproject7.product;
 
+import no.ntnu.webdev.webproject7.crud.CrudModel;
+import no.ntnu.webdev.webproject7.crud.CrudService;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Product {
+public class Product implements CrudModel<String> {
     @Id
     private String id;
     private Double price;
