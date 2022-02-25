@@ -27,7 +27,9 @@ class Comment(
 
     @Column(nullable = false)
     var date: LocalDate? = null
+
 ) : CrudModel<CommentId> {
+
     protected constructor() : this(null)
 
     override fun validate(): Boolean {

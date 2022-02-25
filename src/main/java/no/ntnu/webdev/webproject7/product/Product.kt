@@ -29,6 +29,7 @@ class Product(
 
     @Column(nullable = false)
     var weight: String? = null
+
 ) : CrudModel<ProductId> {
 
     protected constructor() : this(null)

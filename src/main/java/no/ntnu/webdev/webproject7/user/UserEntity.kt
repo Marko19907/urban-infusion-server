@@ -21,6 +21,7 @@ class UserEntity(
 
     @Column(nullable = false)
     var password: String? = null
+
 ) : CrudModel<UserEntityId> {
 
     protected constructor() : this(null)
