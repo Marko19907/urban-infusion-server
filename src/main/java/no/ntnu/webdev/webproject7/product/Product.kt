@@ -4,10 +4,12 @@ import no.ntnu.webdev.webproject7.crud.CrudModel
 import javax.persistence.Entity
 import javax.persistence.Id
 
+typealias ProductId = String
+
 @Entity
-class Product : CrudModel<String> {
+class Product : CrudModel<ProductId> {
     @Id
-    override var id: String? = null
+    override var id: ProductId? = null
     var price: Double? = null
     var discount: Double? = null
     var image: String? = null

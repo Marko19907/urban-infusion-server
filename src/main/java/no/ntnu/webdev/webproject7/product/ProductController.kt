@@ -7,4 +7,4 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("products")
-class ProductController(productService: ProductService) : CrudController<Product, String>(productService)
+class ProductController(productService: ProductService) : CrudController<Product, ProductId>(productService)

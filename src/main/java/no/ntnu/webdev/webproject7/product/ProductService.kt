@@ -5,5 +5,5 @@ import org.springframework.stereotype.Service
 
 @Service
 class ProductService(productRepository: ProductRepository) :
-    CrudService<Product, String>(productRepository) {
+    CrudService<Product, ProductId>(productRepository) {
 }
