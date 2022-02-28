@@ -26,7 +26,6 @@ class Comment(
     @Column(nullable = false)
     var text: String? = null,
 
-    @Column(nullable = false)
     var date: LocalDate? = null
 
 ) : CrudModel<CommentId> {

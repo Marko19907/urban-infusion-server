@@ -6,3 +6,4 @@ package no.ntnu.webdev.webproject7.utilities
 fun <T> objectsNotNull(vararg input: T): Boolean {
     return input.all { e -> e != null }
 }
+
