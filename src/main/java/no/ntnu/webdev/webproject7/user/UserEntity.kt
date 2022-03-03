@@ -7,7 +7,7 @@ import javax.persistence.*
 typealias UserEntityId = Long;
 
 @Entity
-class UserEntity(
+open class UserEntity(
     @Column(nullable = false)
     var admin: Boolean? = null,
 

@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.ApplicationListener
 import org.springframework.stereotype.Component
+import java.time.LocalDate
 
 @Component
 class DummyDataInitializer(
@@ -34,9 +35,9 @@ class DummyDataInitializer(
         val user2 = UserEntity(true, "admin@teashop.com", "321");
         val user3 = UserEntity(false, "user@example.no", "987");
 
-        val comment1 = Comment(user1, "Very nice", null);
-        val comment2 = Comment(user2, "I love this product", null);
-        val comment3 = Comment(user3, "This product sucks!", null);
+        val comment1 = Comment(user1, "Very nice", LocalDate.now());
+        val comment2 = Comment(user2, "I love this product", LocalDate.now());
+        val comment3 = Comment(user3, "This product sucks!", LocalDate.now());
 
         val product1 = Product(mutableListOf(comment1), 99.99, 0.00, null, "Black tea", "Description text", "10oz");
         val product2 = Product(mutableListOf(comment2), 49.99, 0.50, null, "Green tea", "Description text", "20oz");
