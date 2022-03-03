@@ -2,18 +2,12 @@ package no.ntnu.webdev.webproject7.user
 
 import no.ntnu.webdev.webproject7.crud.CrudModel
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Id
+import javax.persistence.*
 
-typealias UserEntityId = String;
+typealias UserEntityId = Long;
 
 @Entity
 class UserEntity(
-    @Id
-    @Column(nullable = false)
-    override var id: UserEntityId? = null,
-
     @Column(nullable = false)
     var admin: Boolean? = null,
 
@@ -24,10 +18,13 @@ class UserEntity(
     var password: String? = null
 
 ) : CrudModel<UserEntityId> {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    override var id: UserEntityId = 0
 
     protected constructor() : this(null)
 
     override fun validate(): Boolean {
-        return objectsNotNull(id, admin, email, password);
+        return objectsNotNull(admin, email, password);
     }
 }

@@ -6,14 +6,10 @@ import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import java.time.LocalDate
 import javax.persistence.*
 
-typealias CommentId = String;
+typealias CommentId = Long;
 
 @Entity
 class Comment(
-    @Id
-    @Column(nullable = false)
-    override var id: CommentId? = null,
-
     @OneToOne
     @JoinColumn(name = "user_id")
     var user: UserEntity? = null,
@@ -24,10 +20,13 @@ class Comment(
     var date: LocalDate? = null
 
 ) : CrudModel<CommentId> {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    override var id: CommentId = 0
 
     protected constructor() : this(null)
 
     override fun validate(): Boolean {
-        return objectsNotNull(id, text); // TODO: The date is not being checked for null!
+        return objectsNotNull(text); // TODO: The date is not being checked for null!
     }
 }
