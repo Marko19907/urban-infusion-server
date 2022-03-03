@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import java.time.LocalDate
-import kotlin.test.assertContains
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
@@ -54,10 +53,9 @@ internal class Webproject7ApplicationTests(
         arrayOf(commentRepository, productRepository, userRepository)
             .forEach { repository -> assertTrue { repository.count() == 0L } }
 
-
-        val product = Product("100", 53.99, 0.0, null, "Black tea", "Description text 123", "15oz");
         val user = UserEntity("100", false, "user@example.com", "4321");
-        val comment = Comment("100", product, user, "Ice wallow come", LocalDate.now());
+        val comment = Comment("100", user, "Ice wallow come", LocalDate.now());
+        val product = Product("100", mutableListOf(comment), 0.0, null, "Black tea", "Description text 123", "15oz");
 
         productRepository.save(product);
         userRepository.save(user);

@@ -1,7 +1,6 @@
 package no.ntnu.webdev.webproject7.comment
 
 import no.ntnu.webdev.webproject7.crud.CrudModel
-import no.ntnu.webdev.webproject7.product.Product
 import no.ntnu.webdev.webproject7.user.UserEntity
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import java.time.LocalDate
@@ -15,11 +14,7 @@ class Comment(
     @Column(nullable = false)
     override var id: CommentId? = null,
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    var product: Product? = null,
-
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_id")
     var user: UserEntity? = null,
 
