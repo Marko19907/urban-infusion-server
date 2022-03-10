@@ -8,7 +8,7 @@ import javax.persistence.*
 typealias ProductId = Long
 
 @Entity
-class Product(
+open class Product(
     @Column(nullable = true)
     @OneToMany(cascade = [CascadeType.ALL])
     val comments: List<Comment>? = null,
@@ -19,6 +19,7 @@ class Product(
     @Column(nullable = false)
     var discount: Double? = null,
 
+    @Column(nullable = true)
     var image: String? = null,
 
     @Column(nullable = false)
@@ -38,6 +39,6 @@ class Product(
     protected constructor() : this(null)
 
     override fun validate(): Boolean {
-        return objectsNotNull(discount, image, title, description, weight);
+        return objectsNotNull(discount, title, description, weight);
     }
 }

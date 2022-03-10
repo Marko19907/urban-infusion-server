@@ -9,20 +9,23 @@ import javax.persistence.*
 typealias CommentId = Long;
 
 @Entity
-class Comment(
+open class Comment(
     @OneToOne
-    @JoinColumn(name = "user_id")
     var user: UserEntity? = null,
 
     @Column(nullable = false)
     var text: String? = null,
 
-    var date: LocalDate? = null
+    @Column(nullable = true)
+    var lastUpdated: LocalDate? = null
 
 ) : CrudModel<CommentId> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     override var id: CommentId = 0
+
+    @Column(nullable = false)
+    var created: LocalDate = LocalDate.now()
 
     protected constructor() : this(null)
 
