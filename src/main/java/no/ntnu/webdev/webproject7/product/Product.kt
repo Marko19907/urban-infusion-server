@@ -7,12 +7,16 @@ import javax.persistence.*
 
 typealias ProductId = Long
 
-enum class Category{
-    TEA, ACCESSORY
+enum class Category(val type: String){
+    TEA("tea"),
+    ACCESSORIES("accessories")
 }
 
-enum class Subcategory{
-    BLACK, GREEN, WHITE, CUPS
+enum class Subcategory(val type: String){
+    BLACK_TEA("black tea"),
+    GREEN_TEA("green tea"),
+    WHITE_TEA("white tea"),
+    CUP("cups")
 }
 
 @Entity
@@ -53,6 +57,6 @@ open class Product(
     protected constructor() : this(null)
 
     override fun validate(): Boolean {
-        return objectsNotNull(discount, title, description, weight, category, subcategory);
+        return objectsNotNull(discount, price, title, description, weight, category, subcategory);
     }
 }
