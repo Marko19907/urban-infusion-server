@@ -2,8 +2,10 @@ package no.ntnu.webdev.webproject7.utilities
 
 import no.ntnu.webdev.webproject7.comment.Comment
 import no.ntnu.webdev.webproject7.comment.CommentRepository
+import no.ntnu.webdev.webproject7.product.Category
 import no.ntnu.webdev.webproject7.product.Product
 import no.ntnu.webdev.webproject7.product.ProductRepository
+import no.ntnu.webdev.webproject7.product.Subcategory
 import no.ntnu.webdev.webproject7.user.UserEntity
 import no.ntnu.webdev.webproject7.user.UserRepository
 import org.slf4j.Logger
@@ -39,9 +41,9 @@ class DummyDataInitializer(
         val comment2 = Comment(user2, "I love this product", LocalDate.now());
         val comment3 = Comment(user3, "This product sucks!", LocalDate.now());
 
-        val product1 = Product(mutableListOf(comment1), 99.99, 0.00, null, "Black tea", "Description text", "10oz");
-        val product2 = Product(mutableListOf(comment2), 49.99, 0.50, null, "Green tea", "Description text", "20oz");
-        val product3 = Product(mutableListOf(comment3), 19.99, 0.15, null, "White tea", "Description text", "5oz");
+        val product1 = Product(mutableListOf(comment1), 99.99, 0.00, null, "Black tea", "Description text", "10oz", Category.TEA, Subcategory.BLACK_TEA);
+        val product2 = Product(mutableListOf(comment2), 49.99, 0.50, null, "Green tea", "Description text", "20oz", Category.TEA, Subcategory.GREEN_TEA);
+        val product3 = Product(mutableListOf(comment3), 19.99, 0.15, null, "White tea", "Description text", "5oz", Category.TEA, Subcategory.WHITE_TEA);
 
         arrayOf(
             user1,
