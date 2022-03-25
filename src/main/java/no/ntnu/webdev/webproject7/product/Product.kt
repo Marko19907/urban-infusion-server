@@ -44,10 +44,10 @@ open class Product(
     var weight: String? = null,
 
     @Column(nullable = false)
-    var category: Category? = null,
+    val category: Category? = null,
 
     @Column(nullable = false)
-    var subcategory: Subcategory? = null
+    val subcategory: Subcategory? = null
 
 ) : CrudModel<ProductId> {
     @Id
