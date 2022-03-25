@@ -25,15 +25,15 @@ open class Order(
     var status: OrderStatus = OrderStatus.IDLE,
 
     @Column(nullable = true)
-    var date: LocalDate = LocalDate.now(),
-
-    @Column(nullable = true)
     var totalPrice: Float? = null,
 
     ): CrudModel<OrderId> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     override var id: OrderId = 0
+
+    @Column(nullable = true)
+    var date: LocalDate = LocalDate.now();
 
     protected constructor() : this(null)
 
