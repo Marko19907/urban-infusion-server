@@ -16,9 +16,9 @@ enum class OrderStatus(val status: Int) {
 }
 
 @Entity
-open class Order(
+open class OrderEntity(
     @Column(nullable = true)
-    @OneToMany(cascade = [CascadeType.ALL])
+    @OneToMany(cascade = [CascadeType.MERGE])
     val products: List<Product>? = null,
 
     @Column(nullable = true)
