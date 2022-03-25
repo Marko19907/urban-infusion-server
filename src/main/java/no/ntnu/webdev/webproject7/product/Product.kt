@@ -7,6 +7,14 @@ import javax.persistence.*
 
 typealias ProductId = Long
 
+enum class Category{
+    TEA, ACCESSORY
+}
+
+enum class Subcategory{
+    BLACK, GREEN, WHITE, CUPS
+}
+
 @Entity
 open class Product(
     @Column(nullable = true)
@@ -29,7 +37,13 @@ open class Product(
     var description: String? = null,
 
     @Column(nullable = false)
-    var weight: String? = null
+    var weight: String? = null,
+
+    @Column(nullable = false)
+    var category: Category? = null,
+
+    @Column(nullable = false)
+    var subcategory: Subcategory? = null
 
 ) : CrudModel<ProductId> {
     @Id
@@ -39,6 +53,6 @@ open class Product(
     protected constructor() : this(null)
 
     override fun validate(): Boolean {
-        return objectsNotNull(discount, title, description, weight);
+        return objectsNotNull(discount, title, description, weight, category, subcategory);
     }
 }
