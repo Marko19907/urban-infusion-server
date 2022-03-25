@@ -12,13 +12,6 @@ enum class Category(val type: String){
     ACCESSORIES("accessories")
 }
 
-enum class Subcategory(val type: String){
-    BLACK_TEA("black tea"),
-    GREEN_TEA("green tea"),
-    WHITE_TEA("white tea"),
-    CUP("cups")
-}
-
 @Entity
 open class Product(
     @Column(nullable = true)
@@ -46,8 +39,6 @@ open class Product(
     @Column(nullable = false)
     val category: Category? = null,
 
-    @Column(nullable = false)
-    val subcategory: Subcategory? = null
 
 ) : CrudModel<ProductId> {
     @Id
@@ -57,6 +48,6 @@ open class Product(
     protected constructor() : this(null)
 
     override fun validate(): Boolean {
-        return objectsNotNull(discount, price, title, description, weight, category, subcategory);
+        return objectsNotNull(discount, price, title, description, weight, category);
     }
 }
