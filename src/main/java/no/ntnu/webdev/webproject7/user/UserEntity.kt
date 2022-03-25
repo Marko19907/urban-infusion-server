@@ -24,10 +24,10 @@ open class UserEntity(
     var zipcode: String? = null,
 
     @Column(nullable = false)
-    var phone_number: String? = null,
+    var address: String? = null,
 
     @Column(nullable = false)
-    var address: String? = null
+    var phone_number: String? = null
 
 ) : CrudModel<UserEntityId> {
     @Id
