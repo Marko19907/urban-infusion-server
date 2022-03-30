@@ -15,7 +15,19 @@ open class UserEntity(
     var email: String? = null,
 
     @Column(nullable = false)
-    var password: String? = null
+    var password: String? = null,
+
+    @Column(nullable = false)
+    var city: String? = null,
+
+    @Column(nullable = false)
+    var zipcode: String? = null,
+
+    @Column(nullable = false)
+    var address: String? = null,
+
+    @Column(nullable = false)
+    var phone_number: String? = null
 
 ) : CrudModel<UserEntityId> {
     @Id
@@ -25,6 +37,6 @@ open class UserEntity(
     protected constructor() : this(null)
 
     override fun validate(): Boolean {
-        return objectsNotNull(admin, email, password);
+        return objectsNotNull(admin, email, password, city, zipcode, phone_number, address);
     }
 }
