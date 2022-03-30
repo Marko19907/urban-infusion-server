@@ -12,6 +12,12 @@ open class CrudController<EntityType : CrudModel<ID>, ID>(
         return ResponseEntity(service.all(), HttpStatus.OK)
     }
 
+    @GetMapping("/{id}")
+    fun getOne(@PathVariable id: ID): ResponseEntity<EntityType> {
+        val entity = service.getById(id);
+        return if (entity != null) ResponseEntity(entity, HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST)
+    }
+
     @PostMapping("")
     fun addOne(@RequestBody entity: EntityType): ResponseEntity<String> {
         return if (service.add(entity)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST)
