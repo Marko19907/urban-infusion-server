@@ -9,14 +9,10 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("products")
-class ProductController(productService: ProductService) : CrudController<Product, ProductId>(productService) {
+class ProductController(private val productService: ProductService) : CrudController<Product, ProductId>(productService) {
 
     @GetMapping("/categories")
     fun getCategories(): ResponseEntity<MutableSet<Category>> {
-        return ResponseEntity(getCategoryMap(), HttpStatus.OK);
-    }
-
-    private fun getCategoryMap(): MutableSet<Category> {
-        return Category.values().toHashSet();
+        return ResponseEntity(productService.getCategoryMap(), HttpStatus.OK);
     }
 }
