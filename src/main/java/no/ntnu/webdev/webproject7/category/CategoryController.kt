@@ -19,14 +19,9 @@ class CategoryController(
     }
 
     private fun getCategoryMap(): MutableSet<Category> {
-        val map: MutableSet<Category> = mutableSetOf();
-        productRepository.findAll().toList()
+        return productRepository.findAll().toList()
             .filterNotNull()
-            .forEach { product ->
-                run {
-                    map.add(product.category!!);
-                }
-            }
-        return map;
+            .mapNotNull { product -> product.category }
+            .toHashSet();
     }
 }
