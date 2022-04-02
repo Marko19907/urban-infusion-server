@@ -24,4 +24,8 @@ class CategoryController(
             .mapNotNull { product -> product.category }
             .toHashSet();
     }
+
+    private fun getCategoryMap2(): MutableSet<Category> {
+        return Category.values().toHashSet();
+    }
 }
