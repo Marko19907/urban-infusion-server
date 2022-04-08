@@ -1,5 +1,6 @@
-package no.ntnu.webdev.webproject7.crud
+package no.ntnu.webdev.webproject7.services
 
+import no.ntnu.webdev.webproject7.models.CrudModel
 import org.springframework.data.repository.CrudRepository
 
 open class CrudService<EntityType : CrudModel<ID>, ID>(

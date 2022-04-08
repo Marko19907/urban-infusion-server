@@ -1,5 +1,7 @@
-package no.ntnu.webdev.webproject7.crud
+package no.ntnu.webdev.webproject7.controllers
 
+import no.ntnu.webdev.webproject7.models.CrudModel
+import no.ntnu.webdev.webproject7.services.CrudService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

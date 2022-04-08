@@ -1,17 +1,12 @@
 package no.ntnu.webdev.webproject7.utilities
 
-import no.ntnu.webdev.webproject7.comment.Comment
-import no.ntnu.webdev.webproject7.comment.CommentRepository
-import no.ntnu.webdev.webproject7.order.OrderEntity
-import no.ntnu.webdev.webproject7.order.OrderRepository
-import no.ntnu.webdev.webproject7.order.OrderStatus
-import no.ntnu.webdev.webproject7.product.Category
-import no.ntnu.webdev.webproject7.product.Product
-import no.ntnu.webdev.webproject7.product.ProductRepository
-import no.ntnu.webdev.webproject7.user.UserEntity
-import no.ntnu.webdev.webproject7.user.UserRepository
+import no.ntnu.webdev.webproject7.models.*
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import no.ntnu.webdev.webproject7.repositories.CommentRepository
+import no.ntnu.webdev.webproject7.repositories.OrderRepository
+import no.ntnu.webdev.webproject7.repositories.ProductRepository
+import no.ntnu.webdev.webproject7.repositories.UserRepository
 import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.ApplicationListener
 import org.springframework.stereotype.Component

@@ -1,6 +1,6 @@
-package no.ntnu.webdev.webproject7.user
+package no.ntnu.webdev.webproject7.models
 
-import no.ntnu.webdev.webproject7.crud.CrudModel
+import no.ntnu.webdev.webproject7.models.CrudModel
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import javax.persistence.*
 

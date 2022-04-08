@@ -1,6 +1,8 @@
-package no.ntnu.webdev.webproject7.order
+package no.ntnu.webdev.webproject7.controllers
 
-import no.ntnu.webdev.webproject7.crud.CrudController
+import no.ntnu.webdev.webproject7.models.OrderEntity
+import no.ntnu.webdev.webproject7.models.OrderId
+import no.ntnu.webdev.webproject7.services.OrderService
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 

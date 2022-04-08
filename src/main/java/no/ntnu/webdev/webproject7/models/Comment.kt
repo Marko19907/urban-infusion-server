@@ -1,7 +1,5 @@
-package no.ntnu.webdev.webproject7.comment
+package no.ntnu.webdev.webproject7.models
 
-import no.ntnu.webdev.webproject7.crud.CrudModel
-import no.ntnu.webdev.webproject7.user.UserEntity
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import java.time.LocalDate
 import javax.persistence.*

@@ -1,6 +1,8 @@
-package no.ntnu.webdev.webproject7.comment
+package no.ntnu.webdev.webproject7.controllers
 
-import no.ntnu.webdev.webproject7.crud.CrudController
+import no.ntnu.webdev.webproject7.models.Comment
+import no.ntnu.webdev.webproject7.models.CommentId
+import no.ntnu.webdev.webproject7.services.CommentService
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 

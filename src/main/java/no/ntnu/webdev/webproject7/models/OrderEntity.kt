@@ -1,7 +1,7 @@
-package no.ntnu.webdev.webproject7.order
+package no.ntnu.webdev.webproject7.models
 
-import no.ntnu.webdev.webproject7.crud.CrudModel
-import no.ntnu.webdev.webproject7.product.Product
+import no.ntnu.webdev.webproject7.models.CrudModel
+import no.ntnu.webdev.webproject7.models.Product
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import java.time.LocalDate
 import javax.persistence.*

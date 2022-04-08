@@ -1,7 +1,5 @@
-package no.ntnu.webdev.webproject7.product
+package no.ntnu.webdev.webproject7.models
 
-import no.ntnu.webdev.webproject7.comment.Comment
-import no.ntnu.webdev.webproject7.crud.CrudModel
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import javax.persistence.*
 
@@ -40,7 +38,7 @@ open class Product(
     val category: Category? = null,
 
 
-) : CrudModel<ProductId> {
+    ) : CrudModel<ProductId> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     override var id: ProductId = 0
