@@ -27,11 +27,11 @@ class DummyDataInitializer(
 
         // Check if all repositories are empty
         if (arrayOf(
-                commentRepository.count(),
-                productRepository.count(),
-                userRepository.count(),
-                orderRepository.count()
-            ).any { e -> e > 0 }
+                commentRepository,
+                productRepository,
+                userRepository,
+                orderRepository
+            ).any { it.count() > 0 }
         ) {
             logger.info("The database is not empty, did not initialize test data...");
             return;
