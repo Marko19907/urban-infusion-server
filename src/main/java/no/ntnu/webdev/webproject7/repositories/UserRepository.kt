@@ -6,4 +6,6 @@ import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface UserRepository : CrudRepository<UserEntity, UserEntityId>
+interface UserRepository : CrudRepository<UserEntity, UserEntityId> {
+    fun findUserEntityByUsername(username: String): UserEntity
+}
