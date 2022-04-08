@@ -15,6 +15,9 @@ open class UserEntity(
     var email: String? = null,
 
     @Column(nullable = false)
+    var username: String? = null,
+
+    @Column(nullable = false)
     var password: String? = null,
 
     @Column(nullable = false)
@@ -37,6 +40,6 @@ open class UserEntity(
     protected constructor() : this(null)
 
     override fun validate(): Boolean {
-        return objectsNotNull(admin, email, password, city, zipcode, phone_number, address);
+        return objectsNotNull(admin, email, username, password, city, zipcode, phone_number, address);
     }
 }
