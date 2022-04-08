@@ -31,48 +31,44 @@ class DummyDataInitializer(
         logger.info("Initializing test data...");
 
         // Check if all repositories are empty
-        if (arrayOf(commentRepository.count(), productRepository.count(), userRepository.count(), orderRepository.count()).any { e -> e > 0 }) {
+        if (arrayOf(
+                commentRepository.count(),
+                productRepository.count(),
+                userRepository.count(),
+                orderRepository.count()
+            ).any { e -> e > 0 }
+        ) {
             logger.info("The database is not empty, did not initialize test data...");
             return;
         }
 
-        val user1 = UserEntity(false, "user@gmail.com", "123", "Ålesund", "6008", "Vågavegen 29", "98765432");
-        val user2 = UserEntity(true, "admin@teashop.com", "321", "Oslo", "0001", "Majorstuen 5", "98876543");
-        val user3 = UserEntity(false, "user@example.no", "987", "Bergen", "5003", "Juvik 12", "43219876");
+        val user1 = UserEntity(false, "user@gmail.com", "user", "123", "Ålesund", "6008", "Vågavegen 29", "98765432");
+        val user2 = UserEntity(true, "admin@teashop.com", "admin", "321", "Oslo", "0001", "Majorstuen 5", "98876543");
+        val user3 = UserEntity(false, "user@example.no", "other_user", "987", "Bergen", "5003", "Juvik 12", "43219876");
 
         val comment1 = Comment(user1, "Very nice", LocalDate.now());
         val comment2 = Comment(user2, "I love this product", LocalDate.now());
         val comment3 = Comment(user3, "This product sucks!", LocalDate.now());
 
-        val product1 = Product(mutableListOf(comment1), 99.99, 0.00, null, "Black tea", "Description text", "10oz", Category.TEA);
-        val product2 = Product(mutableListOf(comment2), 49.99, 0.50, null, "Green tea", "Description text", "20oz", Category.TEA);
-        val product3 = Product(mutableListOf(comment3), 19.99, 0.15, null, "White tea", "Description text", "5oz", Category.TEA);
+        val product1 =
+            Product(mutableListOf(comment1), 99.99, 0.00, null, "Black tea", "Description text", "10oz", Category.TEA);
+        val product2 =
+            Product(mutableListOf(comment2), 49.99, 0.50, null, "Green tea", "Description text", "20oz", Category.TEA);
+        val product3 =
+            Product(mutableListOf(comment3), 19.99, 0.15, null, "White tea", "Description text", "5oz", Category.TEA);
 
         val orderEntity1 = OrderEntity(mutableListOf(product1), OrderStatus.IDLE, 20f);
         val orderEntity2 = OrderEntity(mutableListOf(product2, product3), OrderStatus.PROCESSING, 100f);
 
-        arrayOf(
-            user1,
-            user2,
-            user3
-        ).forEach { userRepository.save(it) }
+        val users = arrayOf(user1, user2, user3)
+        val comments = arrayOf(comment1, comment2, comment3)
+        val products = arrayOf(product1, product2, product3)
+        val orders = arrayOf(orderEntity1, orderEntity2)
 
-        arrayOf(
-                product1,
-                product2,
-                product3
-        ).forEach { productRepository.save(it) }
-
-        arrayOf(
-                comment1,
-                comment2,
-                comment3
-        ).forEach { commentRepository.save(it) }
-
-        arrayOf(
-            orderEntity1,
-            orderEntity2
-        ).forEach { orderRepository.save(it) }
+        users.forEach { userRepository.save(it) }
+        products.forEach { productRepository.save(it) }
+        comments.forEach { commentRepository.save(it) }
+        orders.forEach { orderRepository.save(it) }
 
         logger.info("Test data initialized");
     }
