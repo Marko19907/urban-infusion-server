@@ -1,6 +1,5 @@
 package no.ntnu.webdev.webproject7.models
 
-import no.ntnu.webdev.webproject7.models.CrudModel
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import javax.persistence.*
 
@@ -30,7 +29,10 @@ open class UserEntity(
     var address: String? = null,
 
     @Column(nullable = false)
-    var phone_number: String? = null
+    var phone_number: String? = null,
+
+    @Column(nullable = false)
+    var role: Role = Role.USER
 
 ) : CrudModel<UserEntityId> {
     @Id
