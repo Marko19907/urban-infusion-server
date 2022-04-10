@@ -17,7 +17,7 @@ class AppUserDetailsService(private val userRepository: UserRepository) : UserDe
         val user = userRepository.findUserEntityByUsername(s)
 
         val authorities = ArrayList<GrantedAuthority>()
-        authorities.add(SimpleGrantedAuthority(user.getRole().toString()))
+        authorities.add(SimpleGrantedAuthority(user.role.toString()))
         return User(
             user.username,
             user.password,
