@@ -37,9 +37,10 @@ class DummyDataInitializer(
             return;
         }
 
-        val user1 = UserEntity(false, "user@gmail.com", "user", "123", "Ålesund", "6008", "Vågavegen 29", "98765432");
-        val user2 = UserEntity(true, "admin@teashop.com", "admin", "321", "Oslo", "0001", "Majorstuen 5", "98876543");
-        val user3 = UserEntity(false, "user@example.no", "other_user", "987", "Bergen", "5003", "Juvik 12", "43219876");
+        val user1 = UserEntity("user@gmail.com", "user", "user", "Ålesund", "6008", "Vågavegen 29", "98765432");
+        val user2 = UserEntity("admin@teashop.com", "admin", "admin", "Oslo", "0001", "Majorstuen 5", "98876543");
+        user2.setRole(Role.ADMIN);
+        val user3 = UserEntity("user@example.no", "other_user", "987", "Bergen", "5003", "Juvik 12", "43219876");
 
         val comment1 = Comment(user1, "Very nice", null);
         val comment2 = Comment(user2, "I love this product", LocalDate.now());

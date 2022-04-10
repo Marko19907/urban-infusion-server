@@ -5,11 +5,13 @@ import javax.persistence.*
 
 typealias UserEntityId = Long;
 
+enum class Role {
+    USER,
+    ADMIN
+}
+
 @Entity
 open class UserEntity(
-    @Column(nullable = false)
-    var admin: Boolean? = null,
-
     @Column(nullable = false)
     var email: String? = null,
 
@@ -31,17 +33,25 @@ open class UserEntity(
     @Column(nullable = false)
     var phone_number: String? = null,
 
-    @Column(nullable = false)
-    var role: Role = Role.USER
-
 ) : CrudModel<UserEntityId> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     override var id: UserEntityId = 0
 
+    @Column(nullable = false)
+    private var role: Role = Role.USER;
+
     protected constructor() : this(null)
 
+    fun setRole(role: Role) {
+        this.role = role;
+    }
+
+    fun getRole(): Role {
+        return this.role;
+    }
+
     override fun validate(): Boolean {
-        return objectsNotNull(admin, email, username, password, city, zipcode, phone_number, address);
+        return objectsNotNull(role, email, username, password, city, zipcode, phone_number, address);
     }
 }

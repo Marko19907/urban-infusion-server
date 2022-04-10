@@ -1,7 +1,6 @@
 package no.ntnu.webdev.webproject7.controllers
 
 import no.ntnu.webdev.webproject7.models.CrudModel
-import no.ntnu.webdev.webproject7.models.Role
 import no.ntnu.webdev.webproject7.services.CrudService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

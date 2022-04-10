@@ -1,7 +1,6 @@
 package no.ntnu.webdev.webproject7.services
 
 import no.ntnu.webdev.webproject7.repositories.UserRepository
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.User
@@ -9,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Component
-import org.springframework.stereotype.Service
 
 @Component
 class AppUserDetailsService(private val userRepository: UserRepository) : UserDetailsService {
@@ -19,7 +17,7 @@ class AppUserDetailsService(private val userRepository: UserRepository) : UserDe
         val user = userRepository.findUserEntityByUsername(s)
 
         val authorities = ArrayList<GrantedAuthority>()
-        authorities.add(SimpleGrantedAuthority(user.role.toString()))
+        authorities.add(SimpleGrantedAuthority(user.getRole().toString()))
         return User(
             user.username,
             user.password,
