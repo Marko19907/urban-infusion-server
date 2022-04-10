@@ -36,7 +36,6 @@ open class SecurityConfig(
             .antMatchers("/products/{\\d+}").permitAll()
             .antMatchers("/products/categories").permitAll()
             .antMatchers("/comments").permitAll()
-            .antMatchers("/users").permitAll()
             .antMatchers("/categories").permitAll()
             .antMatchers(HttpMethod.POST, "/login").permitAll()
             .anyRequest().authenticated()
