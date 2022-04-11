@@ -1,5 +1,6 @@
 package no.ntnu.webdev.webproject7.models
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import javax.persistence.*
 
@@ -19,6 +20,7 @@ open class UserEntity(
     var username: String? = null,
 
     @Column(nullable = false)
+    @JsonIgnore
     var password: String? = null,
 
     @Column(nullable = false)
