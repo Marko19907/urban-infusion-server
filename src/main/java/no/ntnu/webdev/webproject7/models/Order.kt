@@ -1,7 +1,5 @@
 package no.ntnu.webdev.webproject7.models
 
-import no.ntnu.webdev.webproject7.models.CrudModel
-import no.ntnu.webdev.webproject7.models.Product
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import java.time.LocalDate
 import javax.persistence.*
@@ -16,7 +14,8 @@ enum class OrderStatus(val status: Int) {
 }
 
 @Entity
-open class OrderEntity(
+@Table(name = "OrderEntity")
+open class Order(
     @Column(nullable = true)
     @OneToMany(cascade = [CascadeType.MERGE])
     val products: List<Product>? = null,

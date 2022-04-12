@@ -37,10 +37,10 @@ class DummyDataInitializer(
             return;
         }
 
-        val user1 = UserEntity("user@gmail.com", "user", "user", "Ålesund", "6008", "Vågavegen 29", "98765432");
-        val user2 = UserEntity("admin@teashop.com", "admin", "admin", "Oslo", "0001", "Majorstuen 5", "98876543");
+        val user1 = User("user@gmail.com", "user", "user", "Ålesund", "6008", "Vågavegen 29", "98765432");
+        val user2 = User("admin@teashop.com", "admin", "admin", "Oslo", "0001", "Majorstuen 5", "98876543");
         user2.role = Role.ADMIN;
-        val user3 = UserEntity("user@example.no", "other_user", "987", "Bergen", "5003", "Juvik 12", "43219876");
+        val user3 = User("user@example.no", "other_user", "987", "Bergen", "5003", "Juvik 12", "43219876");
 
         val comment1 = Comment(user1, "Very nice", null);
         val comment2 = Comment(user2, "I love this product", LocalDate.now());
@@ -53,13 +53,13 @@ class DummyDataInitializer(
         val product3 =
             Product(mutableListOf(comment3), 19.99, 0.15, null, "White tea", "Description text", "5oz", Category.TEA);
 
-        val orderEntity1 = OrderEntity(mutableListOf(product1), OrderStatus.IDLE, 20f);
-        val orderEntity2 = OrderEntity(mutableListOf(product2, product3), OrderStatus.PROCESSING, 100f);
+        val order1 = Order(mutableListOf(product1), OrderStatus.IDLE, 20f);
+        val order2 = Order(mutableListOf(product2, product3), OrderStatus.PROCESSING, 100f);
 
         val users = arrayOf(user1, user2, user3)
         val comments = arrayOf(comment1, comment2, comment3)
         val products = arrayOf(product1, product2, product3)
-        val orders = arrayOf(orderEntity1, orderEntity2)
+        val orders = arrayOf(order1, order2)
 
         users.forEach { userRepository.save(it) }
         products.forEach { productRepository.save(it) }

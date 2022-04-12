@@ -12,15 +12,16 @@ enum class Role {
 }
 
 @Entity
-open class UserEntity(
+@Table(name = "UserEntity")
+open class User(
     @Column(nullable = false)
     var email: String? = null,
 
     @Column(nullable = false)
     var username: String? = null,
 
-    @Column(nullable = false)
     @JsonIgnore
+    @Column(nullable = false)
     var password: String? = null,
 
     @Column(nullable = false)

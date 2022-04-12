@@ -7,14 +7,13 @@ import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.security.Keys
 import no.ntnu.webdev.webproject7.add
 import no.ntnu.webdev.webproject7.configs.SecurityProperties
-import no.ntnu.webdev.webproject7.models.UserEntity
+import no.ntnu.webdev.webproject7.models.User
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.AuthenticationServiceException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.AuthenticationException
-import org.springframework.security.core.userdetails.User
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import java.io.IOException
 import java.util.*
@@ -36,7 +35,7 @@ class JWTAuthenticationFilter(
         return try {
             val mapper = jacksonObjectMapper()
 
-            val creds = mapper.readValue<UserEntity>(req.inputStream)
+            val creds = mapper.readValue<User>(req.inputStream)
 
             authManager.authenticate(
                 UsernamePasswordAuthenticationToken(

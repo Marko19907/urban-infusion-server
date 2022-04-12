@@ -9,7 +9,7 @@ typealias CommentId = Long;
 @Entity
 open class Comment(
     @OneToOne
-    var user: UserEntity? = null,
+    var user: User? = null,
 
     @Column(nullable = false)
     var text: String? = null,
