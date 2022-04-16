@@ -28,7 +28,7 @@ open class Product(
     @Column(nullable = false)
     var title: String? = null,
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1000)
     var description: String? = null,
 
     @Column(nullable = false)

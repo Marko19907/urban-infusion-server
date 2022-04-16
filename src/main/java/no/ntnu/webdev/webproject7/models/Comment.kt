@@ -11,7 +11,7 @@ open class Comment(
     @OneToOne
     var user: User? = null,
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1000)
     var text: String? = null,
 
     @Column(nullable = true)
