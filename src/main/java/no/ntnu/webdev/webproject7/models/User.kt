@@ -1,6 +1,6 @@
 package no.ntnu.webdev.webproject7.models
 
-import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonProperty
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import javax.persistence.*
 
@@ -20,8 +20,8 @@ open class User(
     @Column(nullable = false)
     var username: String? = null,
 
-    @JsonIgnore
     @Column(nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     var password: String? = null,
 
     @Column(nullable = false)
