@@ -18,8 +18,10 @@ class UserService(@Autowired private val userRepository: UserRepository) :
         if (!registrationDTO.validate()) {
             return false;
         }
-        // TODO: Check if the username exists?
         if (!checkPasswordLength(registrationDTO.password)) {
+            return false;
+        }
+        if (userRepository.findOneByUsername(registrationDTO.username) != null) {
             return false;
         }
         val user = createUserEntity(registrationDTO);
