@@ -39,6 +39,7 @@ open class SecurityConfig(
             .antMatchers("/products/categories").permitAll()
             .antMatchers("/comments").permitAll()
             .antMatchers("/categories").permitAll()
+            .antMatchers(HttpMethod.POST, "/register").permitAll()
             .antMatchers(HttpMethod.POST, "/login").permitAll()
             .anyRequest().authenticated()
             .and()
