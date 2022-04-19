@@ -5,6 +5,7 @@ import no.ntnu.webdev.webproject7.security.JWTAuthorizationFilter
 import no.ntnu.webdev.webproject7.services.AppUserDetailsService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
@@ -12,16 +13,17 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.config.http.SessionCreationPolicy
-import org.springframework.security.crypto.password.NoOpPasswordEncoder
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.CorsConfigurationSource
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 
+@Configuration
 @EnableWebSecurity
 open class SecurityConfig(
     @Autowired private val userDetailsService: AppUserDetailsService,
-    //@Autowired private val bCryptPasswordEncoder: BCryptPasswordEncoder,
+    @Autowired private val bCryptPasswordEncoder: BCryptPasswordEncoder,
     @Autowired private val securityProperties: SecurityProperties
 ) : WebSecurityConfigurerAdapter() {
 
@@ -44,22 +46,20 @@ open class SecurityConfig(
             .addFilter(JWTAuthorizationFilter(authenticationManager(), userDetailsService, securityProperties))
     }
 
-    // TODO("Fix password encoder")
     override fun configure(auth: AuthenticationManagerBuilder) {
         auth.userDetailsService(userDetailsService)
-            //.passwordEncoder(bCryptPasswordEncoder)
+            .passwordEncoder(bCryptPasswordEncoder)
     }
 
-    @Bean
-    open fun passwordEncoder(): PasswordEncoder {
-        return NoOpPasswordEncoder.getInstance();
-    }
-
-    // TODO("Fix password encoder")
     @Bean
     open fun authProvider(): DaoAuthenticationProvider = DaoAuthenticationProvider().apply {
         setUserDetailsService(userDetailsService)
-        //setPasswordEncoder(bCryptPasswordEncoder)
+        setPasswordEncoder(bCryptPasswordEncoder)
+    }
+
+    @Bean
+    open fun passwordEncoder(): PasswordEncoder? {
+        return BCryptPasswordEncoder();
     }
 
     @Bean

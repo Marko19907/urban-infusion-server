@@ -1,7 +1,9 @@
 package no.ntnu.webdev.webproject7.configs
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties
+import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 
 @Configuration
 @EnableConfigurationProperties(
@@ -10,9 +12,6 @@ import org.springframework.context.annotation.Configuration
 open class AppConfig(
     private val securityProperties: SecurityProperties
 ) {
-    // TODO("Fix password encoder")
-    /*
     @Bean
-    open fun bCryptPasswordEncoder(): BCryptPasswordEncoder = BCryptPasswordEncoder(securityProperties.strength)
-     */
+    open fun bCryptPasswordEncoder(): BCryptPasswordEncoder = BCryptPasswordEncoder(securityProperties.strength);
 }
