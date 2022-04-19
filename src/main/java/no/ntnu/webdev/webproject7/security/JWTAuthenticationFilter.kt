@@ -38,7 +38,7 @@ class JWTAuthenticationFilter(
 
             val creds = mapper.readValue<User>(req.inputStream)
 
-            authManager.authenticate(
+            this.authManager.authenticate(
                 UsernamePasswordAuthenticationToken(
                     creds.username,
                     creds.password,
@@ -64,9 +64,9 @@ class JWTAuthenticationFilter(
         val token = Jwts.builder()
             .setSubject((auth.principal as SpringUser).username)
             .claim("auth", authClaims)
-            .setExpiration(Date().add(Calendar.DAY_OF_MONTH, securityProperties.expirationTime))
-            .signWith(Keys.hmacShaKeyFor(securityProperties.secret.toByteArray()), SignatureAlgorithm.HS512)
+            .setExpiration(Date().add(Calendar.DAY_OF_MONTH, this.securityProperties.expirationTime))
+            .signWith(Keys.hmacShaKeyFor(this.securityProperties.secret.toByteArray()), SignatureAlgorithm.HS512)
             .compact()
-        res.addHeader(securityProperties.headerString, securityProperties.tokenPrefix + token)
+        res.addHeader(this.securityProperties.headerString, this.securityProperties.tokenPrefix + token)
     }
 }

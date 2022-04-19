@@ -43,19 +43,23 @@ open class SecurityConfig(
             .antMatchers(HttpMethod.POST, "/login").permitAll()
             .anyRequest().authenticated()
             .and()
-            .addFilter(JWTAuthenticationFilter(authenticationManager(), securityProperties))
-            .addFilter(JWTAuthorizationFilter(authenticationManager(), userDetailsService, securityProperties))
+            .addFilter(JWTAuthenticationFilter(this.authenticationManager(), this.securityProperties))
+            .addFilter(JWTAuthorizationFilter(
+                this.authenticationManager(),
+                this.userDetailsService,
+                this.securityProperties
+            ))
     }
 
     override fun configure(auth: AuthenticationManagerBuilder) {
-        auth.userDetailsService(userDetailsService)
-            .passwordEncoder(bCryptPasswordEncoder)
+        auth.userDetailsService(this.userDetailsService)
+            .passwordEncoder(this.bCryptPasswordEncoder)
     }
 
     @Bean
     open fun authProvider(): DaoAuthenticationProvider = DaoAuthenticationProvider().apply {
-        setUserDetailsService(userDetailsService)
-        setPasswordEncoder(bCryptPasswordEncoder)
+        this.setUserDetailsService(userDetailsService)
+        this.setPasswordEncoder(bCryptPasswordEncoder)
     }
 
     @Bean
@@ -66,9 +70,9 @@ open class SecurityConfig(
     @Bean
     open fun corsConfigurationSource(): CorsConfigurationSource = UrlBasedCorsConfigurationSource().also { cors ->
         CorsConfiguration().apply {
-            allowedOrigins = listOf("*")
-            allowedMethods = listOf("POST", "PUT", "DELETE", "GET", "OPTIONS", "HEAD")
-            allowedHeaders = listOf(
+            this.allowedOrigins = listOf("*")
+            this.allowedMethods = listOf("POST", "PUT", "DELETE", "GET", "OPTIONS", "HEAD")
+            this.allowedHeaders = listOf(
                 "Authorization",
                 "Content-Type",
                 "X-Requested-With",
@@ -77,13 +81,13 @@ open class SecurityConfig(
                 "Access-Control-Request-Method",
                 "Access-Control-Request-Headers"
             )
-            exposedHeaders = listOf(
+            this.exposedHeaders = listOf(
                 "Access-Control-Allow-Origin",
                 "Access-Control-Allow-Credentials",
                 "Authorization",
                 "Content-Disposition"
             )
-            maxAge = 3600
+            this.maxAge = 3600
             cors.registerCorsConfiguration("/**", this)
         }
     }

@@ -15,6 +15,6 @@ class RegistrationController(private val userService: UserService) {
 
     @PostMapping("")
     fun registerNewUser(@RequestBody registrationDTO: RegistrationDTO): ResponseEntity<String> {
-        return if (userService.createUser(registrationDTO)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST)
+        return if (this.userService.createUser(registrationDTO)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST)
     }
 }

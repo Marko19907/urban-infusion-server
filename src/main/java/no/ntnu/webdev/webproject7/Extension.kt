@@ -4,8 +4,8 @@ import java.util.*
 
 fun Date.add(field: Int, amount: Int): Date {
     Calendar.getInstance().apply {
-        time = this@add
-        add(field, amount)
-        return time
+        this.time = this@add
+        this.add(field, amount)
+        return this.time
     }
 }

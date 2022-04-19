@@ -9,7 +9,7 @@ data class RegistrationDTO(
 ) : DTO {
 
     override fun validate(): Boolean {
-        val fields = listOf(username, email, password);
+        val fields = listOf(this.username, this.email, this.password);
         return objectsNotNull(fields) && fields.none { s: String -> s.isBlank() };
     }
 };

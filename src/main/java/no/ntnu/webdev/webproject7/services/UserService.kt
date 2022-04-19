@@ -21,11 +21,11 @@ class UserService(@Autowired private val userRepository: UserRepository) :
         if (!checkPasswordLength(registrationDTO.password)) {
             return false;
         }
-        if (userRepository.findOneByUsername(registrationDTO.username) != null) {
+        if (this.userRepository.findOneByUsername(registrationDTO.username) != null) {
             return false;
         }
-        val user = createUserEntity(registrationDTO);
-        return add(user);
+        val user = this.createUserEntity(registrationDTO);
+        return this.add(user);
     }
 
     private fun createUserEntity(registrationDTO: RegistrationDTO): User {

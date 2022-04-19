@@ -46,6 +46,6 @@ open class Product(
     protected constructor() : this(null)
 
     override fun validate(): Boolean {
-        return objectsNotNull(discount, price, title, description, weight, category);
+        return objectsNotNull(this.discount, this.price, this.title, this.description, this.weight, this.category);
     }
 }

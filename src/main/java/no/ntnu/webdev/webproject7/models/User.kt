@@ -47,6 +47,14 @@ open class User(
     protected constructor() : this(null)
 
     override fun validate(): Boolean {
-        return objectsNotNull(email, username, password, city, zipcode, phone_number, address);
+        return objectsNotNull(
+            this.email,
+            this.username,
+            this.password,
+            this.city,
+            this.zipcode,
+            this.phone_number,
+            this.address
+        );
     }
 }

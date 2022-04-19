@@ -17,6 +17,6 @@ class ProductController(private val productService: ProductService) :
 
     @GetMapping("/categories")
     fun getCategories(): ResponseEntity<MutableSet<Category>> {
-        return ResponseEntity(productService.getCategoryMap(), HttpStatus.OK);
+        return ResponseEntity(this.productService.getCategoryMap(), HttpStatus.OK);
     }
 }

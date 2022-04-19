@@ -14,7 +14,7 @@ class AppUserDetailsService(private val userRepository: UserRepository) : UserDe
 
     @Throws(UsernameNotFoundException::class)
     override fun loadUserByUsername(s: String): UserDetails {
-        val user = userRepository.findOneByUsername(s) ?: throw UsernameNotFoundException("Username not found!");
+        val user = this.userRepository.findOneByUsername(s) ?: throw UsernameNotFoundException("Username not found!");
 
         val authorities = ArrayList<GrantedAuthority>();
         authorities.add(SimpleGrantedAuthority(user.role.toString()));

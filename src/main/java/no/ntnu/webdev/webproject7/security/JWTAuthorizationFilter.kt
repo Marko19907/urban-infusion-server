@@ -27,12 +27,12 @@ class JWTAuthorizationFilter(
         res: HttpServletResponse,
         chain: FilterChain
     ) {
-        val header = req.getHeader(securityProperties.headerString)
-        if (header == null || !header.startsWith(securityProperties.tokenPrefix)) {
+        val header = req.getHeader(this.securityProperties.headerString)
+        if (header == null || !header.startsWith(this.securityProperties.tokenPrefix)) {
             chain.doFilter(req, res)
             return
         }
-        getAuthentication(header)?.also {
+        this.getAuthentication(header)?.also {
             SecurityContextHolder.getContext().authentication = it
         }
         chain.doFilter(req, res)
@@ -41,10 +41,10 @@ class JWTAuthorizationFilter(
     private fun getAuthentication(token: String): UsernamePasswordAuthenticationToken? {
         return try {
             val claims = Jwts.parserBuilder()
-                .setSigningKey(Keys.hmacShaKeyFor(securityProperties.secret.toByteArray()))
+                .setSigningKey(Keys.hmacShaKeyFor(this.securityProperties.secret.toByteArray()))
                 .build()
-                .parseClaimsJws(token.replace(securityProperties.tokenPrefix, ""))
-            val userDetail = userDetailsService.loadUserByUsername(claims.body.subject)
+                .parseClaimsJws(token.replace(this.securityProperties.tokenPrefix, ""))
+            val userDetail = this.userDetailsService.loadUserByUsername(claims.body.subject)
             UsernamePasswordAuthenticationToken(claims.body.subject, null, userDetail.authorities)
         } catch (e: Exception) {
             return null

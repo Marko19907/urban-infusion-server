@@ -24,17 +24,17 @@ class DummyDataInitializer(
     private val logger: Logger = LoggerFactory.getLogger("DummyDataInitializer");
 
     override fun onApplicationEvent(event: ApplicationReadyEvent) {
-        logger.info("Initializing test data...");
+        this.logger.info("Initializing test data...");
 
         // Check if all repositories are empty
         if (arrayOf(
-                commentRepository,
-                productRepository,
-                userRepository,
-                orderRepository
+                this.commentRepository,
+                this.productRepository,
+                this.userRepository,
+                this.orderRepository
             ).any { it.count() > 0 }
         ) {
-            logger.info("The database is not empty, did not initialize test data...");
+            this.logger.info("The database is not empty, did not initialize test data...");
             return;
         }
 
@@ -65,12 +65,12 @@ class DummyDataInitializer(
         val products = arrayOf(product1, product2, product3, product4);
         val orders = arrayOf(order1, order2);
 
-        users.forEach { userRepository.save(it) }
-        products.forEach { productRepository.save(it) }
-        comments.forEach { commentRepository.save(it) }
-        orders.forEach { orderRepository.save(it) }
+        users.forEach { this.userRepository.save(it) }
+        products.forEach { this.productRepository.save(it) }
+        comments.forEach { this.commentRepository.save(it) }
+        orders.forEach { this.orderRepository.save(it) }
 
-        logger.info("Test data initialized");
+        this.logger.info("Test data initialized");
     }
 
     private fun getLoremIpsum(): String {

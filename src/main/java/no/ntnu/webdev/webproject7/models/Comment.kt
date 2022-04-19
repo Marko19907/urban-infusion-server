@@ -28,6 +28,6 @@ open class Comment(
     protected constructor() : this(null)
 
     override fun validate(): Boolean {
-        return objectsNotNull(text); // TODO: The date is not being checked for null!
+        return objectsNotNull(this.text); // TODO: The date is not being checked for null!
     }
 }

@@ -37,6 +37,6 @@ open class Order(
     protected constructor() : this(null)
 
     override fun validate(): Boolean {
-        return objectsNotNull(id, status, products, date, totalPrice);
+        return objectsNotNull(this.id, this.status, this.products, this.date, this.totalPrice);
     }
 }
