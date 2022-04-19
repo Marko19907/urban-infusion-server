@@ -17,7 +17,7 @@ open class User(
     @Column(nullable = false)
     var email: String? = null,
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     var username: String? = null,
 
     @Column(nullable = false)
