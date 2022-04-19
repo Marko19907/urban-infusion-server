@@ -10,7 +10,6 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.ApplicationListener
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Component
 import java.time.LocalDate
 
@@ -39,10 +38,10 @@ class DummyDataInitializer(
             return;
         }
 
-        val user1 = User("user@gmail.com", "user", encodePassword("user"), "Ålesund", "6008", "Vågavegen 29", "98765432");
-        val user2 = User("admin@teashop.com", "admin", encodePassword("admin"), "Oslo", "0001", "Majorstuen 5", "98876543");
+        val user1 = User("user@gmail.com", "user", hashPassword("user"), "Ålesund", "6008", "Vågavegen 29", "98765432");
+        val user2 = User("admin@teashop.com", "admin", hashPassword("admin"), "Oslo", "0001", "Majorstuen 5", "98876543");
         user2.role = Role.ADMIN;
-        val user3 = User("user@example.no", "other_user", encodePassword("987"), "Bergen", "5003", "Juvik 12", "43219876");
+        val user3 = User("user@example.no", "other_user", hashPassword("987"), "Bergen", "5003", "Juvik 12", "43219876");
 
         val comment1 = Comment(user1, "Very nice", null);
         val comment2 = Comment(user2, "I love this product", LocalDate.now());
@@ -76,12 +75,5 @@ class DummyDataInitializer(
 
     private fun getLoremIpsum(): String {
         return LoremIpsum.getInstance().getWords(20, 50);
-    }
-
-    /**
-     * Encodes the given password with the BCryptPasswordEncoder.
-     */
-    private fun encodePassword(password: String): String {
-        return BCryptPasswordEncoder().encode(password);
     }
 }
