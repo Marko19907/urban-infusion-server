@@ -14,14 +14,14 @@ class AppUserDetailsService(private val userRepository: UserRepository) : UserDe
 
     @Throws(UsernameNotFoundException::class)
     override fun loadUserByUsername(s: String): UserDetails {
-        val user = userRepository.findUserEntityByUsername(s)
+        val user = userRepository.findOneByUsername(s) ?: throw UsernameNotFoundException("Username not found!");
 
-        val authorities = ArrayList<GrantedAuthority>()
-        authorities.add(SimpleGrantedAuthority(user.role.toString()))
+        val authorities = ArrayList<GrantedAuthority>();
+        authorities.add(SimpleGrantedAuthority(user.role.toString()));
         return User(
             user.username,
             user.password,
             authorities
-        )
+        );
     }
 }
