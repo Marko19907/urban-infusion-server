@@ -8,6 +8,7 @@ import no.ntnu.webdev.webproject7.repositories.UserRepository
 import no.ntnu.webdev.webproject7.utilities.checkPasswordLength
 import no.ntnu.webdev.webproject7.utilities.hashPassword
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
 
 @Service
@@ -39,5 +40,12 @@ class UserService(@Autowired private val userRepository: UserRepository) :
             "",
             Role.USER
         );
+    }
+
+    fun getSessionUser(): User? {
+        val securityContext = SecurityContextHolder.getContext();
+        val authentication = securityContext.authentication;
+        val username = authentication.name;
+        return this.userRepository.findOneByUsername(username);
     }
 }
