@@ -14,7 +14,7 @@ enum class Category(val type: String){
 open class Product(
     @Column(nullable = true)
     @OneToMany(cascade = [CascadeType.ALL])
-    val comments: List<Comment>? = null,
+    var comments: MutableList<Comment> = mutableListOf(),
 
     @Column(nullable = false)
     var price: Double? = null,
@@ -43,7 +43,7 @@ open class Product(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     override var id: ProductId = 0
 
-    protected constructor() : this(null)
+    protected constructor() : this(mutableListOf())
 
     override fun validate(): Boolean {
         return objectsNotNull(this.discount, this.price, this.title, this.description, this.weight, this.category);
