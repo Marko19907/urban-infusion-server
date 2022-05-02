@@ -36,7 +36,7 @@ class CommentHelper(
     }
 
     private fun mergeCommentProduct(product: Product, comment: Comment): Product {
-        val commentList: MutableList<Comment> = product.comments;
+        val commentList: MutableList<Comment> = product.comments.toMutableList();
         commentList.add(comment);
         product.comments = commentList;
         return product;

@@ -1,6 +1,7 @@
 package no.ntnu.webdev.webproject7.models
 
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
+import org.hibernate.annotations.CreationTimestamp
 import java.time.LocalDate
 import javax.persistence.*
 
@@ -21,6 +22,7 @@ open class Order(
     val products: List<Product>? = null,
 
     @Column(nullable = true)
+    @Enumerated(EnumType.STRING)
     var status: OrderStatus = OrderStatus.IDLE,
 
     @Column(nullable = true)
@@ -29,9 +31,10 @@ open class Order(
     ): CrudModel<OrderId> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    override var id: OrderId = 0
+    override var id: OrderId = 0;
 
-    @Column(nullable = true)
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
     var date: LocalDate = LocalDate.now();
 
     protected constructor() : this(null)

@@ -2,7 +2,16 @@ package no.ntnu.webdev.webproject7.models
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
-import javax.persistence.*
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
+import javax.persistence.Table
+import javax.validation.constraints.Email
+import javax.validation.constraints.NotBlank
 
 typealias UserEntityId = Long;
 
@@ -14,12 +23,16 @@ enum class Role {
 @Entity
 @Table(name = "UserEntity")
 open class User(
+    @Email
+    @NotBlank
     @Column(nullable = false)
     var email: String? = null,
 
+    @NotBlank
     @Column(nullable = false, unique = true)
     var username: String? = null,
 
+    @NotBlank
     @Column(nullable = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     var password: String? = null,
@@ -36,7 +49,9 @@ open class User(
     @Column(nullable = false)
     var phone_number: String? = null,
 
+    @NotBlank
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     var role: Role = Role.USER,
 
 ) : CrudModel<UserEntityId> {

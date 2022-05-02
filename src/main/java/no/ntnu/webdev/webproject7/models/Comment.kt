@@ -1,31 +1,44 @@
 package no.ntnu.webdev.webproject7.models
 
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDate
-import javax.persistence.*
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
+import javax.persistence.OneToOne
+import javax.persistence.Table
+import javax.validation.constraints.NotNull
 
 typealias CommentId = Long;
 
 @Entity
+@Table(name = "comment")
 open class Comment(
+    @NotNull
     @OneToOne
-    var user: User? = null,
+    open var user: User? = null,
 
     @Column(nullable = false, length = 1000)
-    var text: String? = null,
+    open var text: String? = null,
 
+    @UpdateTimestamp
     @Column(nullable = true)
-    var lastUpdated: LocalDate? = null
+    open var lastUpdated: LocalDate? = null,
 
 ) : CrudModel<CommentId> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    override var id: CommentId = 0
+    override var id: CommentId = 0;
 
-    @Column(nullable = false)
-    var created: LocalDate = LocalDate.now()
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    open var created: LocalDate = LocalDate.now();
 
-    protected constructor() : this(null)
+    protected constructor() : this(null);
 
     override fun validate(): Boolean {
         return objectsNotNull(this.text); // TODO: The date is not being checked for null!
