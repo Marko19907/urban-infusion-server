@@ -3,9 +3,9 @@ package no.ntnu.webdev.webproject7.dto
 import no.ntnu.webdev.webproject7.models.ProductId
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 
-data class CommentDTO(
-    val productID: ProductId,
-    val text: String
+open class CommentDTO(
+    open val productID: ProductId,
+    open val text: String
 ) : DTO {
 
     override fun validate(): Boolean {
