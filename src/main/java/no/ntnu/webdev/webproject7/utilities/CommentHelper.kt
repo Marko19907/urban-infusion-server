@@ -1,6 +1,7 @@
 package no.ntnu.webdev.webproject7.utilities
 
 import no.ntnu.webdev.webproject7.dto.CommentDTO
+import no.ntnu.webdev.webproject7.dto.CommentUpdateDTO
 import no.ntnu.webdev.webproject7.models.Comment
 import no.ntnu.webdev.webproject7.models.Product
 import no.ntnu.webdev.webproject7.models.User
@@ -44,5 +45,27 @@ class CommentHelper(
 
     private fun createComment(commentDTO: CommentDTO, user: User): Comment {
         return Comment(user, commentDTO.text, null);
+    }
+
+    fun update(commentDTO: CommentUpdateDTO?, user: User?): Boolean {
+        if (commentDTO == null || user == null) {
+            return false;
+        }
+        if (!commentDTO.validate() || !user.validate()) {
+            return false;
+        }
+
+        val comment = this.commentService.getById(commentDTO.id);
+        val product = this.productService.getById(commentDTO.productID);
+        if (comment == null || product == null) {
+            return false;
+        }
+        if (comment.user?.equals(user) == false || !product.containsCommentWithID(commentDTO.id)) {
+            return false;
+        }
+
+        comment.text = commentDTO.text;
+
+        return this.commentService.update(comment);
     }
 }
