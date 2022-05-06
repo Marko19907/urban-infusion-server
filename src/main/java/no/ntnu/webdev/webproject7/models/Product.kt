@@ -15,7 +15,7 @@ import javax.persistence.Table
 
 typealias ProductId = Long
 
-enum class Category(val type: String){
+enum class Category(val type: String) {
     TEA("tea"),
     ACCESSORIES("accessories")
 }
@@ -25,7 +25,7 @@ enum class Category(val type: String){
 open class Product(
 
     @Column(nullable = false)
-    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], targetEntity=Comment::class)
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], targetEntity = Comment::class)
     open var comments: List<Comment> = ArrayList(),
 
     @Column(nullable = false)
@@ -56,6 +56,10 @@ open class Product(
     override var id: ProductId = 0
 
     protected constructor() : this(mutableListOf())
+
+    fun containsCommentWithID(id: CommentId): Boolean {
+        return this.comments.map { it.id }.any { it == id };
+    }
 
     override fun validate(): Boolean {
         return objectsNotNull(this.discount, this.price, this.title, this.description, this.weight, this.category);
