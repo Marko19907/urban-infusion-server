@@ -1,6 +1,7 @@
 package no.ntnu.webdev.webproject7.controllers
 
 import no.ntnu.webdev.webproject7.dto.CommentDTO
+import no.ntnu.webdev.webproject7.dto.CommentUpdateDTO
 import no.ntnu.webdev.webproject7.models.Comment
 import no.ntnu.webdev.webproject7.models.CommentId
 import no.ntnu.webdev.webproject7.models.User
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -31,5 +33,13 @@ class CommentController(
         //  The URL is therefore /comments?type=1 for now . . .
         val user: User? = this.userService.getSessionUser();
         return if (this.commentHelper.add(comment, user)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
+    }
+
+    @PutMapping("")
+    @PreAuthorize("hasAuthority('USER')")
+    @RequestMapping(params = ["type=2"])
+    fun update(@RequestBody comment: CommentUpdateDTO): ResponseEntity<String> {
+        val user: User? = this.userService.getSessionUser();
+        return if (this.commentHelper.update(comment, user)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 }
