@@ -5,6 +5,6 @@ class FileUtilities {
 }
 
 fun loadImage(imageName: String): ByteArray? {
-    val inputStream = FileUtilities::class.java.classLoader.getResourceAsStream(imageName);
+    val inputStream = FileUtilities::class.java.classLoader.getResourceAsStream("product-images/$imageName");
     return inputStream?.readAllBytes();
 }
