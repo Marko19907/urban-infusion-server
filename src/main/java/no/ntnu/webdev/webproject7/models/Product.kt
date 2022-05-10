@@ -35,7 +35,7 @@ open class Product(
     open var discount: Double? = null,
 
     @Column(nullable = true)
-    open var image: String? = null,
+    open var imageId: Int? = null,
 
     @Column(nullable = false)
     open var title: String? = null,
