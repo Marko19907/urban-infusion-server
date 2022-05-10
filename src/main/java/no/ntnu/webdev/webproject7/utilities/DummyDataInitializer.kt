@@ -52,7 +52,7 @@ class DummyDataInitializer(
         val comment4 = Comment(user1, this.getLoremIpsum(), LocalDate.of(2020, 12, 12));
 
         val product1 =
-            Product(mutableListOf(comment1), 99.99, 0.00, null, "Black tea", "Description text", "10oz", Category.TEA);
+            Product(mutableListOf(comment1), 99.99, 0.00, 1, "Black tea", "Description text", "10oz", Category.TEA);
         val product2 =
             Product(mutableListOf(comment2), 49.99, 0.50, 2, "Green tea", "Description text", "20oz", Category.TEA);
         val product3 =
@@ -63,13 +63,14 @@ class DummyDataInitializer(
         val order1 = Order(mutableListOf(product1), OrderStatus.IDLE, 20f);
         val order2 = Order(mutableListOf(product2, product3), OrderStatus.PROCESSING, 100f);
 
+        val productImage1 = ProductImage(1 ,"1-BlackTea.png");
         val productImage2 = ProductImage(2 ,"2-GreenTea.png");
 
         val users = arrayOf(user1, user2, user3);
         val comments = arrayOf(comment1, comment2, comment3, comment4);
         val products = arrayOf(product1, product2, product3, product4);
         val orders = arrayOf(order1, order2);
-        val productImages = arrayOf(productImage2);
+        val productImages = arrayOf(productImage1, productImage2);
 
         users.forEach { this.userRepository.save(it) }
         products.forEach { this.productRepository.save(it) }
