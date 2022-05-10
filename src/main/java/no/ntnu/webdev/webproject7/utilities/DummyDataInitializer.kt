@@ -4,6 +4,7 @@ import com.thedeanda.lorem.LoremIpsum
 import no.ntnu.webdev.webproject7.models.*
 import no.ntnu.webdev.webproject7.repositories.CommentRepository
 import no.ntnu.webdev.webproject7.repositories.OrderRepository
+import no.ntnu.webdev.webproject7.repositories.ProductImageRepository
 import no.ntnu.webdev.webproject7.repositories.ProductRepository
 import no.ntnu.webdev.webproject7.repositories.UserRepository
 import org.slf4j.Logger
@@ -18,7 +19,8 @@ class DummyDataInitializer(
     private val commentRepository: CommentRepository,
     private val productRepository: ProductRepository,
     private val userRepository: UserRepository,
-    private val orderRepository: OrderRepository
+    private val orderRepository: OrderRepository,
+    private val productImageRepository: ProductImageRepository
 ) : ApplicationListener<ApplicationReadyEvent> {
 
     private val logger: Logger = LoggerFactory.getLogger("DummyDataInitializer");
@@ -31,7 +33,8 @@ class DummyDataInitializer(
                 this.commentRepository,
                 this.productRepository,
                 this.userRepository,
-                this.orderRepository
+                this.orderRepository,
+                this.productImageRepository
             ).any { it.count() > 0 }
         ) {
             this.logger.info("The database is not empty, did not initialize test data...");
@@ -51,7 +54,7 @@ class DummyDataInitializer(
         val product1 =
             Product(mutableListOf(comment1), 99.99, 0.00, null, "Black tea", "Description text", "10oz", Category.TEA);
         val product2 =
-            Product(mutableListOf(comment2), 49.99, 0.50, null, "Green tea", "Description text", "20oz", Category.TEA);
+            Product(mutableListOf(comment2), 49.99, 0.50, 2, "Green tea", "Description text", "20oz", Category.TEA);
         val product3 =
             Product(mutableListOf(comment3, comment4), 19.99, 0.15, null, "White tea", this.getLoremIpsum(), "5oz", Category.TEA);
         val product4 =
@@ -60,15 +63,19 @@ class DummyDataInitializer(
         val order1 = Order(mutableListOf(product1), OrderStatus.IDLE, 20f);
         val order2 = Order(mutableListOf(product2, product3), OrderStatus.PROCESSING, 100f);
 
+        val productImage2 = ProductImage(2 ,"2-GreenTea.png");
+
         val users = arrayOf(user1, user2, user3);
         val comments = arrayOf(comment1, comment2, comment3, comment4);
         val products = arrayOf(product1, product2, product3, product4);
         val orders = arrayOf(order1, order2);
+        val productImages = arrayOf(productImage2);
 
         users.forEach { this.userRepository.save(it) }
         products.forEach { this.productRepository.save(it) }
         comments.forEach { this.commentRepository.save(it) }
         orders.forEach { this.orderRepository.save(it) }
+        productImages.forEach { this.productImageRepository.save(it) }
 
         this.logger.info("Test data initialized");
     }
