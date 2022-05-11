@@ -1,9 +1,20 @@
 package no.ntnu.webdev.webproject7.models
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import org.hibernate.annotations.CreationTimestamp
 import java.time.LocalDate
-import javax.persistence.*
+import javax.persistence.CascadeType
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
+import javax.persistence.OneToMany
+import javax.persistence.OneToOne
+import javax.persistence.Table
 
 typealias OrderId = Int;
 
@@ -17,19 +28,25 @@ enum class OrderStatus(val status: Int) {
 @Entity
 @Table(name = "OrderEntity")
 open class Order(
+
     @Column(nullable = true)
+    @JsonProperty("products")
     @OneToMany(cascade = [CascadeType.MERGE])
-    val products: List<Product>? = null,
+    open val ordersProducts: List<OrdersProducts>? = null,
 
     @Column(nullable = true)
     @Enumerated(EnumType.STRING)
-    var status: OrderStatus = OrderStatus.IDLE,
+    open var status: OrderStatus = OrderStatus.IDLE,
 
     @Column(nullable = true)
-    var totalPrice: Float? = null,
+    open var totalPrice: Float? = null,
+
+    @OneToOne
+    open var user: User? = null,
 
     ): CrudModel<OrderId> {
     @Id
+    @JsonProperty("orderId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     override var id: OrderId = 0;
 
@@ -40,6 +57,6 @@ open class Order(
     protected constructor() : this(null)
 
     override fun validate(): Boolean {
-        return objectsNotNull(this.id, this.status, this.products, this.date, this.totalPrice);
+        return objectsNotNull(this.id, this.status, this.ordersProducts, this.user, this.date, this.totalPrice);
     }
 }
