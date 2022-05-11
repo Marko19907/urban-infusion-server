@@ -4,6 +4,7 @@ import com.thedeanda.lorem.LoremIpsum
 import no.ntnu.webdev.webproject7.models.*
 import no.ntnu.webdev.webproject7.repositories.CommentRepository
 import no.ntnu.webdev.webproject7.repositories.OrderRepository
+import no.ntnu.webdev.webproject7.repositories.OrdersProductsRepository
 import no.ntnu.webdev.webproject7.repositories.ProductImageRepository
 import no.ntnu.webdev.webproject7.repositories.ProductRepository
 import no.ntnu.webdev.webproject7.repositories.UserRepository
@@ -20,7 +21,8 @@ class DummyDataInitializer(
     private val productRepository: ProductRepository,
     private val userRepository: UserRepository,
     private val orderRepository: OrderRepository,
-    private val productImageRepository: ProductImageRepository
+    private val productImageRepository: ProductImageRepository,
+    private val ordersProductsRepository: OrdersProductsRepository
 ) : ApplicationListener<ApplicationReadyEvent> {
 
     private val logger: Logger = LoggerFactory.getLogger("DummyDataInitializer");
@@ -34,7 +36,8 @@ class DummyDataInitializer(
                 this.productRepository,
                 this.userRepository,
                 this.orderRepository,
-                this.productImageRepository
+                this.productImageRepository,
+                this.ordersProductsRepository
             ).any { it.count() > 0 }
         ) {
             this.logger.info("The database is not empty, did not initialize test data...");
@@ -62,8 +65,12 @@ class DummyDataInitializer(
         val product5 =
             Product(mutableListOf(), 29.99, 0.00, 5, "Golden tea", this.getLoremIpsum(), "10oz", Category.TEA);
 
-        val order1 = Order(mutableListOf(product1), OrderStatus.IDLE, 20f);
-        val order2 = Order(mutableListOf(product2, product3), OrderStatus.PROCESSING, 100f);
+        val ordersProducts1 = OrdersProducts(product1, 2);
+        val ordersProducts2 = OrdersProducts(product4, 1);
+        val ordersProducts3 = OrdersProducts(product3, 5);
+
+        val order1 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.IDLE, 20f, user1);
+        val order2 = Order(mutableListOf(ordersProducts3), OrderStatus.PROCESSING, 100f, user3);
 
         val productImage1 = ProductImage(1 ,"1-BlackTea.png");
         val productImage2 = ProductImage(2 ,"2-GreenTea.png");
@@ -72,6 +79,7 @@ class DummyDataInitializer(
 
         val users = arrayOf(user1, user2, user3);
         val comments = arrayOf(comment1, comment2, comment3, comment4);
+        val ordersProducts =  arrayOf(ordersProducts1, ordersProducts2, ordersProducts3);
         val products = arrayOf(product1, product2, product3, product4, product5);
         val orders = arrayOf(order1, order2);
         val productImages = arrayOf(productImage1, productImage2, productImage4, productImage5);
@@ -79,6 +87,7 @@ class DummyDataInitializer(
         users.forEach { this.userRepository.save(it) }
         products.forEach { this.productRepository.save(it) }
         comments.forEach { this.commentRepository.save(it) }
+        ordersProducts.forEach { this.ordersProductsRepository.save(it) }
         orders.forEach { this.orderRepository.save(it) }
         productImages.forEach { this.productImageRepository.save(it) }
 
