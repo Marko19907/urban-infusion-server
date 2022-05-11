@@ -1,11 +1,10 @@
 package no.ntnu.webdev.webproject7.models
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.databind.annotation.JsonSerialize
-import no.ntnu.webdev.webproject7.utilities.BigDecimalSerializer
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import org.hibernate.annotations.CreationTimestamp
 import java.math.BigDecimal
+import java.math.RoundingMode
 import java.time.LocalDate
 import javax.persistence.CascadeType
 import javax.persistence.Column
@@ -57,7 +56,6 @@ open class Order(
 
     @Positive
     @Column(nullable = false, updatable = false)
-    @JsonSerialize(using = BigDecimalSerializer::class)
     open var totalPrice: BigDecimal = BigDecimal.ZERO;
 
     @CreationTimestamp
@@ -70,6 +68,7 @@ open class Order(
             this.totalPrice = this.ordersProducts!!.stream()
                 .map { orderProduct -> orderProduct.getPrice() }
                 .reduce(BigDecimal.ZERO, BigDecimal::add)
+                .setScale(2, RoundingMode.HALF_UP)
         }
     }
 
