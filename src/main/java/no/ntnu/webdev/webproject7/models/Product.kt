@@ -12,6 +12,8 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.OneToMany
 import javax.persistence.Table
+import javax.validation.constraints.Positive
+import javax.validation.constraints.PositiveOrZero
 
 typealias ProductId = Long
 
@@ -28,9 +30,11 @@ open class Product(
     @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], targetEntity = Comment::class)
     open var comments: List<Comment> = ArrayList(),
 
+    @Positive
     @Column(nullable = false)
     open var price: Double? = null,
 
+    @PositiveOrZero
     @Column(nullable = false)
     open var discount: Double? = null,
 
