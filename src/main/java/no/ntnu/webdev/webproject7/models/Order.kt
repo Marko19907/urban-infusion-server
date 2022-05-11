@@ -1,6 +1,8 @@
 package no.ntnu.webdev.webproject7.models
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import no.ntnu.webdev.webproject7.utilities.BigDecimalSerializer
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import org.hibernate.annotations.CreationTimestamp
 import java.math.BigDecimal
@@ -55,6 +57,7 @@ open class Order(
 
     @Positive
     @Column(nullable = false, updatable = false)
+    @JsonSerialize(using = BigDecimalSerializer::class)
     open var totalPrice: BigDecimal = BigDecimal.ZERO;
 
     @CreationTimestamp
