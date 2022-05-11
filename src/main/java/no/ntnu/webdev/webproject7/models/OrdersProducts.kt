@@ -1,7 +1,9 @@
 package no.ntnu.webdev.webproject7.models
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
+import java.math.BigDecimal
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
@@ -27,6 +29,14 @@ open class OrdersProducts(
     @Id
     @GeneratedValue
     override var id: OrderProductId = 0;
+
+    /**
+     * Returns the total price. (product * quantity)
+     */
+    @JsonIgnore
+    fun getPrice(): BigDecimal {
+        return BigDecimal(this.product?.price!!).multiply(BigDecimal(this.quantity));
+    }
 
     override fun validate(): Boolean {
         return objectsNotNull(this.product) && this.quantity > 0;

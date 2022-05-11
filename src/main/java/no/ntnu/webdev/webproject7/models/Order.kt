@@ -3,6 +3,7 @@ package no.ntnu.webdev.webproject7.models
 import com.fasterxml.jackson.annotation.JsonProperty
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import org.hibernate.annotations.CreationTimestamp
+import java.math.BigDecimal
 import java.time.LocalDate
 import javax.persistence.CascadeType
 import javax.persistence.Column
@@ -14,7 +15,9 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.OneToMany
 import javax.persistence.OneToOne
+import javax.persistence.PrePersist
 import javax.persistence.Table
+import javax.validation.constraints.Positive
 
 typealias OrderId = Int;
 
@@ -38,23 +41,34 @@ open class Order(
     @Enumerated(EnumType.STRING)
     open var status: OrderStatus = OrderStatus.IDLE,
 
-    @Column(nullable = true)
-    open var totalPrice: Float? = null,
-
     @OneToOne
     open var user: User? = null,
 
-    ): CrudModel<OrderId> {
+) : CrudModel<OrderId> {
+
+    protected constructor() : this(null);
+
     @Id
     @JsonProperty("orderId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     override var id: OrderId = 0;
 
+    @Positive
+    @Column(nullable = false, updatable = false)
+    open var totalPrice: BigDecimal = BigDecimal.ZERO;
+
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
-    var date: LocalDate = LocalDate.now();
+    open var date: LocalDate = LocalDate.now();
 
-    protected constructor() : this(null)
+    @PrePersist
+    private fun setTotalPrice() {
+        if (this.ordersProducts != null) {
+            this.totalPrice = this.ordersProducts!!.stream()
+                .map { orderProduct -> orderProduct.getPrice() }
+                .reduce(BigDecimal.ZERO, BigDecimal::add)
+        }
+    }
 
     override fun validate(): Boolean {
         return objectsNotNull(this.id, this.status, this.ordersProducts, this.user, this.date, this.totalPrice);
