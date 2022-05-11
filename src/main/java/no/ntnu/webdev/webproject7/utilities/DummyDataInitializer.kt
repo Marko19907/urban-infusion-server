@@ -58,7 +58,7 @@ class DummyDataInitializer(
         val product3 =
             Product(mutableListOf(comment3, comment4), 19.99, 0.15, null, "White tea", this.getLoremIpsum(), "5oz", Category.TEA);
         val product4 =
-            Product(mutableListOf(), 4.99, 0.00, null, "Tea cup", this.getLoremIpsum(), "6oz", Category.ACCESSORIES);
+            Product(mutableListOf(), 4.99, 0.00, 4, "Tea cup", "The elegant Urban Infusion™ tea cup. Do you need a boost in the morning? That's exactly what our cup is for! Now is the time to add this classic cup to your tea collection!", "6oz", Category.ACCESSORIES);
         val product5 =
             Product(mutableListOf(), 29.99, 0.00, 5, "Golden tea", this.getLoremIpsum(), "10oz", Category.TEA);
 
@@ -67,13 +67,14 @@ class DummyDataInitializer(
 
         val productImage1 = ProductImage(1 ,"1-BlackTea.png");
         val productImage2 = ProductImage(2 ,"2-GreenTea.png");
+        val productImage4 = ProductImage(4 ,"4-TeaCup.png");
         val productImage5 = ProductImage(5 ,"5-GoldenTea.png");
 
         val users = arrayOf(user1, user2, user3);
         val comments = arrayOf(comment1, comment2, comment3, comment4);
         val products = arrayOf(product1, product2, product3, product4, product5);
         val orders = arrayOf(order1, order2);
-        val productImages = arrayOf(productImage1, productImage2, productImage5);
+        val productImages = arrayOf(productImage1, productImage2, productImage4, productImage5);
 
         users.forEach { this.userRepository.save(it) }
         products.forEach { this.productRepository.save(it) }
