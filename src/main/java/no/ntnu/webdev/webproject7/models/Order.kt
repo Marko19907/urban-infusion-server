@@ -35,14 +35,14 @@ open class Order(
 
     @Column(nullable = true)
     @JsonProperty("products")
-    @OneToMany(cascade = [CascadeType.MERGE])
+    @OneToMany(cascade = [CascadeType.REMOVE])
     open val ordersProducts: List<OrdersProducts>? = null,
 
     @Column(nullable = true)
     @Enumerated(EnumType.STRING)
     open var status: OrderStatus = OrderStatus.IDLE,
 
-    @OneToOne
+    @OneToOne(orphanRemoval = false)
     open var user: User? = null,
 
 ) : CrudModel<OrderId> {
@@ -66,7 +66,7 @@ open class Order(
     private fun setTotalPrice() {
         if (this.ordersProducts != null) {
             this.totalPrice = this.ordersProducts!!.stream()
-                .map { orderProduct -> orderProduct.getPrice() }
+                .map { it.getPrice() }
                 .reduce(BigDecimal.ZERO, BigDecimal::add)
                 .setScale(2, RoundingMode.HALF_UP)
         }
