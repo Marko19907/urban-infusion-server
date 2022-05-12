@@ -40,6 +40,7 @@ open class SecurityConfig(
             .antMatchers("/product-images/{\\d+}").permitAll()
             .antMatchers("/comments").permitAll()
             .antMatchers("/categories").permitAll()
+            .antMatchers("/orders/users/{\\d+}").permitAll()
             .antMatchers(HttpMethod.POST, "/register").permitAll()
             .antMatchers(HttpMethod.POST, "/login").permitAll()
             .anyRequest().authenticated()
