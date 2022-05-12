@@ -13,6 +13,6 @@ class OrderService(
 ) : CrudService<Order, OrderId>(orderRepository) {
 
     fun getUsersOrders(userId: UserEntityId): List<Order> {
-        return this.orderRepository.getUsersOrders(userId);
+        return this.orderRepository.findOrdersByUser_Id(userId);
     }
 }
