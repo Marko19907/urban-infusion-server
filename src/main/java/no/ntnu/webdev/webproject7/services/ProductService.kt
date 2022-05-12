@@ -9,8 +9,9 @@ import org.springframework.stereotype.Service
 
 
 @Service
-class ProductService(@Autowired productRepository: ProductRepository) :
-    CrudService<Product, ProductId>(productRepository) {
+class ProductService(
+    @Autowired private val productRepository: ProductRepository
+) : CrudService<Product, ProductId>(productRepository) {
     fun getCategoryMap(): MutableSet<Category> {
         return Category.values().toHashSet();
     }

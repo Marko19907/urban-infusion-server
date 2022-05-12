@@ -37,6 +37,7 @@ open class SecurityConfig(
             .antMatchers("/products").permitAll()
             .antMatchers("/products/{\\d+}").permitAll()
             .antMatchers("/products/categories").permitAll()
+            .antMatchers("/products/categories/**").permitAll()
             .antMatchers("/product-images/{\\d+}").permitAll()
             .antMatchers("/comments").permitAll()
             .antMatchers("/categories").permitAll()
