@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class OrderService(@Autowired orderRepository: OrderRepository) : CrudService<Order, OrderId>(orderRepository) {
+class OrderService(
+    @Autowired private val orderRepository: OrderRepository
+) : CrudService<Order, OrderId>(orderRepository) {
 
-    fun getUsersOrders(id: UserEntityId): List<Order> {
-        return this.all().stream()
-            .filter { it.user!!.id == id }
-            .toList();
+    fun getUsersOrders(userId: UserEntityId): List<Order> {
+        return this.orderRepository.getUsersOrders(userId);
     }
 }
