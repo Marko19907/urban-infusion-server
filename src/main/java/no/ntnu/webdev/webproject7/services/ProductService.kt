@@ -14,4 +14,10 @@ class ProductService(@Autowired productRepository: ProductRepository) :
     fun getCategoryMap(): MutableSet<Category> {
         return Category.values().toHashSet();
     }
+
+    fun getByCategory(category: String): List<Product> {
+        return this.all().stream()
+            .filter { it.category!!.name.lowercase() == category }
+            .toList();
+    }
 }

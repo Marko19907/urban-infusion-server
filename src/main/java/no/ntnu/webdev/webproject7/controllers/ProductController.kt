@@ -7,6 +7,7 @@ import no.ntnu.webdev.webproject7.services.ProductService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -18,5 +19,10 @@ class ProductController(private val productService: ProductService) :
     @GetMapping("/categories")
     fun getCategories(): ResponseEntity<MutableSet<Category>> {
         return ResponseEntity(this.productService.getCategoryMap(), HttpStatus.OK);
+    }
+
+    @GetMapping("/categories/{category}")
+    fun getOneByCategory(@PathVariable category: String): ResponseEntity<List<Product>> {
+        return ResponseEntity(this.productService.getByCategory(category.lowercase()), HttpStatus.OK);
     }
 }
