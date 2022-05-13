@@ -26,7 +26,7 @@ open class CrudService<EntityType : CrudModel<ID>, ID>(
         return true;
     }
 
-    fun delete(id: ID): Boolean {
+    open fun delete(id: ID): Boolean {
         this.repository.deleteById(id)
         return this.getById(id) == null
     }
