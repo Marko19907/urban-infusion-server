@@ -5,13 +5,13 @@ import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 
 private const val descriptionLength = 1000;
 
-class ProductDTO(
-    val title: String,
-    val price: Double,
-    val discount: Double,
-    val description: String,
-    val weight: String,
-    val category: Category,
+open class ProductDTO(
+    open val title: String,
+    open val price: Double,
+    open val discount: Double,
+    open val description: String,
+    open val weight: String,
+    open val category: Category,
 ): DTO {
 
     override fun validate(): Boolean {
