@@ -1,5 +1,6 @@
 package no.ntnu.webdev.webproject7.services
 
+import no.ntnu.webdev.webproject7.dto.ProductDTO
 import no.ntnu.webdev.webproject7.models.Category
 import no.ntnu.webdev.webproject7.models.Product
 import no.ntnu.webdev.webproject7.models.ProductId
@@ -17,6 +18,29 @@ class ProductService(
 
     override fun delete(id: ProductId): Boolean {
         return this.productHelper.deleteProduct(id);
+    }
+
+    fun add(productDTO: ProductDTO?): Boolean {
+        if (productDTO == null || !productDTO.validate()) {
+            return false;
+        }
+
+        val product = Product(
+            mutableListOf(),
+            productDTO.price,
+            productDTO.discount,
+            null,
+            productDTO.title,
+            productDTO.description,
+            productDTO.weight,
+            productDTO.category
+        );
+        return super.add(product);
+    }
+
+    fun update(productDTO: ProductDTO?): Boolean {
+        // TODO: Not yet implemented!
+        return false;
     }
 
     fun getCategoryMap(): MutableSet<Category> {
