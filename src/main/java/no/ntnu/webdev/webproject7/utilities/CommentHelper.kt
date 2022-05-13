@@ -3,16 +3,18 @@ package no.ntnu.webdev.webproject7.utilities
 import no.ntnu.webdev.webproject7.dto.CommentDTO
 import no.ntnu.webdev.webproject7.dto.CommentUpdateDTO
 import no.ntnu.webdev.webproject7.models.Comment
+import no.ntnu.webdev.webproject7.models.CommentId
 import no.ntnu.webdev.webproject7.models.Product
 import no.ntnu.webdev.webproject7.models.User
+import no.ntnu.webdev.webproject7.repositories.CommentRepository
 import no.ntnu.webdev.webproject7.repositories.ProductRepository
-import no.ntnu.webdev.webproject7.services.CommentService
 import no.ntnu.webdev.webproject7.services.ProductService
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
 
 @Component
 class CommentHelper(
-    private val commentService: CommentService,
+    private val commentRepository: CommentRepository,
     private val productService: ProductService,
     private val productRepository: ProductRepository
 ) {
@@ -25,7 +27,7 @@ class CommentHelper(
             return false;
         }
         val comment = this.createComment(commentDTO, user);
-        this.commentService.add(comment);
+        this.commentRepository.save(comment);
 
         val product = this.productService.getById(commentDTO.productID);
         if (product == null || !product.validate()) {
@@ -55,17 +57,30 @@ class CommentHelper(
             return false;
         }
 
-        val comment = this.commentService.getById(commentDTO.id);
-        val product = this.productService.getById(commentDTO.productID);
-        if (comment == null || product == null) {
-            return false;
-        }
+        val comment = this.commentRepository.findByIdOrNull(commentDTO.id) ?: return false;
+        val product = this.productService.getById(commentDTO.productID) ?: return false;
         if (comment.user?.equals(user) == false || !product.containsCommentWithID(commentDTO.id)) {
             return false;
         }
 
         comment.text = commentDTO.text;
 
-        return this.commentService.update(comment);
+        this.commentRepository.save(comment);
+        return this.commentRepository.findByIdOrNull(comment.id) != null;
+    }
+
+    fun delete(id: CommentId): Boolean {
+        val comment = this.commentRepository.findByIdOrNull(id) ?: return false;
+        val product = this.productRepository.findProductByCommentsId(id) ?: return false;
+
+        val commentList: MutableList<Comment> = product.comments.toMutableList();
+        commentList.removeIf { it.id == comment.id };
+        product.comments = commentList;
+
+        this.commentRepository.deleteById(comment.id);
+        this.productRepository.save(product);
+
+        return this.productRepository.findProductByCommentsId(id) == null
+                && this.commentRepository.findByIdOrNull(id) == null;
     }
 }
