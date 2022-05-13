@@ -55,7 +55,7 @@ open class Product(
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    open val category: Category? = null,
+    open var category: Category? = null,
 
     ) : CrudModel<ProductId> {
     @Id

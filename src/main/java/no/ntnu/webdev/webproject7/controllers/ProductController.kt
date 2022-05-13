@@ -1,6 +1,7 @@
 package no.ntnu.webdev.webproject7.controllers
 
 import no.ntnu.webdev.webproject7.dto.ProductDTO
+import no.ntnu.webdev.webproject7.dto.ProductUpdateDTO
 import no.ntnu.webdev.webproject7.models.Category
 import no.ntnu.webdev.webproject7.models.Product
 import no.ntnu.webdev.webproject7.models.ProductId
@@ -46,8 +47,8 @@ class ProductController(private val productService: ProductService) {
 
     @PutMapping("")
     @PreAuthorize("hasAuthority('ADMIN')")
-    fun update(@RequestBody productDTO: ProductDTO): ResponseEntity<String> {
-        return if (this.productService.update(productDTO)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST)
+    fun update(@RequestBody productUpdateDTO: ProductUpdateDTO): ResponseEntity<String> {
+        return if (this.productService.update(productUpdateDTO)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST)
     }
 
     @GetMapping("/categories")

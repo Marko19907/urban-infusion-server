@@ -1,12 +1,14 @@
 package no.ntnu.webdev.webproject7.services
 
 import no.ntnu.webdev.webproject7.dto.ProductDTO
+import no.ntnu.webdev.webproject7.dto.ProductUpdateDTO
 import no.ntnu.webdev.webproject7.models.Category
 import no.ntnu.webdev.webproject7.models.Product
 import no.ntnu.webdev.webproject7.models.ProductId
 import no.ntnu.webdev.webproject7.repositories.ProductRepository
 import no.ntnu.webdev.webproject7.utilities.ProductHelper
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 
@@ -38,9 +40,21 @@ class ProductService(
         return super.add(product);
     }
 
-    fun update(productDTO: ProductDTO?): Boolean {
-        // TODO: Not yet implemented!
-        return false;
+    fun update(productUpdateDTO: ProductUpdateDTO?): Boolean {
+        if (productUpdateDTO == null || !productUpdateDTO.validate()) {
+            return false;
+        }
+
+        val product = this.productRepository.findByIdOrNull(productUpdateDTO.productId) ?: return false;
+
+        product.title = productUpdateDTO.title;
+        product.description = productUpdateDTO.description;
+        product.price = productUpdateDTO.price;
+        product.discount = productUpdateDTO.discount;
+        product.weight = productUpdateDTO.weight;
+        product.category = productUpdateDTO.category;
+
+        return super.update(product);
     }
 
     fun getCategoryMap(): MutableSet<Category> {
