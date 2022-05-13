@@ -3,6 +3,7 @@ package no.ntnu.webdev.webproject7.utilities
 import no.ntnu.webdev.webproject7.models.ProductId
 import no.ntnu.webdev.webproject7.repositories.CommentRepository
 import no.ntnu.webdev.webproject7.repositories.OrderRepository
+import no.ntnu.webdev.webproject7.repositories.ProductImageRepository
 import no.ntnu.webdev.webproject7.repositories.ProductRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
@@ -11,11 +12,17 @@ import org.springframework.stereotype.Component
 class ProductHelper(
     private val productRepository: ProductRepository,
     private val commentRepository: CommentRepository,
-    private val orderRepository: OrderRepository
+    private val orderRepository: OrderRepository,
+    private val productImageRepository: ProductImageRepository
 ) {
 
     fun deleteProduct(id: ProductId): Boolean {
         val product = this.productRepository.findByIdOrNull(id) ?: return false;
+
+        // Remove the product picture associated with the product
+        if (product.imageId != null) {
+            this.productImageRepository.deleteById(product.imageId!!);
+        }
 
         // Remove all orders associated with the product
         this.orderRepository.findAll()
