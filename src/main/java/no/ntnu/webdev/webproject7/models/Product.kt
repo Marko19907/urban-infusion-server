@@ -1,5 +1,7 @@
 package no.ntnu.webdev.webproject7.models
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import no.ntnu.webdev.webproject7.utilities.CategoryEnumDeserializer
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import javax.persistence.CascadeType
 import javax.persistence.Column
@@ -17,6 +19,7 @@ import javax.validation.constraints.PositiveOrZero
 
 typealias ProductId = Long
 
+@JsonDeserialize(using = CategoryEnumDeserializer::class)
 enum class Category(val type: String) {
     TEA("tea"),
     ACCESSORIES("accessories")
@@ -62,7 +65,9 @@ open class Product(
     protected constructor() : this(mutableListOf())
 
     fun containsCommentWithID(id: CommentId): Boolean {
-        return this.comments.map { it.id }.any { it == id };
+        return this.comments
+            .map { it.id }
+            .any { it == id };
     }
 
     override fun validate(): Boolean {
