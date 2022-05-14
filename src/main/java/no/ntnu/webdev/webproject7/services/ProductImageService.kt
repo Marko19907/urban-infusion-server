@@ -57,12 +57,9 @@ class ProductImageService(
      * @return Image file extension
      */
     private fun getFileExtension(imageData: MultipartFile): String {
-        val filename = imageData.originalFilename ?: return "";
-        val dotPosition = filename.lastIndexOf('.');
-        return if (dotPosition > 0) {
-            filename.substring(dotPosition + 1);
-        } else {
-            "";
+        if (imageData.contentType == null) {
+            return "";
         }
+        return imageData.contentType!!.split("/")[1];
     }
 }
