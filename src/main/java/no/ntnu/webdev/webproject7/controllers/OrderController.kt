@@ -1,5 +1,6 @@
 package no.ntnu.webdev.webproject7.controllers
 
+import no.ntnu.webdev.webproject7.dto.OrderDTO
 import no.ntnu.webdev.webproject7.dto.OrderUpdateDTO
 import no.ntnu.webdev.webproject7.models.Order
 import no.ntnu.webdev.webproject7.models.OrderId
@@ -39,8 +40,12 @@ class OrderController(
 
     @PostMapping("")
     @PreAuthorize("hasAuthority('ADMIN')")
-    fun addOne(@RequestBody entity: Order): ResponseEntity<String> {
-        return if (this.orderService.add(entity)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
+    fun addOne(@RequestBody entity: OrderDTO): ResponseEntity<String> {
+        val user: User? = this.userService.getSessionUser();
+        if (user == null || user.id != entity.userId) {
+            return ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+        return if (this.orderService.add(entity, user)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping("")
