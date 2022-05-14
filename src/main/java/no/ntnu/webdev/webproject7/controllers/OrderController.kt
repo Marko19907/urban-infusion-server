@@ -39,7 +39,6 @@ class OrderController(
     }
 
     @PostMapping("")
-    @PreAuthorize("hasAuthority('ADMIN')")
     fun addOne(@RequestBody entity: OrderDTO): ResponseEntity<String> {
         val user: User? = this.userService.getSessionUser();
         if (user == null || user.id != entity.userId) {
