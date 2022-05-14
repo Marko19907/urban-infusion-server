@@ -8,7 +8,7 @@ import javax.persistence.Id
 import javax.persistence.Lob
 import javax.persistence.Table
 
-typealias ProductImageId = Int
+typealias ProductImageId = Int;
 
 @Entity
 @Table(name = "productImage")
@@ -17,8 +17,8 @@ open class ProductImage(
     @Id
     override var id: ProductImageId = 0,
 
-    @Column(nullable = false)
-    val title: String,
+    @Column(nullable = true)
+    val title: String?,
 
 ) : CrudModel<ProductImageId> {
 
@@ -27,12 +27,14 @@ open class ProductImage(
     var image: ByteArray? = null;
 
     init {
-        this.image = loadImage(this.title);
+        if (this.title != null) {
+            this.image = loadImage(this.title);
+        }
     }
 
     protected constructor() : this(0, "");
 
     override fun validate(): Boolean {
-        return objectsNotNull(this.title, this.image);
+        return objectsNotNull(this.image);
     }
 }
