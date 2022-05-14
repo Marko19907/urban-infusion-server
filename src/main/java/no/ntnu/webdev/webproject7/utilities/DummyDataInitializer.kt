@@ -72,10 +72,10 @@ class DummyDataInitializer(
         val order1 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.IDLE, user1);
         val order2 = Order(mutableListOf(ordersProducts3), OrderStatus.PROCESSING, user3);
 
-        val productImage1 = ProductImage(1 ,"1-BlackTea.png");
-        val productImage2 = ProductImage(2 ,"2-GreenTea.png");
-        val productImage4 = ProductImage(4 ,"4-TeaCup.png");
-        val productImage5 = ProductImage(5 ,"5-GoldenTea.png");
+        val productImage1 = ProductImage(1 ,"1-BlackTea", "png");
+        val productImage2 = ProductImage(2 ,"2-GreenTea", "png");
+        val productImage4 = ProductImage(4 ,"4-TeaCup", "png");
+        val productImage5 = ProductImage(5 ,"5-GoldenTea", "png");
 
         val users = arrayOf(user1, user2, user3);
         val comments = arrayOf(comment1, comment2, comment3, comment4);

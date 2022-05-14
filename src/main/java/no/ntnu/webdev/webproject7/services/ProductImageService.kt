@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile
 /**
  * Types of content which are considered images
  */
-private val IMAGE_CONTENT_TYPES = hashSetOf("image/png");
+private val IMAGE_CONTENT_TYPES = hashSetOf("image/jpg", "image/png", "image/jpeg", "image/webp");
 
 @Service
 class ProductImageService(
@@ -22,7 +22,7 @@ class ProductImageService(
             return false;
         }
 
-        val productImage = ProductImage(id, null);
+        val productImage = ProductImage(id, null, this.getFileExtension(imageData));
         productImage.image = imageData.bytes;
 
         this.productImageRepository.save(productImage);
@@ -31,7 +31,7 @@ class ProductImageService(
 
 
     /**
-     * Check if the given file is an image
+     * Check if the given file is an image.
      * @param file File to check
      * @return True if it looks like image, false if not
      */
@@ -40,7 +40,7 @@ class ProductImageService(
     }
 
     /**
-     * Checks if a given content-type of a file is an image-type
+     * Checks if a given content-type of a file is an image-type.
      * @param contentType The content type to check
      * @return True if it is an image-type, false if it is not
      */
@@ -49,5 +49,20 @@ class ProductImageService(
             return false;
         }
         return IMAGE_CONTENT_TYPES.contains(contentType);
+    }
+
+    /**
+     * Get extension of the file (.jpg, .png, ...).
+     * @param imageData Image data as received from the web client
+     * @return Image file extension
+     */
+    private fun getFileExtension(imageData: MultipartFile): String {
+        val filename = imageData.originalFilename ?: return "";
+        val dotPosition = filename.lastIndexOf('.');
+        return if (dotPosition > 0) {
+            filename.substring(dotPosition + 1);
+        } else {
+            "";
+        }
     }
 }

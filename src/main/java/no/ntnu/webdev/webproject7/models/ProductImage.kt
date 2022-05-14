@@ -20,6 +20,9 @@ open class ProductImage(
     @Column(nullable = true)
     val title: String?,
 
+    @Column(nullable = false)
+    val extension: String?,
+
 ) : CrudModel<ProductImageId> {
 
     @Lob
@@ -28,11 +31,11 @@ open class ProductImage(
 
     init {
         if (this.title != null) {
-            this.image = loadImage(this.title);
+            this.image = loadImage(this.title, this.extension);
         }
     }
 
-    protected constructor() : this(0, "");
+    protected constructor() : this(0, null, "");
 
     override fun validate(): Boolean {
         return objectsNotNull(this.image);

@@ -25,10 +25,10 @@ class ProductImageController(private val productImageService: ProductImageServic
         val image: ProductImage? = this.productImageService.getById(id)
         response = if (image != null) {
             ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_TYPE, "image/png")
+                .header(HttpHeaders.CONTENT_TYPE, "image/${image.extension}")
                 .body(image.image)
         } else {
-            ResponseEntity(HttpStatus.NOT_FOUND)
+            ResponseEntity(HttpStatus.BAD_REQUEST)
         }
         return response
     }
@@ -39,6 +39,6 @@ class ProductImageController(private val productImageService: ProductImageServic
         @PathVariable id: ProductImageId,
         @RequestParam("fileContent") multipartFile: MultipartFile?
     ): ResponseEntity<String> {
-        return if (this.productImageService.add(id, multipartFile)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.NOT_FOUND);
+        return if (this.productImageService.add(id, multipartFile)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 }
