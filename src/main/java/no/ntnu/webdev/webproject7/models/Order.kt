@@ -1,6 +1,8 @@
 package no.ntnu.webdev.webproject7.models
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import no.ntnu.webdev.webproject7.utilities.StatusEnumDeserializer
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import org.hibernate.annotations.CreationTimestamp
 import java.math.BigDecimal
@@ -22,6 +24,7 @@ import javax.validation.constraints.Positive
 
 typealias OrderId = Int;
 
+@JsonDeserialize(using = StatusEnumDeserializer::class)
 enum class OrderStatus(val status: Int) {
     IDLE(0),        // In shopping cart
     PROCESSING(1),  // Ordered, waiting for processing
@@ -68,7 +71,7 @@ open class Order(
             this.totalPrice = this.ordersProducts!!.stream()
                 .map { it.getPrice() }
                 .reduce(BigDecimal.ZERO, BigDecimal::add)
-                .setScale(2, RoundingMode.HALF_UP)
+                .setScale(2, RoundingMode.HALF_UP);
         }
     }
 
