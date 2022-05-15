@@ -1,7 +1,10 @@
 package no.ntnu.webdev.webproject7.models
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import no.ntnu.webdev.webproject7.utilities.loadImage
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
+import org.hibernate.annotations.UpdateTimestamp
+import java.time.LocalDateTime
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Id
@@ -28,6 +31,10 @@ open class ProductImage(
     @Lob
     @Column(nullable = true)
     var image: ByteArray? = null;
+
+    @UpdateTimestamp
+    @Column(nullable = false, updatable = true)
+    var lastModified: LocalDateTime = LocalDateTime.now();
 
     init {
         if (this.title != null) {
