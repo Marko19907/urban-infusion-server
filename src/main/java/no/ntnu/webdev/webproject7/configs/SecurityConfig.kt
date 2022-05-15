@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
+import org.springframework.security.access.expression.SecurityExpressionHandler
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
@@ -16,9 +18,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.web.FilterInvocation
+import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.CorsConfigurationSource
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
+
 
 @Configuration
 @EnableWebSecurity
@@ -55,6 +60,8 @@ class SecurityConfig(
                 this.userDetailsService,
                 this.securityProperties
             ))
+            .authorizeRequests()
+            .expressionHandler(this.webExpressionHandler())
     }
 
     override fun configure(auth: AuthenticationManagerBuilder) {
@@ -63,18 +70,31 @@ class SecurityConfig(
     }
 
     @Bean
-    open fun authProvider(): DaoAuthenticationProvider = DaoAuthenticationProvider().apply {
-        this.setUserDetailsService(userDetailsService)
-        this.setPasswordEncoder(bCryptPasswordEncoder)
+    fun authProvider(): DaoAuthenticationProvider = DaoAuthenticationProvider().apply {
+        this.setUserDetailsService(this@SecurityConfig.userDetailsService);
+        this.setPasswordEncoder(this@SecurityConfig.bCryptPasswordEncoder);
     }
 
     @Bean
-    open fun passwordEncoder(): PasswordEncoder? {
+    fun passwordEncoder(): PasswordEncoder? {
         return BCryptPasswordEncoder();
     }
 
     @Bean
-    open fun corsConfigurationSource(): CorsConfigurationSource = UrlBasedCorsConfigurationSource().also { cors ->
+    fun roleHierarchy(): RoleHierarchyImpl? {
+        val roleHierarchy = RoleHierarchyImpl();
+        roleHierarchy.setHierarchy("ADMIN > USER");
+        return roleHierarchy;
+    }
+
+    private fun webExpressionHandler(): SecurityExpressionHandler<FilterInvocation?> {
+        val defaultWebSecurityExpressionHandler = DefaultWebSecurityExpressionHandler();
+        defaultWebSecurityExpressionHandler.setRoleHierarchy(this.roleHierarchy());
+        return defaultWebSecurityExpressionHandler;
+    }
+
+    @Bean
+    fun corsConfigurationSource(): CorsConfigurationSource = UrlBasedCorsConfigurationSource().also { cors ->
         CorsConfiguration().apply {
             this.allowedOrigins = listOf("*")
             this.allowedMethods = listOf("POST", "PUT", "DELETE", "GET", "OPTIONS", "HEAD")
