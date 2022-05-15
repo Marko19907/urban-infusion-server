@@ -1,2 +1,12 @@
+# Set default editor config for all files:
+# - final newline for slightly cleaner diffs when changing the last line
+# - no trailing whitespaces
+# - use utf-8 as default
 [*]
 insert_final_newline = true
+trim_trailing_whitespace = true
+charset = utf-8
+
+# Override trailing whitespace setting for Markdown since there it's actually useful
+[*.md]
+trim_trailing_whitespace = false
