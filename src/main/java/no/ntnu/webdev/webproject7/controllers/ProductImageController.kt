@@ -50,8 +50,6 @@ class ProductImageController(private val productImageService: ProductImageServic
         @PathVariable id: ProductImageId,
         @RequestParam("fileContent") multipartFile: MultipartFile?
     ): ResponseEntity<String> {
-        return if (this.productImageService.add(id, multipartFile)) ResponseEntity(HttpStatus.OK) else ResponseEntity(
-            HttpStatus.BAD_REQUEST
-        );
+        return if (this.productImageService.add(id, multipartFile)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 }

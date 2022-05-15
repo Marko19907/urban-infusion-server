@@ -1,6 +1,5 @@
 package no.ntnu.webdev.webproject7.models
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import no.ntnu.webdev.webproject7.utilities.loadImage
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import org.hibernate.annotations.UpdateTimestamp
@@ -45,6 +44,6 @@ open class ProductImage(
     protected constructor() : this(0, null, "");
 
     override fun validate(): Boolean {
-        return objectsNotNull(this.image);
+        return objectsNotNull(this.image, this.lastModified);
     }
 }
