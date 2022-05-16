@@ -1,6 +1,7 @@
 package no.ntnu.webdev.webproject7.controllers
 
 import no.ntnu.webdev.webproject7.dto.RegistrationDTO
+import no.ntnu.webdev.webproject7.exceptions.UserRegistrationFailedException
 import no.ntnu.webdev.webproject7.services.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -15,6 +16,12 @@ class RegistrationController(private val userService: UserService) {
 
     @PostMapping("")
     fun registerNewUser(@RequestBody registrationDTO: RegistrationDTO): ResponseEntity<String> {
-        return if (this.userService.createUser(registrationDTO)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST)
+        try {
+            this.userService.createUser(registrationDTO);
+        }
+        catch (e: UserRegistrationFailedException) {
+            return ResponseEntity(e.message, HttpStatus.BAD_REQUEST);
+        }
+        return ResponseEntity(HttpStatus.OK);
     }
 }
