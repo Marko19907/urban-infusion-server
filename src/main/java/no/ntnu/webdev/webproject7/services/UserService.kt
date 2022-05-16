@@ -20,20 +20,24 @@ class UserService(
 
     @Throws(UserRegistrationFailedException::class)
     fun createUser(registrationDTO: RegistrationDTO): Boolean {
-        if (!registrationDTO.validate()) {
-            throw UserRegistrationFailedException("The request is incorrectly formatted!");
+        when {
+            !registrationDTO.validate() -> {
+                throw UserRegistrationFailedException("The request is incorrectly formatted!");
+            }
+            !checkPasswordLength(registrationDTO.password) -> {
+                throw UserRegistrationFailedException("The given password is too short or too long!");
+            }
+            !validateEmail(registrationDTO.email) -> {
+                throw UserRegistrationFailedException("The given email address is incorrectly formatted!");
+            }
+            this.userRepository.findOneByUsername(registrationDTO.username) != null -> {
+                throw UserRegistrationFailedException("A user with the given username already exists!");
+            }
+            else -> {
+                val user = this.createUserEntity(registrationDTO);
+                return if (this.add(user)) true else throw UserRegistrationFailedException("Failed to add the new user to the database!");
+            }
         }
-        if (!checkPasswordLength(registrationDTO.password)) {
-            throw UserRegistrationFailedException("The given password is too short or too long!");
-        }
-        if (!validateEmail(registrationDTO.email)) {
-            throw UserRegistrationFailedException("The given email address is incorrectly formatted!");
-        }
-        if (this.userRepository.findOneByUsername(registrationDTO.username) != null) {
-            throw UserRegistrationFailedException("A user with the given username already exists!");
-        }
-        val user = this.createUserEntity(registrationDTO);
-        return if (this.add(user)) true else throw UserRegistrationFailedException("Failed to add the new user to the database!");
     }
 
     private fun createUserEntity(registrationDTO: RegistrationDTO): User {
