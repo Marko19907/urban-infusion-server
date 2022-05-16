@@ -57,9 +57,9 @@ class CommentHelper(
             return false;
         }
 
-        val comment = this.commentRepository.findByIdOrNull(commentDTO.id) ?: return false;
+        val comment = this.commentRepository.findByIdOrNull(commentDTO.commentId) ?: return false;
         val product = this.productService.getById(commentDTO.productID) ?: return false;
-        if (comment.user?.equals(user) == false || !product.containsCommentWithID(commentDTO.id)) {
+        if (comment.user?.equals(user) == false || !product.containsCommentWithID(commentDTO.commentId)) {
             return false;
         }
 

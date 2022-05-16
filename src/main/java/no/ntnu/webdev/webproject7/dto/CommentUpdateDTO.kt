@@ -5,12 +5,12 @@ import no.ntnu.webdev.webproject7.models.ProductId
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 
 class CommentUpdateDTO(
-    val id: CommentId,
+    val commentId: CommentId,
     override val productID: ProductId,
     override val text: String
 ) : CommentDTO(productID, text) {
 
     override fun validate(): Boolean {
-        return super.validate() && objectsNotNull(this.id);
+        return super.validate() && objectsNotNull(this.commentId);
     }
 }
