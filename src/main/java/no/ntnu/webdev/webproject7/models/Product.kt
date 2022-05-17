@@ -1,7 +1,7 @@
 package no.ntnu.webdev.webproject7.models
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
-import no.ntnu.webdev.webproject7.utilities.CategoryEnumDeserializer
+import no.ntnu.webdev.webproject7.serializers.CategoryEnumDeserializer
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import javax.persistence.CascadeType
 import javax.persistence.Column

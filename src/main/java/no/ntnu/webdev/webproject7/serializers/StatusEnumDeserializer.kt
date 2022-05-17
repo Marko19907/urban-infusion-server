@@ -1,4 +1,4 @@
-package no.ntnu.webdev.webproject7.utilities
+package no.ntnu.webdev.webproject7.serializers
 
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.core.JsonProcessingException

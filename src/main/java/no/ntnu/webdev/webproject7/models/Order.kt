@@ -2,7 +2,7 @@ package no.ntnu.webdev.webproject7.models
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
-import no.ntnu.webdev.webproject7.utilities.StatusEnumDeserializer
+import no.ntnu.webdev.webproject7.serializers.StatusEnumDeserializer
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import org.hibernate.annotations.CreationTimestamp
 import java.math.BigDecimal
