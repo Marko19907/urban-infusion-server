@@ -63,7 +63,7 @@ class DummyDataInitializer(
         val product4 =
             Product(mutableListOf(), 4.99, 0.00, 4, "Tea cup", "The elegant Urban Infusion™ tea cup. Do you need a boost in the morning? That's exactly what our cup is for! Now is the time to add this classic cup to your tea collection!", "6oz", Category.ACCESSORIES);
         val product5 =
-            Product(mutableListOf(), 29.99, 0.00, 5, "Golden tea", this.getLoremIpsum(), "10oz", Category.TEA);
+            Product(mutableListOf(), 29.99, 0.00, 5, "Golden tea", "Want to feel golden again? The distinctive blend and it's creamy, velvet taste help create an infusion that is both calming and refreshing. Don't miss this \"golden\" opportunity!", "10oz", Category.TEA);
 
         val ordersProducts1 = OrdersProducts(product1, 2);
         val ordersProducts2 = OrdersProducts(product4, 1);
