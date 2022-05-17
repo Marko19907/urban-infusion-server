@@ -57,9 +57,7 @@ open class User(
 ) : CrudModel<UserEntityId> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    override var id: UserEntityId = 0
-
-    protected constructor() : this(null)
+    override var id: UserEntityId = 0;
 
     override fun validate(): Boolean {
         return objectsNotNull(

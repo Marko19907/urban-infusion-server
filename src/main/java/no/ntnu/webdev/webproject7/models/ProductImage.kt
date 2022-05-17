@@ -41,8 +41,6 @@ open class ProductImage(
         }
     }
 
-    protected constructor() : this(0, null, "");
-
     override fun validate(): Boolean {
         return objectsNotNull(this.image, this.lastModified);
     }

@@ -37,8 +37,6 @@ open class Comment(
     @Column(nullable = false, updatable = false)
     open var created: LocalDate = LocalDate.now();
 
-    protected constructor() : this(null);
-
     @PreUpdate
     protected open fun onUpdate() {
         this.lastUpdated = LocalDate.now();

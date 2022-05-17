@@ -50,8 +50,6 @@ open class Order(
 
 ) : CrudModel<OrderId> {
 
-    protected constructor() : this(null);
-
     @Id
     @JsonProperty("orderId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

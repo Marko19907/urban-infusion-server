@@ -60,9 +60,7 @@ open class Product(
     ) : CrudModel<ProductId> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    override var id: ProductId = 0
-
-    protected constructor() : this(mutableListOf())
+    override var id: ProductId = 0;
 
     fun containsCommentWithID(id: CommentId): Boolean {
         return this.comments
