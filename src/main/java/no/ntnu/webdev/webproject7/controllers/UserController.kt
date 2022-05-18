@@ -1,5 +1,7 @@
 package no.ntnu.webdev.webproject7.controllers
 
+import no.ntnu.webdev.webproject7.dto.UserUpdateDTO
+import no.ntnu.webdev.webproject7.exceptions.UserUpdateFailedException
 import no.ntnu.webdev.webproject7.models.User
 import no.ntnu.webdev.webproject7.models.UserEntityId
 import no.ntnu.webdev.webproject7.services.UserService
@@ -9,6 +11,8 @@ import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PutMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -27,6 +31,19 @@ class UserController(@Autowired private val userService: UserService) {
     fun getOne(@PathVariable id: UserEntityId): ResponseEntity<User> {
         val entity = this.userService.getById(id);
         return if (entity != null) ResponseEntity(entity, HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
+    }
+
+    @PutMapping("")
+    @PreAuthorize("hasAuthority('USER')")
+    fun update(@RequestBody userUpdateDTO: UserUpdateDTO): ResponseEntity<String> {
+        val user: User = this.userService.getSessionUser() ?: return ResponseEntity("Invalid authentication!", HttpStatus.BAD_REQUEST);
+        try {
+            this.userService.update(userUpdateDTO, user);
+        }
+        catch (e: UserUpdateFailedException) {
+            return ResponseEntity(e.message, HttpStatus.BAD_REQUEST);
+        }
+        return ResponseEntity(HttpStatus.OK);
     }
 
     @GetMapping("/me")

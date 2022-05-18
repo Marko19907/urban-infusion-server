@@ -1,7 +1,9 @@
 package no.ntnu.webdev.webproject7.services
 
 import no.ntnu.webdev.webproject7.dto.RegistrationDTO
+import no.ntnu.webdev.webproject7.dto.UserUpdateDTO
 import no.ntnu.webdev.webproject7.exceptions.UserRegistrationFailedException
+import no.ntnu.webdev.webproject7.exceptions.UserUpdateFailedException
 import no.ntnu.webdev.webproject7.models.Role
 import no.ntnu.webdev.webproject7.models.User
 import no.ntnu.webdev.webproject7.models.UserEntityId
@@ -36,6 +38,30 @@ class UserService(
             else -> {
                 val user = this.createUserEntity(registrationDTO);
                 return if (this.add(user)) true else throw UserRegistrationFailedException("Failed to add the new user to the database!");
+            }
+        }
+    }
+
+    @Throws(UserUpdateFailedException::class)
+    fun update(userUpdateDTO: UserUpdateDTO, user: User): Boolean {
+        when {
+            !userUpdateDTO.validate() -> {
+                throw UserUpdateFailedException("The request is incorrectly formatted!");
+            }
+            userUpdateDTO.email.isBlank() -> {
+                throw UserUpdateFailedException("The new email can not be blank!");
+            }
+            !validateEmail(userUpdateDTO.email) -> {
+                throw UserUpdateFailedException("The new email must be a valid email!");
+            }
+            else -> {
+                user.email = userUpdateDTO.email;
+                user.address = userUpdateDTO.address;
+                user.city = userUpdateDTO.city;
+                user.zipcode = userUpdateDTO.zipcode;
+                user.phone_number = userUpdateDTO.phone_number;
+
+                return this.update(user);
             }
         }
     }
