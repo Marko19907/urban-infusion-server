@@ -1,6 +1,7 @@
 package no.ntnu.webdev.webproject7.services
 
 import no.ntnu.webdev.webproject7.dto.RegistrationDTO
+import no.ntnu.webdev.webproject7.dto.UserPasswordUpdateDTO
 import no.ntnu.webdev.webproject7.dto.UserUpdateDTO
 import no.ntnu.webdev.webproject7.exceptions.UserRegistrationFailedException
 import no.ntnu.webdev.webproject7.exceptions.UserUpdateFailedException
@@ -60,6 +61,26 @@ class UserService(
                 user.city = userUpdateDTO.city;
                 user.zipcode = userUpdateDTO.zipcode;
                 user.phone_number = userUpdateDTO.phone_number;
+
+                return this.update(user);
+            }
+        }
+    }
+
+    @Throws(UserUpdateFailedException::class)
+    fun updatePassword(userPasswordUpdateDTO: UserPasswordUpdateDTO, user: User): Boolean {
+        when {
+            !userPasswordUpdateDTO.validate() -> {
+                throw UserUpdateFailedException("The request is incorrectly formatted!");
+            }
+            userPasswordUpdateDTO.password.isBlank() -> {
+                throw UserUpdateFailedException("The new password can not be blank!");
+            }
+            !checkPasswordLength(userPasswordUpdateDTO.password) -> {
+                throw UserUpdateFailedException("The new password is too short or too long!");
+            }
+            else -> {
+                user.password = hashPassword(userPasswordUpdateDTO.password);
 
                 return this.update(user);
             }
