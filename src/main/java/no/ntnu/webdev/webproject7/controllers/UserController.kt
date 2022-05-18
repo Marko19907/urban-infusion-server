@@ -28,4 +28,11 @@ class UserController(@Autowired private val userService: UserService) {
         val entity = this.userService.getById(id);
         return if (entity != null) ResponseEntity(entity, HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
     }
+
+    @GetMapping("/me")
+    @PreAuthorize("hasAuthority('USER')")
+    fun getUser(): ResponseEntity<User> {
+        val user = this.userService.getSessionUser();
+        return if (user != null) ResponseEntity(user, HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
+    }
 }
