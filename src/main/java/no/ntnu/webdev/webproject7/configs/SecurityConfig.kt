@@ -3,6 +3,7 @@ package no.ntnu.webdev.webproject7.configs
 import no.ntnu.webdev.webproject7.security.JWTAuthenticationFilter
 import no.ntnu.webdev.webproject7.security.JWTAuthorizationFilter
 import no.ntnu.webdev.webproject7.services.AppUserDetailsService
+import org.apache.catalina.filters.CorsFilter
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -19,10 +20,14 @@ import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.FilterInvocation
+import org.springframework.security.web.access.channel.ChannelProcessingFilter
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.CorsConfigurationSource
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
+import org.springframework.web.servlet.config.annotation.CorsRegistry
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+import java.util.*
 
 
 @Configuration
@@ -36,8 +41,7 @@ class SecurityConfig(
 
     override fun configure(http: HttpSecurity) {
         http
-            .cors()
-            .and()
+            .addFilterBefore(CorsConfig(), ChannelProcessingFilter::class.java)
             .csrf().disable()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
