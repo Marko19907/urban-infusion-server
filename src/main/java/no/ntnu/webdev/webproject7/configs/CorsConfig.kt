@@ -23,7 +23,7 @@ class CorsConfig : OncePerRequestFilter() {
         )
         response.addHeader(
             "Access-Control-Expose-Headers",
-            "Access-Control-Allow-Origin, Access-Control-Allow-Credentials"
+            "Access-Control-Allow-Origin, Authorization, Access-Control-Allow-Credentials"
         )
         response.addHeader("Access-Control-Allow-Credentials", "true")
         response.addIntHeader("Access-Control-Max-Age", 10)
