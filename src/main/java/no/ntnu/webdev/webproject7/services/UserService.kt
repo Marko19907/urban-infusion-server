@@ -49,18 +49,18 @@ class UserService(
             !userUpdateDTO.validate() -> {
                 throw UserUpdateFailedException("The request is incorrectly formatted!");
             }
-            userUpdateDTO.email.isBlank() -> {
+            userUpdateDTO.email?.isBlank() == true -> {
                 throw UserUpdateFailedException("The new email can not be blank!");
             }
             !validateEmail(userUpdateDTO.email) -> {
                 throw UserUpdateFailedException("The new email must be a valid email!");
             }
             else -> {
-                user.email = userUpdateDTO.email;
-                user.address = userUpdateDTO.address;
-                user.city = userUpdateDTO.city;
-                user.zipcode = userUpdateDTO.zipcode;
-                user.phone_number = userUpdateDTO.phone_number;
+                user.email = userUpdateDTO.email ?: user.email;
+                user.address = userUpdateDTO.address ?: user.address;
+                user.city = userUpdateDTO.city ?: user.city;
+                user.zipcode = userUpdateDTO.zipcode ?: user.zipcode;
+                user.phone_number = userUpdateDTO.phone_number ?: user.phone_number;
 
                 return this.update(user);
             }
