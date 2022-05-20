@@ -13,7 +13,6 @@ import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -37,7 +36,7 @@ class UserController(@Autowired private val userService: UserService) {
 
     @PatchMapping("/{id}")
     @PreAuthorize("hasAuthority('USER')")
-    fun changePassword(
+    fun updatePassword(
         @PathVariable id: UserEntityId,
         @RequestBody userPasswordUpdateDTO: UserPasswordUpdateDTO
     ): ResponseEntity<String> {
@@ -55,9 +54,9 @@ class UserController(@Autowired private val userService: UserService) {
         return ResponseEntity(HttpStatus.OK);
     }
 
-    @PutMapping("")
+    @PatchMapping("")
     @PreAuthorize("hasAuthority('USER')")
-    fun update(@RequestBody userUpdateDTO: UserUpdateDTO): ResponseEntity<String> {
+    fun replace(@RequestBody userUpdateDTO: UserUpdateDTO): ResponseEntity<String> {
         val user: User = this.userService.getSessionUser() ?: return ResponseEntity("Invalid authentication!", HttpStatus.BAD_REQUEST);
         try {
             this.userService.update(userUpdateDTO, user);
