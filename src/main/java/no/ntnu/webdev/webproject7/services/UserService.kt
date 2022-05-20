@@ -49,10 +49,10 @@ class UserService(
             !userUpdateDTO.validate() -> {
                 throw UserUpdateFailedException("The request is incorrectly formatted!");
             }
-            userUpdateDTO.email?.isBlank() == true -> {
+            userUpdateDTO.email != null && userUpdateDTO.email.isBlank() -> {
                 throw UserUpdateFailedException("The new email can not be blank!");
             }
-            !validateEmail(userUpdateDTO.email) -> {
+            userUpdateDTO.email != null && !validateEmail(userUpdateDTO.email) -> {
                 throw UserUpdateFailedException("The new email must be a valid email!");
             }
             else -> {
