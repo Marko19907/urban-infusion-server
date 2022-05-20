@@ -1,14 +1,16 @@
 package no.ntnu.webdev.webproject7.dto
 
+import no.ntnu.webdev.webproject7.utilities.objectsNotNull
+
 class UserUpdateDTO(
-    val email: String?,
-    val address: String?,
-    val city: String?,
-    val zipcode: String?,
-    val phone_number: String?
-) : DTO {
+    email: String,
+    address: String,
+    city: String,
+    zipcode: String,
+    phone_number: String
+) : UserUpdatePartialDTO(email, address, city, zipcode, phone_number), DTO {
 
     override fun validate(): Boolean {
-        return true;
+        return objectsNotNull(this.email, this.address, this.city, this.zipcode, this.phone_number);
     }
 }

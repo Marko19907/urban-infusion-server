@@ -2,7 +2,7 @@ package no.ntnu.webdev.webproject7.services
 
 import no.ntnu.webdev.webproject7.dto.RegistrationDTO
 import no.ntnu.webdev.webproject7.dto.UserPasswordUpdateDTO
-import no.ntnu.webdev.webproject7.dto.UserUpdateDTO
+import no.ntnu.webdev.webproject7.dto.UserUpdatePartialDTO
 import no.ntnu.webdev.webproject7.exceptions.UserRegistrationFailedException
 import no.ntnu.webdev.webproject7.exceptions.UserUpdateFailedException
 import no.ntnu.webdev.webproject7.models.Role
@@ -44,23 +44,23 @@ class UserService(
     }
 
     @Throws(UserUpdateFailedException::class)
-    fun update(userUpdateDTO: UserUpdateDTO, user: User): Boolean {
+    fun update(userUpdatePartialDTO: UserUpdatePartialDTO, user: User): Boolean {
         when {
-            !userUpdateDTO.validate() -> {
+            !userUpdatePartialDTO.validate() -> {
                 throw UserUpdateFailedException("The request is incorrectly formatted!");
             }
-            userUpdateDTO.email != null && userUpdateDTO.email.isBlank() -> {
+            userUpdatePartialDTO.email != null && userUpdatePartialDTO.email.isBlank() -> {
                 throw UserUpdateFailedException("The new email can not be blank!");
             }
-            userUpdateDTO.email != null && !validateEmail(userUpdateDTO.email) -> {
+            userUpdatePartialDTO.email != null && !validateEmail(userUpdatePartialDTO.email) -> {
                 throw UserUpdateFailedException("The new email must be a valid email!");
             }
             else -> {
-                user.email = userUpdateDTO.email ?: user.email;
-                user.address = userUpdateDTO.address ?: user.address;
-                user.city = userUpdateDTO.city ?: user.city;
-                user.zipcode = userUpdateDTO.zipcode ?: user.zipcode;
-                user.phone_number = userUpdateDTO.phone_number ?: user.phone_number;
+                user.email = userUpdatePartialDTO.email ?: user.email;
+                user.address = userUpdatePartialDTO.address ?: user.address;
+                user.city = userUpdatePartialDTO.city ?: user.city;
+                user.zipcode = userUpdatePartialDTO.zipcode ?: user.zipcode;
+                user.phone_number = userUpdatePartialDTO.phone_number ?: user.phone_number;
 
                 return this.update(user);
             }
