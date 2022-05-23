@@ -1,6 +1,6 @@
 package no.ntnu.webdev.webproject7.models
 
-import no.ntnu.webdev.webproject7.utilities.loadImage
+import no.ntnu.webdev.webproject7.utilities.loadProductImage
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDateTime
@@ -37,7 +37,7 @@ open class ProductImage(
 
     init {
         if (this.title != null) {
-            this.image = loadImage(this.title, this.extension);
+            this.image = loadProductImage(this.title, this.extension);
         }
     }
 
