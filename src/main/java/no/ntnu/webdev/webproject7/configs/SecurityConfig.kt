@@ -3,7 +3,6 @@ package no.ntnu.webdev.webproject7.configs
 import no.ntnu.webdev.webproject7.security.JWTAuthenticationFilter
 import no.ntnu.webdev.webproject7.security.JWTAuthorizationFilter
 import no.ntnu.webdev.webproject7.services.AppUserDetailsService
-import org.apache.catalina.filters.CorsFilter
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -25,9 +24,6 @@ import org.springframework.security.web.access.expression.DefaultWebSecurityExpr
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.CorsConfigurationSource
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
-import org.springframework.web.servlet.config.annotation.CorsRegistry
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
-import java.util.*
 
 
 @Configuration
@@ -54,6 +50,7 @@ class SecurityConfig(
             .antMatchers("/comments").permitAll()
             .antMatchers("/categories").permitAll()
             .antMatchers("/orders/users/{\\d+}").permitAll()
+            .antMatchers("/user-images/{\\d+}").permitAll()
             .antMatchers(HttpMethod.POST, "/register").permitAll()
             .antMatchers(HttpMethod.POST, "/login").permitAll()
             .anyRequest().authenticated()
