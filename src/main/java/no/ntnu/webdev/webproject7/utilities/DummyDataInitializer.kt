@@ -7,6 +7,7 @@ import no.ntnu.webdev.webproject7.repositories.OrderRepository
 import no.ntnu.webdev.webproject7.repositories.OrdersProductsRepository
 import no.ntnu.webdev.webproject7.repositories.ProductImageRepository
 import no.ntnu.webdev.webproject7.repositories.ProductRepository
+import no.ntnu.webdev.webproject7.repositories.UserImageRepository
 import no.ntnu.webdev.webproject7.repositories.UserRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -22,7 +23,8 @@ class DummyDataInitializer(
     private val userRepository: UserRepository,
     private val orderRepository: OrderRepository,
     private val productImageRepository: ProductImageRepository,
-    private val ordersProductsRepository: OrdersProductsRepository
+    private val ordersProductsRepository: OrdersProductsRepository,
+    private val userImageRepository: UserImageRepository
 ) : ApplicationListener<ApplicationReadyEvent> {
 
     private val logger: Logger = LoggerFactory.getLogger("DummyDataInitializer");
@@ -37,7 +39,8 @@ class DummyDataInitializer(
                 this.userRepository,
                 this.orderRepository,
                 this.productImageRepository,
-                this.ordersProductsRepository
+                this.ordersProductsRepository,
+                this.userImageRepository
             ).any { it.count() > 0 }
         ) {
             this.logger.info("The database is not empty, did not initialize test data...");
@@ -77,12 +80,15 @@ class DummyDataInitializer(
         val productImage4 = ProductImage(4 ,"4-TeaCup", "png");
         val productImage5 = ProductImage(5 ,"5-GoldenTea", "png");
 
+        val userImage1 = UserImage(1, "User1", "jpeg");
+
         val users = arrayOf(user1, user2, user3);
         val comments = arrayOf(comment1, comment2, comment3, comment4);
         val ordersProducts =  arrayOf(ordersProducts1, ordersProducts2, ordersProducts3);
         val products = arrayOf(product1, product2, product3, product4, product5);
         val orders = arrayOf(order1, order2);
         val productImages = arrayOf(productImage1, productImage2, productImage4, productImage5);
+        val userImages = arrayOf(userImage1);
 
         users.forEach { this.userRepository.save(it) }
         products.forEach { this.productRepository.save(it) }
@@ -90,6 +96,7 @@ class DummyDataInitializer(
         ordersProducts.forEach { this.ordersProductsRepository.save(it) }
         orders.forEach { this.orderRepository.save(it) }
         productImages.forEach { this.productImageRepository.save(it) }
+        userImages.forEach { this.userImageRepository.save(it) }
 
         this.logger.info("Test data initialized");
     }
