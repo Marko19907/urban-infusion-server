@@ -17,3 +17,10 @@ ENTRYPOINT ["java","-jar", "-Dspring.profiles.active=prod", "/app.jar"]
 
 # Or rebuild the image when you start docker-compose by including the --build argument:
 #   docker-compose up --build
+
+# Rebuild just the server container without touching the DB:
+#   docker-compose up --build server
+
+
+# Useful options:
+#  -d   Detached mode: Run containers in the background
