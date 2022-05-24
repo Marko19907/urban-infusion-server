@@ -64,7 +64,7 @@ class DummyDataInitializer(
         val product3 =
             Product(mutableListOf(comment3, comment4), 39.99, 0.15, 3, "Creylon Silver Tip", "This tea is harvested only a few times each year (3-4 times), and is considered one of the best teas in the world. Ceylon Silver Tip is a rare white tea with a mild and sweet honey-like taste.", "10oz", Category.TEA);
         val product4 =
-            Product(mutableListOf(), 4.99, 0.00, 4, "Tea cup", "The elegant Urban Infusion™ tea cup. Do you need a boost in the morning? That's exactly what our cup is for! Now is the time to add this classic cup to your tea collection!", "6oz", Category.ACCESSORIES);
+            Product(mutableListOf(), 4.99, 0.00, 4, "Tea Cup", "The elegant Urban Infusion™ tea cup. Do you need a boost in the morning? That's exactly what our cup is for! Now is the time to add this classic cup to your tea collection!", "6oz", Category.ACCESSORIES);
         val product5 =
             Product(mutableListOf(), 29.99, 0.00, 5, "Golden tea", "Want to feel golden again? The distinctive blend and it's creamy, velvet taste help create an infusion that is both calming and refreshing. Don't miss this \"golden\" opportunity!", "10oz", Category.TEA);
         val product6 =
@@ -88,7 +88,7 @@ class DummyDataInitializer(
         val product15 =
             Product(mutableListOf(), 109.99, 0.00, 15, "Arare Gold Teapot", "Traditional Japanese style cast-iron teapot in gold color. 1200 ml", "1200ml", Category.POTS);
         val product16 =
-            Product(mutableListOf(), 99.99, 0.00, 16, "Hama Sakura Black Teapot", "Traditional Japanese style cast-iron teapot in black color. 1000 ml", "1000ml", Category.POTS);
+            Product(mutableListOf(), 99.99, 0.00, 16, "Sakura Black Teapot", "Traditional Japanese style cast-iron teapot in black color. 1000 ml", "1000ml", Category.POTS);
         val product17 =
             Product(mutableListOf(), 44.99, 0.00, 17, "Bright Ivory Teapot", "Ivory white porcelain teapot, in the classic English style. 1100 ml", "1100ml", Category.POTS);
         val product18 =
@@ -96,7 +96,7 @@ class DummyDataInitializer(
         val product19 =
             Product(mutableListOf(), 59.00, 0.00, 19, "Red Geisha Teapot", "Perfect for a cup of tea in the traditional Japanese style. 300 ml", "300ml", Category.POTS);
         val product20 =
-            Product(mutableListOf(), 5.99, 0.00, 20, "Tea ball Infuser", "An original gadget to infuse our tea leaves.", "", Category.ACCESSORIES);
+            Product(mutableListOf(), 5.99, 0.00, 20, "Tea Ball Infuser", "An original gadget to infuse our tea leaves.", "", Category.ACCESSORIES);
         val product21 =
             Product(mutableListOf(), 10.99, 0.00, 21, "Tea Infuser", "Practical and resistant infuser." , "", Category.ACCESSORIES);
         val product22 =
