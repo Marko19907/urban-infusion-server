@@ -1,5 +1,6 @@
 package no.ntnu.webdev.webproject7.controllers
 
+import no.ntnu.webdev.webproject7.exceptions.ImageUploadException
 import no.ntnu.webdev.webproject7.models.ProductImage
 import no.ntnu.webdev.webproject7.models.ProductImageId
 import no.ntnu.webdev.webproject7.services.ImageService
@@ -29,6 +30,14 @@ class ProductImageController(
         @PathVariable id: ProductImageId,
         @RequestParam("fileContent") multipartFile: MultipartFile?
     ): ResponseEntity<String> {
-        return if (this.productImageService.add(id, multipartFile)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
+        return try {
+            if (this.service.add(
+                    id,
+                    multipartFile
+                )
+            ) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
+        } catch (e: ImageUploadException) {
+            ResponseEntity(e.message, HttpStatus.BAD_REQUEST);
+        }
     }
 }

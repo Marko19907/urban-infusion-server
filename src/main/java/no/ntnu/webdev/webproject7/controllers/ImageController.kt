@@ -1,5 +1,6 @@
 package no.ntnu.webdev.webproject7.controllers
 
+import no.ntnu.webdev.webproject7.exceptions.ImageUploadException
 import no.ntnu.webdev.webproject7.models.ImageModel
 import no.ntnu.webdev.webproject7.services.ImageService
 import org.springframework.http.HttpHeaders
@@ -47,10 +48,14 @@ abstract class ImageController<EntityType : ImageModel<ID>, ID> {
         @PathVariable id: ID,
         @RequestParam("fileContent") multipartFile: MultipartFile?
     ): ResponseEntity<String> {
-        return if (this.service.add(
-                id,
-                multipartFile
-            )
-        ) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
+        return try {
+            if (this.service.add(
+                    id,
+                    multipartFile
+                )
+            ) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
+        } catch (e: ImageUploadException) {
+            ResponseEntity(e.message, HttpStatus.BAD_REQUEST);
+        }
     }
 }
