@@ -20,6 +20,7 @@ class CategoryEnumDeserializer : StdDeserializer<Category>(Category::class.java)
 
         return when (categoryString.lowercase()) {
             "tea" -> Category.TEA;
+            "pots" -> Category.POTS;
             "accessories" -> Category.ACCESSORIES;
             else -> {
                 throw IllegalArgumentException("Can not deserialize the category!");
