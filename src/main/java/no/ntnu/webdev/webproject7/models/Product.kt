@@ -22,6 +22,7 @@ typealias ProductId = Long
 @JsonDeserialize(using = CategoryEnumDeserializer::class)
 enum class Category(val type: String) {
     TEA("tea"),
+    POTS("pots"),
     ACCESSORIES("accessories")
 }
 
