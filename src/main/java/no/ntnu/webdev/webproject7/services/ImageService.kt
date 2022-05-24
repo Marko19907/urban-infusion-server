@@ -1,6 +1,8 @@
 package no.ntnu.webdev.webproject7.services
 
+import no.ntnu.webdev.webproject7.exceptions.ImageUploadException
 import no.ntnu.webdev.webproject7.models.ImageModel
+import no.ntnu.webdev.webproject7.models.MAX_IMAGE_SIZE
 import org.springframework.data.repository.CrudRepository
 import org.springframework.web.multipart.MultipartFile
 
@@ -13,9 +15,16 @@ abstract class ImageService<EntityType : ImageModel<ID>, ID>(
     private val repository: CrudRepository<EntityType, ID>
 ) : CrudService<EntityType, ID>(repository) {
 
+    @Throws(ImageUploadException::class)
     fun add(id: ID, imageData: MultipartFile?): Boolean {
-        if (imageData == null || imageData.isEmpty || !this.isImage(imageData)) {
-            return false;
+        if (imageData == null || imageData.isEmpty) {
+            throw ImageUploadException("The image can not be empty!");
+        }
+        if (!this.isImage(imageData)) {
+            throw ImageUploadException("The file must be an image!");
+        }
+        if (imageData.bytes.size > MAX_IMAGE_SIZE) {
+            throw ImageUploadException("The image is too large!");
         }
 
         val imageModel = this.createEntity(id);

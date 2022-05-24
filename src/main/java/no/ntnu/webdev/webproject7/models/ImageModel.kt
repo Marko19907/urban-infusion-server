@@ -7,6 +7,11 @@ import javax.persistence.Column
 import javax.persistence.Lob
 import javax.persistence.MappedSuperclass
 
+/**
+ * The maximum size of the image in bytes, currently 10MB.
+ */
+const val MAX_IMAGE_SIZE = 10485760;
+
 @MappedSuperclass
 abstract class ImageModel<ID>(
 
@@ -21,7 +26,7 @@ abstract class ImageModel<ID>(
 ) : CrudModel<ID> {
 
     @Lob
-    @Column(nullable = true)
+    @Column(nullable = true, length = MAX_IMAGE_SIZE)
     var image: ByteArray? = null;
 
     @UpdateTimestamp
