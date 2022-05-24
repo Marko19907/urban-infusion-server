@@ -78,7 +78,7 @@ class DummyDataInitializer(
         val product10 =
             Product(mutableListOf(), 12.99, 0.00, 10, "Globe Tea", "Special green tea from China. Hand made green tea, bound by a marigold. ", "10oz", Category.TEA);
         val product11 =
-            Product(mutableListOf(), 7.99, 0.00, 11, "Green Bamboo Tea", "Green Japanese tea, with papaya, mango, pineapple, ginger, coconyt, rosebuds, cardamom and bamboo shoots. /n Very sweet and aromatic tea.", "5oz", Category.TEA);
+            Product(mutableListOf(), 7.99, 0.00, 11, "Green Bamboo Tea", "Green Japanese tea, with papaya, mango, pineapple, ginger, coconut, rosebuds, cardamom and bamboo shoots. \n Very sweet and aromatic tea.", "5oz", Category.TEA);
         val product12 =
             Product(mutableListOf(), 4.99, 0.00, 12, "Assam Earl Grey", "Assam / Earl Grey mixture is a powerful Assam mixed with the traditional Earl Grey.", "5oz", Category.TEA);
         val product13 =
@@ -86,23 +86,23 @@ class DummyDataInitializer(
         val product14 =
             Product(mutableListOf(), 7.99, 0.00, 14, "Boston Mixture", "Lovely Chinese Panyong tea mixed with Earl Grey.", "5oz", Category.TEA);
         val product15 =
-            Product(mutableListOf(), 109.99, 0.00, 15, "Arare Gold Teapot 1200 ML", "Traditional Japanese style cast-iron teapot in gold color.", "1200ml", Category.POTS);
+            Product(mutableListOf(), 109.99, 0.00, 15, "Arare Gold Teapot", "1200 ml Traditional Japanese style cast-iron teapot in gold color.", "1200ml", Category.POTS);
         val product16 =
-            Product(mutableListOf(), 99.99, 0.00, 16, "Hama Sakura Black Teapot 1000 ML", "Traditional Japanese style cast-iron teapot in black color.", "1000ml", Category.POTS);
+            Product(mutableListOf(), 99.99, 0.00, 16, "Hama Sakura Black Teapot", " 1000 ml Traditional Japanese style cast-iron teapot in black color.", "1000ml", Category.POTS);
         val product17 =
-            Product(mutableListOf(), 44.99, 0.00, 17, "Bright Ivory Teapot 1100 ML", "Ivory white porcelain teapot, in the classic English style.", "1100ml", Category.POTS);
+            Product(mutableListOf(), 44.99, 0.00, 17, "Bright Ivory Teapot", "Ivory white porcelain teapot, in the classic English style. 1100 ml", "1100ml", Category.POTS);
         val product18 =
-            Product(mutableListOf(), 39.99, 0.00, 18, "Blue Senbiki Teapot 600 ML", "Classy handmade iron teapot.", "600ml", Category.POTS);
+            Product(mutableListOf(), 39.99, 0.00, 18, "Blue Senbiki Teapot", "Classy handmade iron teapot. 600 ml", "600ml", Category.POTS);
         val product19 =
-            Product(mutableListOf(), 59.00, 0.00, 19, "Red Geisha Teapot 300 ML", "Perfect for a cup of tea in the traditional Japanese style.", "300ml", Category.POTS);
+            Product(mutableListOf(), 59.00, 0.00, 19, "Red Geisha Teapot", "Perfect for a cup of tea in the traditional Japanese style. 300 ml", "300ml", Category.POTS);
         val product20 =
-            Product(mutableListOf(), 5.99, 0.00, 20, "Tea ball infuser", "An orignal gadget to infuse our tea leaves.", "", Category.ACCESSORIES);
+            Product(mutableListOf(), 5.99, 0.00, 20, "Tea ball Infuser", "An orignal gadget to infuse our tea leaves.", "", Category.ACCESSORIES);
         val product21 =
-            Product(mutableListOf(), 10.99, 0.00, 21, "Tea infuser", "Practical and resistant infuser." , "", Category.ACCESSORIES);
+            Product(mutableListOf(), 10.99, 0.00, 21, "Tea Infuser", "Practical and resistant infuser." , "", Category.ACCESSORIES);
         val product22 =
             Product(mutableListOf(), 15.99, 0.00, 22, "Classic White Mug", "A classic white mug in porcelain. 200 ml", "200ml", Category.ACCESSORIES);
         val product23 =
-            Product(mutableListOf(), 11.99, 0.00, 23, "Classic White Tea Cup", "Classic white tea cup in porcelain. 150 ml. Plate included.", "150ml", Category.ACCESSORIES);
+            Product(mutableListOf(), 11.99, 0.00, 23, "Classic White Tea Cup", "Classic white tea cup in porcelain. Plate included. 150 ml.", "150ml", Category.ACCESSORIES);
 
         val ordersProducts1 = OrdersProducts(product1, 2);
         val ordersProducts2 = OrdersProducts(product4, 1);
