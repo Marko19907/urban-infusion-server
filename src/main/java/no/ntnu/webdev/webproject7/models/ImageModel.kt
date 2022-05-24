@@ -10,11 +10,13 @@ import javax.persistence.MappedSuperclass
 @MappedSuperclass
 abstract class ImageModel<ID>(
 
+    id: ID?,
+
     @Column(nullable = true)
     val title: String?,
 
     @Column(nullable = false)
-    val extension: String?,
+    var extension: String?,
 
 ) : CrudModel<ID> {
 

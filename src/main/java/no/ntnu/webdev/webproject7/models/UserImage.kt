@@ -18,7 +18,9 @@ class UserImage(
 
     extension: String?,
 
-) : ImageModel<UserImageId>(title, extension) {
+) : ImageModel<UserImageId>(id, title, extension) {
+
+    constructor(id: ProductImageId) : this(id, null, null);
 
     override fun loadImage() {
         if (this.title != null) {
