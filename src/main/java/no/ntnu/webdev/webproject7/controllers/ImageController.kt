@@ -48,6 +48,13 @@ abstract class ImageController<EntityType : ImageModel<ID>, ID> {
         @PathVariable id: ID,
         @RequestParam("fileContent") multipartFile: MultipartFile?
     ): ResponseEntity<String> {
+        return this.doUpload(id, multipartFile);
+    }
+
+    /**
+     * Responds to the upload function.
+     */
+    protected fun doUpload(id: ID, multipartFile: MultipartFile?): ResponseEntity<String> {
         return try {
             if (this.service.add(
                     id,

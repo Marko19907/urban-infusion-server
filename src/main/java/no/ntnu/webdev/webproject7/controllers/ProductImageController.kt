@@ -30,14 +30,6 @@ class ProductImageController(
         @PathVariable id: ProductImageId,
         @RequestParam("fileContent") multipartFile: MultipartFile?
     ): ResponseEntity<String> {
-        return try {
-            if (this.service.add(
-                    id,
-                    multipartFile
-                )
-            ) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
-        } catch (e: ImageUploadException) {
-            ResponseEntity(e.message, HttpStatus.BAD_REQUEST);
-        }
+        return this.doUpload(id, multipartFile);
     }
 }
