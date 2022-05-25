@@ -42,7 +42,7 @@ class OrderService(
         if (orderUpdateDTO == null || !orderUpdateDTO.validate()) {
             return false;
         }
-        val order = this.orderRepository.findByIdOrNull(orderUpdateDTO.orderId) ?: return false;
+        val order = this.orderRepository.findByIdOrNull(orderUpdateDTO.id) ?: return false;
         order.status = orderUpdateDTO.status;
         return this.update(order);
     }

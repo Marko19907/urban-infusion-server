@@ -5,11 +5,11 @@ import no.ntnu.webdev.webproject7.models.OrderStatus
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 
 class OrderUpdateDTO(
-    val orderId: OrderId,
+    val id: OrderId,
     val status: OrderStatus
 ) : DTO {
 
     override fun validate(): Boolean {
-        return this.orderId > 0 && objectsNotNull(this.orderId, this.status);
+        return this.id > 0 && objectsNotNull(this.id, this.status);
     }
 }
