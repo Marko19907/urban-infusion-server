@@ -123,17 +123,27 @@ class DummyDataInitializer(
         val ordersProducts2 = OrdersProducts(product4, 1);
         val ordersProducts3 = OrdersProducts(product3, 2);
         val ordersProducts4 = OrdersProducts(product6, 3);
-        val ordersProducts5 = OrdersProducts(product22, 1);
+        val ordersProducts5 = OrdersProducts(product21, 1);
+        val ordersProducts6 = OrdersProducts(product22, 1);
+        val ordersProducts7 = OrdersProducts(product23, 1);
+        val ordersProducts8 = OrdersProducts(product25, 1);
+        val ordersProducts9 = OrdersProducts(product18, 1);
+        val ordersProducts10 = OrdersProducts(product2, 1);
+        val ordersProducts11 = OrdersProducts(product6, 1);
+        val ordersProducts12 = OrdersProducts(product7, 1);
+        val ordersProducts13 = OrdersProducts(product8, 1);
 
-        val order1 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.IDLE, user1);
-        val order2 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.PROCESSING, user1);
-        val order3 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.DELIVERED, user1);
-        val order4 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.SENT, user1);
-        val order5 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.IDLE, user2);
-        val order6 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.PROCESSING, user2);
-        val order7 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.DELIVERED, user2);
-        val order8 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.SENT, user2);
-        val order9 = Order(mutableListOf(ordersProducts1, ordersProducts2, ordersProducts3, ordersProducts4,ordersProducts5), OrderStatus.IDLE, user1);
+
+
+        val order1 = Order(mutableListOf(ordersProducts1), OrderStatus.IDLE, user1);
+        val order2 = Order(mutableListOf(ordersProducts2), OrderStatus.PROCESSING, user1);
+        val order3 = Order(mutableListOf(ordersProducts3), OrderStatus.DELIVERED, user1);
+        val order4 = Order(mutableListOf(ordersProducts4), OrderStatus.SENT, user1);
+        val order5 = Order(mutableListOf(ordersProducts5), OrderStatus.IDLE, user2);
+        val order6 = Order(mutableListOf(ordersProducts6), OrderStatus.PROCESSING, user2);
+        val order7 = Order(mutableListOf(ordersProducts7), OrderStatus.DELIVERED, user2);
+        val order8 = Order(mutableListOf(ordersProducts8), OrderStatus.SENT, user2);
+        val order9 = Order(mutableListOf(ordersProducts9, ordersProducts10, ordersProducts11, ordersProducts12,ordersProducts13), OrderStatus.IDLE, user1);
 
         val productImage1 = ProductImage(1 ,"1-AfternoonMixture", "png");
         val productImage2 = ProductImage(2 ,"2-OrangeTea", "png");
@@ -170,7 +180,8 @@ class DummyDataInitializer(
 
         val users = arrayOf(user1, user2, user3);
         val comments = arrayOf(comment1, comment2, comment3, comment4);
-        val ordersProducts =  arrayOf(ordersProducts1, ordersProducts2, ordersProducts3);
+        val ordersProducts =  arrayOf(ordersProducts1, ordersProducts2, ordersProducts3, ordersProducts4, ordersProducts5, ordersProducts6, ordersProducts7, ordersProducts8,
+            ordersProducts9, ordersProducts10, ordersProducts11, ordersProducts12, ordersProducts13);
         val products = arrayOf(product1, product2, product3, product4, product5, product6, product7, product8, product9, product10, product11,
             product12, product13, product14, product15, product16, product17, product18, product19, product20, product21, product22, product23,
             product24, product25, product26, product27, product28, product29, product30);
