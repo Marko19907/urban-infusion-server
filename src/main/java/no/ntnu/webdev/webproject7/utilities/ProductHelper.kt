@@ -1,7 +1,7 @@
 package no.ntnu.webdev.webproject7.utilities
 
+import no.ntnu.webdev.webproject7.models.Product
 import no.ntnu.webdev.webproject7.models.ProductId
-import no.ntnu.webdev.webproject7.repositories.CommentRepository
 import no.ntnu.webdev.webproject7.repositories.OrderRepository
 import no.ntnu.webdev.webproject7.repositories.ProductImageRepository
 import no.ntnu.webdev.webproject7.repositories.ProductRepository
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component
 @Component
 class ProductHelper(
     private val productRepository: ProductRepository,
-    private val commentRepository: CommentRepository,
     private val orderRepository: OrderRepository,
     private val productImageRepository: ProductImageRepository
 ) {
@@ -19,23 +18,31 @@ class ProductHelper(
     fun deleteProduct(id: ProductId): Boolean {
         val product = this.productRepository.findByIdOrNull(id) ?: return false;
 
-        // Remove the product picture associated with the product
-        if (product.imageId != null) {
-            this.productImageRepository.deleteById(product.imageId!!);
-        }
+        this.removeProductImages(product);
 
-        // Remove all orders associated with the product
-        this.orderRepository.findAll()
-            .filter { it.ordersProducts!!
-                .any { ordersProducts -> ordersProducts.product!!.id == id } }
-            .forEach { this.orderRepository.deleteById(it.id) };
-
-        // Remove all comments associated with the product
-        product.comments
-            .map { it.id }
-            .forEach { this.commentRepository.deleteById(it) };
+        this.removeProductOrders(id);
 
         this.productRepository.deleteById(product.id);
         return this.productRepository.findByIdOrNull(id) == null;
+    }
+
+    /**
+     * Removes the product picture associated with the given Product.
+     */
+    private fun removeProductImages(product: Product) {
+        if (product.imageId != null) {
+            this.productImageRepository.deleteById(product.imageId!!);
+        }
+    }
+
+    /**
+     * Removes all orders associated with the given Product.
+     */
+    private fun removeProductOrders(id: ProductId) {
+        this.orderRepository.findAll()
+            .filter { it.ordersProducts!!
+                    .any { ordersProducts -> ordersProducts.product!!.id == id }
+            }
+            .forEach { this.orderRepository.deleteById(it.id) };
     }
 }
