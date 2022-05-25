@@ -133,7 +133,7 @@ class DummyDataInitializer(
         val order6 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.PROCESSING, user2);
         val order7 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.DELIVERED, user2);
         val order8 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.SENT, user2);
-        val order9 = Order(mutableListOf(ordersProducts1, ordersProducts2, ordersProducts3, ordersProducts4,ordersProducts5), OrderStatus.IDLE, user1);
+        val order9 = Order(mutableListOf(ordersProducts1, ordersProducts2, ordersProducts3, ordersProducts4,ordersProducts5), OrderStatus.RECEIVED, user1);
 
         val productImage1 = ProductImage(1 ,"1-AfternoonMixture", "png");
         val productImage2 = ProductImage(2 ,"2-OrangeTea", "png");

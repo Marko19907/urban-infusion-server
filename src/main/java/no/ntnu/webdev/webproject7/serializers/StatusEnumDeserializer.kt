@@ -19,7 +19,7 @@ class StatusEnumDeserializer : StdDeserializer<OrderStatus>(OrderStatus::class.j
         val orderString: String = node.asText();
 
         return when (orderString.lowercase()) {
-            "idle" -> OrderStatus.IDLE;
+            "received" -> OrderStatus.RECEIVED;
             "processing" -> OrderStatus.PROCESSING;
             "sent" -> OrderStatus.SENT;
             "delivered" -> OrderStatus.DELIVERED;
