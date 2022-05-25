@@ -28,6 +28,7 @@ class OrderController(
 ) {
 
     @GetMapping("")
+    @PreAuthorize("hasAuthority('ADMIN')")
     fun all(): ResponseEntity<List<Order>> {
         return ResponseEntity(this.orderService.all(), HttpStatus.OK);
     }
