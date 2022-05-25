@@ -125,11 +125,11 @@ class DummyDataInitializer(
         val ordersProducts4 = OrdersProducts(product6, 3);
         val ordersProducts5 = OrdersProducts(product22, 1);
 
-        val order1 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.IDLE, user1);
+        val order1 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.RECEIVED, user1);
         val order2 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.PROCESSING, user1);
         val order3 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.DELIVERED, user1);
         val order4 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.SENT, user1);
-        val order5 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.IDLE, user2);
+        val order5 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.RECEIVED, user2);
         val order6 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.PROCESSING, user2);
         val order7 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.DELIVERED, user2);
         val order8 = Order(mutableListOf(ordersProducts1, ordersProducts2), OrderStatus.SENT, user2);
