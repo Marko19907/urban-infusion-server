@@ -26,7 +26,7 @@ typealias OrderId = Int;
 
 @JsonDeserialize(using = StatusEnumDeserializer::class)
 enum class OrderStatus(val status: Int) {
-    IDLE(0),        // In shopping cart
+    RECEIVED(0),        // In shopping cart
     PROCESSING(1),  // Ordered, waiting for processing
     SENT(2),        // Product sent
     DELIVERED(3),   // Product delivered
@@ -43,7 +43,7 @@ open class Order(
 
     @Column(nullable = true)
     @Enumerated(EnumType.STRING)
-    open var status: OrderStatus = OrderStatus.IDLE,
+    open var status: OrderStatus = OrderStatus.RECEIVED,
 
     @OneToOne(orphanRemoval = false)
     open var user: User? = null,
