@@ -12,6 +12,7 @@ import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.JoinTable
 import javax.persistence.OneToMany
 import javax.persistence.Table
 import javax.validation.constraints.Positive
@@ -30,9 +31,9 @@ enum class Category(val type: String) {
 @Table(name = "product")
 open class Product(
 
-    @Column(nullable = false)
-    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], targetEntity = Comment::class)
-    open var comments: List<Comment> = ArrayList(),
+    @JoinTable
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval=true, cascade = [CascadeType.ALL], targetEntity = Comment::class)
+    open var comments: MutableList<Comment> = ArrayList(),
 
     @Positive
     @Column(nullable = false)
@@ -62,6 +63,13 @@ open class Product(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     override var id: ProductId = 0;
+
+    /**
+     * Removes the given Comment.
+     */
+    fun removeComment(comment: Comment) {
+        this.comments.removeIf { it.id == comment.id };
+    }
 
     fun containsCommentWithID(id: CommentId): Boolean {
         return this.comments
