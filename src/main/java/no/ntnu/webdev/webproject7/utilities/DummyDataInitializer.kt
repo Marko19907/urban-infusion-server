@@ -168,7 +168,7 @@ class DummyDataInitializer(
         val orders = arrayOf(order1, order2);
         val productImages = arrayOf(productImage1, productImage2, productImage3, productImage4, productImage5, productImage6, productImage7, productImage8,
             productImage9, productImage10, productImage11, productImage12, productImage13, productImage14, productImage15, productImage16, productImage17, productImage18,
-            productImage19, productImage20, productImage21, productImage22, productImage23, productImage24, productImage25, productImage26, productImage27, productImage29,
+            productImage19, productImage20, productImage21, productImage22, productImage23, productImage24, productImage25, productImage26, productImage27, productImage28,
             productImage29, productImage30);
         val userImages = arrayOf(userImage1);
 
