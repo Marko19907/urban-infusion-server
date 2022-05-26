@@ -23,6 +23,7 @@ class StatusEnumDeserializer : StdDeserializer<OrderStatus>(OrderStatus::class.j
             "processing" -> OrderStatus.PROCESSING;
             "sent" -> OrderStatus.SENT;
             "delivered" -> OrderStatus.DELIVERED;
+            "cancelled" -> OrderStatus.CANCELLED
             else -> {
                 throw IllegalArgumentException("Can not deserialize the status!");
             }
