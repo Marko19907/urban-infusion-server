@@ -7,7 +7,6 @@ version: '2.1'
 services:
   server:
     build: .
-    command: ["./wait-for-it.sh", "localhost:3306", "-t", "45", "--", "java","-jar", "-Dspring.profiles.active=prod", "/app.jar"]
     ports:
       - "8080:8080"
     depends_on:
