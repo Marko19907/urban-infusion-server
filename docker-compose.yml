@@ -2,7 +2,7 @@
 # Run the following command in the command line:
 #   docker-compose up
 
-version: '3'
+version: '2.1'
 
 services:
   server:
@@ -11,9 +11,8 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - database
-    #  database:
-    #    condition: service_healthy
+      database:
+        condition: service_healthy
   database:
     image: mysql:8.0.28
     # Forward MySQL port 3306 to localhost port 5000, for debugging

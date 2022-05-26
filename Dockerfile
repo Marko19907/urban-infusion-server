@@ -4,10 +4,8 @@ FROM amazoncorretto:17.0.2
 # Copy the JAR file to /app.jar
 COPY target/*.jar app.jar
 
-COPY wait-for-it.sh /
-
 # When the container starts, we will launch command `java -jar -Dspring.profiles.active=prod app.jar`
-# ENTRYPOINT ["java","-jar", "-Dspring.profiles.active=prod", "/app.jar"]
+ENTRYPOINT ["java","-jar", "-Dspring.profiles.active=prod", "/app.jar"]
 
 # In this project we use docker-compose tool
 # To run all the services inside Docker, run the following command in the terminal:
