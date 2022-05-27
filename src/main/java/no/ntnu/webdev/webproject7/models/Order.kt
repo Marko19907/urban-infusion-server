@@ -30,7 +30,7 @@ enum class OrderStatus(val status: Int) {
     PROCESSING(1),  // Ordered, waiting for processing
     SENT(2),        // Product sent
     DELIVERED(3),   // Product delivered
-    CANCELLED(4),   // Order cancelled
+    CANCELED(4),   // Order cancelled
 }
 
 @Entity
