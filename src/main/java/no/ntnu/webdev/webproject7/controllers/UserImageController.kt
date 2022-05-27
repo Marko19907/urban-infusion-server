@@ -29,7 +29,7 @@ class UserImageController(
     @PreAuthorize("hasAuthority('USER')")
     override fun upload(
         @PathVariable id: UserImageId,
-        @RequestParam("fileContent") multipartFile: MultipartFile?
+        @RequestParam("data") multipartFile: MultipartFile?
     ): ResponseEntity<String> {
         val user = this.userService.getSessionUser();
         if (user?.id != id.toLong()) {

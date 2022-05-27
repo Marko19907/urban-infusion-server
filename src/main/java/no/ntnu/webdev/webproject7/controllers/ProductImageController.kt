@@ -1,12 +1,10 @@
 package no.ntnu.webdev.webproject7.controllers
 
-import no.ntnu.webdev.webproject7.exceptions.ImageUploadException
 import no.ntnu.webdev.webproject7.models.ProductImage
 import no.ntnu.webdev.webproject7.models.ProductImageId
 import no.ntnu.webdev.webproject7.services.ImageService
 import no.ntnu.webdev.webproject7.services.ProductImageService
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.PathVariable
@@ -28,7 +26,7 @@ class ProductImageController(
     @PreAuthorize("hasAuthority('ADMIN')")
     override fun upload(
         @PathVariable id: ProductImageId,
-        @RequestParam("fileContent") multipartFile: MultipartFile?
+        @RequestParam("data") multipartFile: MultipartFile?
     ): ResponseEntity<String> {
         return this.doUpload(id, multipartFile);
     }

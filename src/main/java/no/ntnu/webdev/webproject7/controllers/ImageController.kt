@@ -46,7 +46,7 @@ abstract class ImageController<EntityType : ImageModel<ID>, ID> {
     @PreAuthorize("hasAuthority('USER')")
     open fun upload(
         @PathVariable id: ID,
-        @RequestParam("fileContent") multipartFile: MultipartFile?
+        @RequestParam("data") multipartFile: MultipartFile?
     ): ResponseEntity<String> {
         return this.doUpload(id, multipartFile);
     }
