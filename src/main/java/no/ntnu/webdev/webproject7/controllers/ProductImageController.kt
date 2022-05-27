@@ -33,12 +33,22 @@ class ProductImageController(
         @RequestParam("data") multipartFile: MultipartFile?
     ): ResponseEntity<String> {
         return try {
-            if (this.service.add(id, multipartFile) && this.updateProductImageId(id))
+            if (this.productPresent(id) && this.service.add(id, multipartFile) && this.updateProductImageId(id))
                 ResponseEntity(HttpStatus.OK)
-            else ResponseEntity(HttpStatus.BAD_REQUEST);
+            else ResponseEntity("Failed to update the product picture, reason unknown", HttpStatus.BAD_REQUEST);
         } catch (e: ImageUploadException) {
             ResponseEntity(e.message, HttpStatus.BAD_REQUEST);
         }
+    }
+
+    /**
+     * Returns true if a Product with the given ID is present.
+     * @throws ImageUploadException If no image is found
+     */
+    @Throws(ImageUploadException::class)
+    private fun productPresent(id: ProductImageId): Boolean {
+        return if (this.productService.getById(id.toLong()) != null) true
+            else throw ImageUploadException("Can not update the product picture of a product that does not exist!");
     }
 
     /**
