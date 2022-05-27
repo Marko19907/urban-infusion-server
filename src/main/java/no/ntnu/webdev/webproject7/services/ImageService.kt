@@ -57,6 +57,7 @@ abstract class ImageService<EntityType : ImageModel<ID>, ID>(
     private fun isImage(file: MultipartFile?): Boolean {
         return file != null && this.isImageContentType(file.contentType);
     }
+
     /**
      * Checks if a given content-type of a file is an image-type.
      * @param contentType The content type to check

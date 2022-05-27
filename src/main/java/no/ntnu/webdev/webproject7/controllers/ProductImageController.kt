@@ -1,10 +1,13 @@
 package no.ntnu.webdev.webproject7.controllers
 
+import no.ntnu.webdev.webproject7.exceptions.ImageUploadException
 import no.ntnu.webdev.webproject7.models.ProductImage
 import no.ntnu.webdev.webproject7.models.ProductImageId
 import no.ntnu.webdev.webproject7.services.ImageService
 import no.ntnu.webdev.webproject7.services.ProductImageService
+import no.ntnu.webdev.webproject7.services.ProductService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.PathVariable
@@ -17,7 +20,8 @@ import org.springframework.web.multipart.MultipartFile
 @RestController
 @RequestMapping("product-images")
 class ProductImageController(
-    @Autowired private val productImageService: ProductImageService
+    @Autowired private val productImageService: ProductImageService,
+    @Autowired private val productService: ProductService
 ) : ImageController<ProductImage, ProductImageId>() {
 
     override val service: ImageService<ProductImage, ProductImageId> = this.productImageService;
@@ -28,6 +32,21 @@ class ProductImageController(
         @PathVariable id: ProductImageId,
         @RequestParam("data") multipartFile: MultipartFile?
     ): ResponseEntity<String> {
-        return this.doUpload(id, multipartFile);
+        return try {
+            if (this.service.add(id, multipartFile) && this.updateProductImageId(id))
+                ResponseEntity(HttpStatus.OK)
+            else ResponseEntity(HttpStatus.BAD_REQUEST);
+        } catch (e: ImageUploadException) {
+            ResponseEntity(e.message, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    /**
+     * Updates the ProductImageId of the Product
+     */
+    private fun updateProductImageId(id: ProductImageId): Boolean {
+        val product = this.productService.getById(id.toLong()) ?: return false;
+        product.imageId = id;
+        return this.productService.update(product);
     }
 }
