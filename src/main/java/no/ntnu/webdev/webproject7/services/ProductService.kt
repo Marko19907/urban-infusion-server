@@ -45,14 +45,14 @@ class ProductService(
             return false;
         }
 
-        val product = this.productRepository.findByIdOrNull(productUpdatePartialDTO.productId) ?: return false;
+        val product = this.productRepository.findByIdOrNull(productUpdatePartialDTO.id) ?: return false;
 
         product.title = productUpdatePartialDTO.title ?: product.title;
         product.description = productUpdatePartialDTO.description ?: product.description;
         product.price = productUpdatePartialDTO.price ?: product.price;
         product.discount = productUpdatePartialDTO.discount ?: product.discount;
         product.weight = productUpdatePartialDTO.weight ?: product.weight;
-        product.category = productUpdatePartialDTO.category;
+        product.category = productUpdatePartialDTO.category ?: product.category;
 
         return super.update(product);
     }
