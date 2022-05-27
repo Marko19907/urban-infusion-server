@@ -5,16 +5,18 @@ import no.ntnu.webdev.webproject7.models.ProductId
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 
 class ProductUpdateDTO(
-    val productId: ProductId,
-    override val title: String,
-    override val price: Double,
-    override val discount: Double,
-    override val description: String,
-    override val weight: String,
-    override val category: Category
-) : ProductDTO(title, price, discount, description, weight, category) {
+    productId: ProductId,
+    title: String,
+    price: Double,
+    discount: Double,
+    description: String,
+    weight: String,
+    category: Category
+) : ProductUpdatePartialDTO(productId, title, price, discount, description, weight, category) {
 
     override fun validate(): Boolean {
-        return super.validate() && objectsNotNull(this.productId);
+        return objectsNotNull(
+            this.productId, this.title, this.price, this.discount, this.description, this.weight, this.category
+        );
     }
 }

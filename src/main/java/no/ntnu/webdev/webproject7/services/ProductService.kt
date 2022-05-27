@@ -1,7 +1,7 @@
 package no.ntnu.webdev.webproject7.services
 
 import no.ntnu.webdev.webproject7.dto.ProductDTO
-import no.ntnu.webdev.webproject7.dto.ProductUpdateDTO
+import no.ntnu.webdev.webproject7.dto.ProductUpdatePartialDTO
 import no.ntnu.webdev.webproject7.models.Category
 import no.ntnu.webdev.webproject7.models.Product
 import no.ntnu.webdev.webproject7.models.ProductId
@@ -40,19 +40,19 @@ class ProductService(
         return super.add(product);
     }
 
-    fun update(productUpdateDTO: ProductUpdateDTO?): Boolean {
-        if (productUpdateDTO == null || !productUpdateDTO.validate()) {
+    fun update(productUpdatePartialDTO: ProductUpdatePartialDTO?): Boolean {
+        if (productUpdatePartialDTO == null || !productUpdatePartialDTO.validate()) {
             return false;
         }
 
-        val product = this.productRepository.findByIdOrNull(productUpdateDTO.productId) ?: return false;
+        val product = this.productRepository.findByIdOrNull(productUpdatePartialDTO.productId) ?: return false;
 
-        product.title = productUpdateDTO.title;
-        product.description = productUpdateDTO.description;
-        product.price = productUpdateDTO.price;
-        product.discount = productUpdateDTO.discount;
-        product.weight = productUpdateDTO.weight;
-        product.category = productUpdateDTO.category;
+        product.title = productUpdatePartialDTO.title ?: product.title;
+        product.description = productUpdatePartialDTO.description ?: product.description;
+        product.price = productUpdatePartialDTO.price ?: product.price;
+        product.discount = productUpdatePartialDTO.discount ?: product.discount;
+        product.weight = productUpdatePartialDTO.weight ?: product.weight;
+        product.category = productUpdatePartialDTO.category;
 
         return super.update(product);
     }

@@ -2,6 +2,7 @@ package no.ntnu.webdev.webproject7.controllers
 
 import no.ntnu.webdev.webproject7.dto.ProductDTO
 import no.ntnu.webdev.webproject7.dto.ProductUpdateDTO
+import no.ntnu.webdev.webproject7.dto.ProductUpdatePartialDTO
 import no.ntnu.webdev.webproject7.models.Category
 import no.ntnu.webdev.webproject7.models.Product
 import no.ntnu.webdev.webproject7.models.ProductId
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
@@ -49,6 +51,12 @@ class ProductController(private val productService: ProductService) {
     @PreAuthorize("hasAuthority('ADMIN')")
     fun update(@RequestBody productUpdateDTO: ProductUpdateDTO): ResponseEntity<String> {
         return if (this.productService.update(productUpdateDTO)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST)
+    }
+
+    @PatchMapping("")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    fun updatePartial(@RequestBody productUpdatePartialDTO: ProductUpdatePartialDTO): ResponseEntity<String> {
+        return if (this.productService.update(productUpdatePartialDTO)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST)
     }
 
     @GetMapping("/categories")
