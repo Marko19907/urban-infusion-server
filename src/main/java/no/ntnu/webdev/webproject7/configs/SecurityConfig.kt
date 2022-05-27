@@ -97,7 +97,7 @@ class SecurityConfig(
     @Bean
     fun corsConfigurationSource(): CorsConfigurationSource = UrlBasedCorsConfigurationSource().also { cors ->
         CorsConfiguration().apply {
-            this.allowedOrigins = listOf("*")
+            this.allowedOrigins = listOf("http://localhost:3000")
             this.allowedMethods = listOf("POST", "PUT", "DELETE", "GET", "OPTIONS", "HEAD")
             this.allowedHeaders = listOf(
                 "Authorization",
