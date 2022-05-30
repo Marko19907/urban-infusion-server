@@ -16,15 +16,13 @@ class CategoryEnumDeserializer : StdDeserializer<Category>(Category::class.java)
     @Throws(IOException::class, JsonProcessingException::class, IllegalArgumentException::class)
     override fun deserialize(jsonParser: JsonParser, ctxt: DeserializationContext?): Category {
         val node: JsonNode = jsonParser.codec.readTree(jsonParser);
-        val categoryString: String = node.asText();
+        val categoryString: String = node.asText().lowercase();
 
-        return when (categoryString.lowercase()) {
-            "tea" -> Category.TEA;
-            "pots" -> Category.POTS;
-            "accessories" -> Category.ACCESSORIES;
-            else -> {
-                throw IllegalArgumentException("Can not deserialize the category!");
-            }
-        }
+        return Category.values()
+            .toList()
+            .stream()
+            .filter { it.name.lowercase() == categoryString }
+            .findFirst()
+            .orElseThrow { IllegalArgumentException("Can not deserialize the category!") };
     }
 }

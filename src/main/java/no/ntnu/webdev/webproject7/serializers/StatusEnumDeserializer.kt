@@ -16,17 +16,13 @@ class StatusEnumDeserializer : StdDeserializer<OrderStatus>(OrderStatus::class.j
     @Throws(IOException::class, JsonProcessingException::class, IllegalArgumentException::class)
     override fun deserialize(jsonParser: JsonParser, ctxt: DeserializationContext?): OrderStatus {
         val node: JsonNode = jsonParser.codec.readTree(jsonParser);
-        val orderString: String = node.asText();
+        val orderStatusString: String = node.asText().lowercase();
 
-        return when (orderString.lowercase()) {
-            "received" -> OrderStatus.RECEIVED;
-            "processing" -> OrderStatus.PROCESSING;
-            "sent" -> OrderStatus.SENT;
-            "delivered" -> OrderStatus.DELIVERED;
-            "canceled" -> OrderStatus.CANCELED
-            else -> {
-                throw IllegalArgumentException("Can not deserialize the status!");
-            }
-        }
+        return OrderStatus.values()
+            .toList()
+            .stream()
+            .filter { it.name.lowercase() == orderStatusString }
+            .findFirst()
+            .orElseThrow { IllegalArgumentException("Can not deserialize the status!") };
     }
 }
