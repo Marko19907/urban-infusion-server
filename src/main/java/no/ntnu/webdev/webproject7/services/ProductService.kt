@@ -92,7 +92,7 @@ class ProductService(
             }
         }
         if (description != null && description.length > MAX_DESCRIPTION_LENGTH) {
-            throw ProductException("The description can not be longer than 1000 characters!");
+            throw ProductException("The description can not be longer than $MAX_DESCRIPTION_LENGTH characters!");
         }
     }
 }
