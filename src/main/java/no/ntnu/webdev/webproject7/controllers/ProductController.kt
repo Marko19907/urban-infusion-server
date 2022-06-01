@@ -3,6 +3,7 @@ package no.ntnu.webdev.webproject7.controllers
 import no.ntnu.webdev.webproject7.dto.ProductDTO
 import no.ntnu.webdev.webproject7.dto.ProductUpdateDTO
 import no.ntnu.webdev.webproject7.dto.ProductUpdatePartialDTO
+import no.ntnu.webdev.webproject7.exceptions.ProductException
 import no.ntnu.webdev.webproject7.models.Category
 import no.ntnu.webdev.webproject7.models.Product
 import no.ntnu.webdev.webproject7.models.ProductId
@@ -26,37 +27,52 @@ class ProductController(private val productService: ProductService) {
 
     @GetMapping("")
     fun all(): ResponseEntity<List<Product>> {
-        return ResponseEntity(this.productService.all(), HttpStatus.OK)
+        return ResponseEntity(this.productService.all(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     fun getOne(@PathVariable id: ProductId): ResponseEntity<Product> {
         val entity = this.productService.getById(id);
-        return if (entity != null) ResponseEntity(entity, HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST)
+        return if (entity != null) ResponseEntity(entity, HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     fun delete(@PathVariable id: ProductId): ResponseEntity<String> {
-        return if (this.productService.delete(id)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST)
+        return if (this.productService.delete(id)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("")
     @PreAuthorize("hasAuthority('ADMIN')")
     fun addOne(@RequestBody productDTO: ProductDTO): ResponseEntity<String> {
-        return if (this.productService.add(productDTO)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST)
+        return try {
+            if (this.productService.add(productDTO)) ResponseEntity(HttpStatus.OK)
+            else ResponseEntity("Failed to add a product, reason unknown", HttpStatus.BAD_REQUEST);
+        } catch (e: ProductException) {
+            ResponseEntity(e.message, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PutMapping("")
     @PreAuthorize("hasAuthority('ADMIN')")
     fun update(@RequestBody productUpdateDTO: ProductUpdateDTO): ResponseEntity<String> {
-        return if (this.productService.update(productUpdateDTO)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST)
+        return try {
+            if (this.productService.update(productUpdateDTO)) ResponseEntity(HttpStatus.OK)
+            else ResponseEntity("Failed to update a product, reason unknown", HttpStatus.BAD_REQUEST);
+        } catch (e: ProductException) {
+            ResponseEntity(e.message, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PatchMapping("")
     @PreAuthorize("hasAuthority('ADMIN')")
     fun updatePartial(@RequestBody productUpdatePartialDTO: ProductUpdatePartialDTO): ResponseEntity<String> {
-        return if (this.productService.update(productUpdatePartialDTO)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST)
+        return try {
+            if (this.productService.update(productUpdatePartialDTO)) ResponseEntity(HttpStatus.OK)
+            else ResponseEntity("Failed to update a product, reason unknown", HttpStatus.BAD_REQUEST);
+        } catch (e: ProductException) {
+            ResponseEntity(e.message, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/categories")

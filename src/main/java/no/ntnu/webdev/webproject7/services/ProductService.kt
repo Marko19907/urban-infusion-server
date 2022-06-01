@@ -2,7 +2,9 @@ package no.ntnu.webdev.webproject7.services
 
 import no.ntnu.webdev.webproject7.dto.ProductDTO
 import no.ntnu.webdev.webproject7.dto.ProductUpdatePartialDTO
+import no.ntnu.webdev.webproject7.exceptions.ProductException
 import no.ntnu.webdev.webproject7.models.Category
+import no.ntnu.webdev.webproject7.models.MAX_DESCRIPTION_LENGTH
 import no.ntnu.webdev.webproject7.models.Product
 import no.ntnu.webdev.webproject7.models.ProductId
 import no.ntnu.webdev.webproject7.repositories.ProductRepository
@@ -22,10 +24,12 @@ class ProductService(
         return this.productHelper.deleteProduct(id);
     }
 
+    @Throws(ProductException::class)
     fun add(productDTO: ProductDTO?): Boolean {
         if (productDTO == null || !productDTO.validate()) {
-            return false;
+            throw ProductException("The request is incorrectly formatted!");
         }
+        this.verifyProductParams(productDTO.title, productDTO.price, productDTO.description);
 
         val product = Product(
             mutableListOf(),
@@ -40,12 +44,19 @@ class ProductService(
         return super.add(product);
     }
 
+    @Throws(ProductException::class)
     fun update(productUpdatePartialDTO: ProductUpdatePartialDTO?): Boolean {
         if (productUpdatePartialDTO == null || !productUpdatePartialDTO.validate()) {
-            return false;
+            throw ProductException("The request is incorrectly formatted!");
         }
+        this.verifyProductParams(
+            productUpdatePartialDTO.title,
+            productUpdatePartialDTO.price,
+            productUpdatePartialDTO.description
+        );
 
-        val product = this.productRepository.findByIdOrNull(productUpdatePartialDTO.id) ?: return false;
+        val product = this.productRepository.findByIdOrNull(productUpdatePartialDTO.id)
+            ?: throw ProductException("The product with id: ${productUpdatePartialDTO.id} does not exist!");
 
         product.title = productUpdatePartialDTO.title ?: product.title;
         product.description = productUpdatePartialDTO.description ?: product.description;
@@ -65,5 +76,23 @@ class ProductService(
         return this.all().stream()
             .filter { it.category!!.name.lowercase() == category }
             .toList();
+    }
+
+    @Throws(ProductException::class)
+    private fun verifyProductParams(title: String?, price: Double?, description: String?) {
+        if (title != null && title.isBlank()) {
+            throw ProductException("The title field can not be empty!");
+        }
+        if (price != null) {
+            if (price == 0.0) {
+                throw ProductException("The price can not be 0!");
+            }
+            if (price < 0) {
+                throw ProductException("The price can not be negative!");
+            }
+        }
+        if (description != null && description.length > MAX_DESCRIPTION_LENGTH) {
+            throw ProductException("The description can not be longer than 1000 characters!");
+        }
     }
 }
