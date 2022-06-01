@@ -20,6 +20,8 @@ import javax.validation.constraints.PositiveOrZero
 
 typealias ProductId = Long
 
+const val MAX_DESCRIPTION_LENGTH = 1000;
+
 @JsonDeserialize(using = CategoryEnumDeserializer::class)
 enum class Category(val type: String) {
     TEA("tea"),
@@ -49,7 +51,7 @@ open class Product(
     @Column(nullable = false)
     open var title: String? = null,
 
-    @Column(nullable = false, length = 1000)
+    @Column(nullable = false, length = MAX_DESCRIPTION_LENGTH)
     open var description: String? = null,
 
     @Column(nullable = false)
