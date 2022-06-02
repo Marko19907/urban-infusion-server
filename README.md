@@ -7,8 +7,53 @@ This repository contains the backend made for the Application Development (IDATA
 * [Spring Boot](https://spring.io/projects/spring-boot) - Server framework used to build the REST API
 * [Docker](https://www.docker.com) - Used to containerize the app
 * [MySQL](https://www.mysql.com) - For the persistent database
-* [Apache Derby](https://www.mysql.com) - Used for the embedded database
+* [Apache Derby](https://db.apache.org/derby/) - Used for the embedded database
 * [JWT](https://github.com/jwtk/jjwt) - As the authentication mechanism
+
+## Project structure
+
+```
+webproject7
+├───configs
+├───controllers
+├───dto
+├───exceptions
+├───models
+├───repositories
+├───security
+├───serializers
+├───services
+└───utilities
+```
+
+We have tried to keep the project organized by categorizing classes into packages by their respective domains. 
+
+#### Configs
+Contains the different configurations, for ex. cors and security configs
+
+#### Controllers
+Houses the controller classes that provide the REST endpoints for the app
+
+#### DTO
+Contains all the different DTOs (Data Transfer Objects)
+
+#### Exceptions
+Contains the different exceptions that are used to signal errors
+
+#### Repositories
+Contains the repository classes tasked with connecting to the DB
+
+#### Security
+The JWT implementation
+
+#### Serializers
+Houses the custom JSON deserializers that translate strings to enum types
+
+#### Services
+Contains all the service classes that house the business logic
+
+#### Utilities
+Contains mostly static functions that are used throughout the app 
 
 ## Getting Started
 
@@ -88,4 +133,4 @@ An admin can:
 
 ## Disclaimers
 
-* All product images used were fetched from [pngegg.com](https://www.pngegg.com) and are covered by their non-commercial use only license.
+* All product images used were fetched from [pngegg.com](https://www.pngegg.com) and are covered by their _non-commercial use only_ license.
