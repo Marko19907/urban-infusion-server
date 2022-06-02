@@ -55,6 +55,12 @@ Contains all the service classes that house the business logic
 #### Utilities
 Contains mostly static functions that are used throughout the app 
 
+## Database schema
+
+The following is our database schema:
+
+<img src="assets/db-schema.svg" alt="An image of the database schema" width="700"/>
+
 ## Getting Started
 
 To get a local copy up and running follow these simple steps.
@@ -98,9 +104,9 @@ This is a list of things you need in order to use this application.
 
 #### Usage
 1. Download and extract zip-file **or** clone project to the desired location.
-2. Open the `pom.xml` file with your favourite IDE.
-3. In IntelliJ, launch the `Application` class located in the `no.ntnu.webdev.webproject7` package
-4. The server should then start with an embedded database
+2. Open the `pom.xml` file with IntelliJ.
+3. In IntelliJ, launch the `Application` class located in the `no.ntnu.webdev.webproject7` package.
+4. The server should then start with an embedded database.
    <br>
    Options in other IDEs may vary.
 
