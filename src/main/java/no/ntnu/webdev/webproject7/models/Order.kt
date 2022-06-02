@@ -16,6 +16,7 @@ import javax.persistence.Enumerated
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.JoinColumn
 import javax.persistence.OneToMany
 import javax.persistence.OneToOne
 import javax.persistence.PrePersist
@@ -26,18 +27,18 @@ typealias OrderId = Int;
 
 @JsonDeserialize(using = StatusEnumDeserializer::class)
 enum class OrderStatus(val status: Int) {
-    RECEIVED(0),        // In shopping cart
+    RECEIVED(0),    // In shopping cart
     PROCESSING(1),  // Ordered, waiting for processing
     SENT(2),        // Product sent
     DELIVERED(3),   // Product delivered
-    CANCELED(4),   // Order cancelled
+    CANCELED(4),    // Order cancelled
 }
 
 @Entity
 @Table(name = "OrderEntity")
 open class Order(
 
-    @Column(nullable = true)
+    @JoinColumn
     @JsonProperty("products")
     @OneToMany(cascade = [CascadeType.REMOVE])
     open val ordersProducts: List<OrdersProducts>? = null,
