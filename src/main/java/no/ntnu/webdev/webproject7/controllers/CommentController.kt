@@ -2,6 +2,7 @@ package no.ntnu.webdev.webproject7.controllers
 
 import no.ntnu.webdev.webproject7.dto.CommentDTO
 import no.ntnu.webdev.webproject7.dto.CommentUpdateDTO
+import no.ntnu.webdev.webproject7.exceptions.CommentException
 import no.ntnu.webdev.webproject7.models.Comment
 import no.ntnu.webdev.webproject7.models.CommentId
 import no.ntnu.webdev.webproject7.models.User
@@ -48,14 +49,24 @@ class CommentController(
     @PostMapping("")
     @PreAuthorize("hasAuthority('USER')")
     fun addOne(@RequestBody comment: CommentDTO): ResponseEntity<String> {
-        val user: User? = this.userService.getSessionUser();
-        return if (this.commentHelper.add(comment, user)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
+        return try {
+            val user: User? = this.userService.getSessionUser();
+            if (this.commentHelper.add(comment, user)) ResponseEntity(HttpStatus.OK)
+            else ResponseEntity("Failed to add a comment, reason unknown", HttpStatus.BAD_REQUEST);
+        } catch (e: CommentException) {
+            ResponseEntity(e.message, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PutMapping("")
     @PreAuthorize("hasAuthority('USER')")
     fun update(@RequestBody comment: CommentUpdateDTO): ResponseEntity<String> {
-        val user: User? = this.userService.getSessionUser();
-        return if (this.commentHelper.update(comment, user)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
+        return try {
+            val user: User? = this.userService.getSessionUser();
+            if (this.commentHelper.update(comment, user)) ResponseEntity(HttpStatus.OK)
+            else ResponseEntity("Failed to update a comment, reason unknown", HttpStatus.BAD_REQUEST);
+        } catch (e: CommentException) {
+            ResponseEntity(e.message, HttpStatus.BAD_REQUEST);
+        }
     }
 }

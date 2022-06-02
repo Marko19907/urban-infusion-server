@@ -2,8 +2,10 @@ package no.ntnu.webdev.webproject7.utilities
 
 import no.ntnu.webdev.webproject7.dto.CommentDTO
 import no.ntnu.webdev.webproject7.dto.CommentUpdateDTO
+import no.ntnu.webdev.webproject7.exceptions.CommentException
 import no.ntnu.webdev.webproject7.models.Comment
 import no.ntnu.webdev.webproject7.models.CommentId
+import no.ntnu.webdev.webproject7.models.MAX_COMMENT_LENGTH
 import no.ntnu.webdev.webproject7.models.User
 import no.ntnu.webdev.webproject7.repositories.CommentRepository
 import no.ntnu.webdev.webproject7.repositories.ProductRepository
@@ -16,32 +18,38 @@ class CommentHelper(
     private val productRepository: ProductRepository
 ) {
 
-    fun add(commentDTO: CommentDTO?, user: User?): Boolean {
-        if (commentDTO == null || user == null) {
-            return false;
+    @Throws(CommentException::class)
+    fun add(commentDTO: CommentDTO, user: User?): Boolean {
+        if (user == null) {
+            throw CommentException("Incorrect login, you must be logged in to comment!");
         }
         if (!commentDTO.validate() || !user.validate()) {
-            return false;
+            throw CommentException("The request is incorrectly formatted!");
         }
+        this.verifyCommentLength(commentDTO.text);
+
+        val product = this.productRepository.findByIdOrNull(commentDTO.id)
+            ?: throw CommentException("A product with the id: ${commentDTO.id} does not exist!");
         val comment = Comment(user, commentDTO.text, null);
-        val product = this.productRepository.findByIdOrNull(commentDTO.productID) ?: return false;
 
         product.comments.add(comment);
         return this.productRepository.save(product).id == product.id;
     }
 
-    fun update(commentDTO: CommentUpdateDTO?, user: User?): Boolean {
-        if (commentDTO == null || user == null) {
-            return false;
+    @Throws(CommentException::class)
+    fun update(commentDTO: CommentUpdateDTO, user: User?): Boolean {
+        if (user == null) {
+            throw CommentException("Incorrect login, you must be logged in to comment!");
         }
         if (!commentDTO.validate() || !user.validate()) {
-            return false;
+            throw CommentException("The request is incorrectly formatted!");
         }
+        this.verifyCommentLength(commentDTO.text);
 
-        val comment = this.commentRepository.findByIdOrNull(commentDTO.commentId) ?: return false;
-        val product = this.productRepository.findByIdOrNull(commentDTO.productID) ?: return false;
-        if (comment.user?.equals(user) == false || !product.containsCommentWithID(commentDTO.commentId)) {
-            return false;
+        val comment = this.commentRepository.findByIdOrNull(commentDTO.id)
+            ?: throw CommentException("A comment with the id: ${commentDTO.id} does not exist!");
+        if (user != comment.user) {
+            throw CommentException("You must be an author of the comment you are trying to edit!");
         }
 
         comment.text = commentDTO.text;
@@ -59,5 +67,12 @@ class CommentHelper(
 
         return this.productRepository.findProductByCommentsId(id) == null
                 && this.commentRepository.findByIdOrNull(id) == null;
+    }
+
+    @Throws(CommentException::class)
+    private fun verifyCommentLength(commentText: String) {
+        if (commentText.length > MAX_COMMENT_LENGTH) {
+            throw CommentException("A comment can not be longer than $MAX_COMMENT_LENGTH characters!");
+        }
     }
 }
