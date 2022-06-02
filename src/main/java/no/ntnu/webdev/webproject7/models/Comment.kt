@@ -15,6 +15,8 @@ import javax.validation.constraints.NotNull
 
 typealias CommentId = Long;
 
+const val MAX_COMMENT_LENGTH = 1000;
+
 @Entity
 @Table(name = "comment")
 open class Comment(
@@ -22,7 +24,7 @@ open class Comment(
     @OneToOne
     open var user: User? = null,
 
-    @Column(nullable = false, length = 1000)
+    @Column(nullable = false, length = MAX_COMMENT_LENGTH)
     open var text: String? = null,
 
     @Column(nullable = true, updatable = true)
