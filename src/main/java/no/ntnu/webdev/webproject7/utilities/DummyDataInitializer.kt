@@ -86,23 +86,23 @@ class DummyDataInitializer(
         val product14 =
             Product(mutableListOf(), 7.99, 0.00, 14, "Boston Mixture", "Lovely Chinese Panyong tea mixed with Earl Grey.", "5oz", Category.TEA);
         val product15 =
-            Product(mutableListOf(), 109.99, 0.00, 15, "Arare Gold Teapot", "Traditional Japanese style cast-iron teapot in gold color. 1200 ml", "1200ml", Category.POTS);
+            Product(mutableListOf(), 109.99, 0.00, 15, "Arare Gold Teapot 1200 ML", "Traditional Japanese style cast-iron teapot in gold color. 1200 ml", "20oz", Category.POTS);
         val product16 =
-            Product(mutableListOf(), 99.99, 0.00, 16, "Sakura Black Teapot", "Traditional Japanese style cast-iron teapot in black color. 1000 ml", "1000ml", Category.POTS);
+            Product(mutableListOf(), 99.99, 0.00, 16, "Sakura Black Teapot 1000 ML", "Traditional Japanese style cast-iron teapot in black color. 1000 ml", "18oz", Category.POTS);
         val product17 =
-            Product(mutableListOf(), 44.99, 0.00, 17, "Bright Ivory Teapot", "Ivory white porcelain teapot, in the classic English style. 1100 ml", "1100ml", Category.POTS);
+            Product(mutableListOf(), 44.99, 0.00, 17, "Bright Ivory Teapot 1100 ML", "Ivory white porcelain teapot, in the classic English style. 1100 ml", "20oz", Category.POTS);
         val product18 =
-            Product(mutableListOf(), 39.99, 0.00, 18, "Blue Senbiki Teapot", "Classy handmade iron teapot. 600 ml", "600ml", Category.POTS);
+            Product(mutableListOf(), 39.99, 0.00, 18, "Blue Senbiki Teapot 600 ML", "Classy handmade iron teapot. 600 ml", "10oz", Category.POTS);
         val product19 =
-            Product(mutableListOf(), 59.00, 0.00, 19, "Red Geisha Teapot", "Perfect for a cup of tea in the traditional Japanese style. 300 ml", "300ml", Category.POTS);
+            Product(mutableListOf(), 59.00, 0.00, 19, "Red Geisha Teapot 300 ML", "Perfect for a cup of tea in the traditional Japanese style. 300 ml", "7oz", Category.POTS);
         val product20 =
             Product(mutableListOf(), 5.99, 0.00, 20, "Tea Ball Infuser", "An original gadget to infuse our tea leaves.", "", Category.ACCESSORIES);
         val product21 =
             Product(mutableListOf(), 10.99, 0.00, 21, "Tea Infuser", "Practical and resistant infuser." , "", Category.ACCESSORIES);
         val product22 =
-            Product(mutableListOf(), 15.99, 0.00, 22, "Classic White Mug", "A classic white mug in porcelain. 200 ml", "200ml", Category.ACCESSORIES);
+            Product(mutableListOf(), 15.99, 0.00, 22, "Classic White Mug", "A classic white mug in porcelain. 200 ml", "3oz", Category.ACCESSORIES);
         val product23 =
-            Product(mutableListOf(), 11.99, 0.00, 23, "Classic White Tea Cup", "Classic white tea cup in porcelain. Plate included. 150 ml.", "150ml", Category.ACCESSORIES);
+            Product(mutableListOf(), 11.99, 0.00, 23, "Classic White Tea Cup", "Classic white tea cup in porcelain. Plate included. 150 ml.", "3oz", Category.ACCESSORIES);
         val product24 =
             Product(mutableListOf(), 9.99, 0.00, 24, "Copacabana Tea", "Copacabana is a sweet and fresh exotic mixture based on a black Chinese tea.", "5oz", Category.TEA);
         val product25 =
