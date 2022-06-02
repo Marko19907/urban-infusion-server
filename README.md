@@ -1,93 +1,91 @@
-# Server
+# Urban Infusion server, group 7
 
+This repository contains the backend made for the Application Development (IDATA2306) project.
 
+### Built With
+* [Kotlin](https://kotlinlang.org) - A modern language that supports both object-oriented and functional paradigms 
+* [Spring Boot](https://spring.io/projects/spring-boot) - Server framework used to build the REST API
+* [Docker](https://www.docker.com) - Used to containerize the app
+* [MySQL](https://www.mysql.com) - For the persistent database
+* [Apache Derby](https://www.mysql.com) - Used for the embedded database
+* [JWT](https://github.com/jwtk/jjwt) - As the authentication mechanism
 
-## Getting started
+## Getting Started
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+To get a local copy up and running follow these simple steps.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+### Running with Maven in an IDE [Recommended]
 
-## Add your files
+1. Clone or download the repo as a zip
+2. Run `mvn package` in the project folder with an IDE of your choice
+3. Navigate to the `/target` folder and launch the generated `.jar` with the CMD
+4. The server should then start with an embedded database and be available at [https://localhost:8080](https://localhost:8080)
 
-- [ ] [Create](https://gitlab.com/-/experiment/new_project_readme_content:d8353ee6361c34f99dfc74b2ceee7ce2?https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://gitlab.com/-/experiment/new_project_readme_content:d8353ee6361c34f99dfc74b2ceee7ce2?https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://gitlab.com/-/experiment/new_project_readme_content:d8353ee6361c34f99dfc74b2ceee7ce2?https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+This is the preferred method.
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/web-development-group7/server.git
-git branch -M main
-git push -uf origin main
-```
+### Other installation methods
 
-## Integrate with your tools
+#### Via an IDE
 
-- [ ] [Set up project integrations](https://gitlab.com/-/experiment/new_project_readme_content:d8353ee6361c34f99dfc74b2ceee7ce2?https://gitlab.com/web-development-group7/server/-/settings/integrations)
+Either clone the repository with git or download it as a zip and then run it in IntelliJ.
 
-## Collaborate with your team
+#### Prerequisites
 
-- [ ] [Invite team members and collaborators](https://gitlab.com/-/experiment/new_project_readme_content:d8353ee6361c34f99dfc74b2ceee7ce2?https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://gitlab.com/-/experiment/new_project_readme_content:d8353ee6361c34f99dfc74b2ceee7ce2?https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://gitlab.com/-/experiment/new_project_readme_content:d8353ee6361c34f99dfc74b2ceee7ce2?https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://gitlab.com/-/experiment/new_project_readme_content:d8353ee6361c34f99dfc74b2ceee7ce2?https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://gitlab.com/-/experiment/new_project_readme_content:d8353ee6361c34f99dfc74b2ceee7ce2?https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+This is a list of things you need in order to use this application.
 
-## Test and Deploy
+* **IntelliJ IDEA 2022.1.0 or newer**, necessary as Kotlin is bundled in the IDE, not needed if building directly with Maven
+* **JDK 17 or newer**
+* Docker is not needed
+* A database installation is not needed, the server can run in embedded mode with the Apache Derby database
 
-Use the built-in continuous integration in GitLab.
+#### Downloading the project
 
-- [ ] [Get started with GitLab CI/CD](https://gitlab.com/-/experiment/new_project_readme_content:d8353ee6361c34f99dfc74b2ceee7ce2?https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://gitlab.com/-/experiment/new_project_readme_content:d8353ee6361c34f99dfc74b2ceee7ce2?https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://gitlab.com/-/experiment/new_project_readme_content:d8353ee6361c34f99dfc74b2ceee7ce2?https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://gitlab.com/-/experiment/new_project_readme_content:d8353ee6361c34f99dfc74b2ceee7ce2?https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://gitlab.com/-/experiment/new_project_readme_content:d8353ee6361c34f99dfc74b2ceee7ce2?https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+1. Clone the repo <br>
+   **Via HTTPS:**
+   ```sh
+   git clone https://gitlab.com/web-development-group7/server.git
+   ```
+   **Via SSH:**
+   ```sh
+   git clone git@gitlab.com:web-development-group7/server.git
+   ```
+   or download it as a zip from [here](https://gitlab.com/web-development-group7/server/-/archive/main/server-main.zip).
 
-***
+#### Usage
+1. Download and extract zip-file **or** clone project to the desired location.
+2. Open the `pom.xml` file with your favourite IDE.
+3. In IntelliJ, launch the `Application` class located in the `no.ntnu.webdev.webproject7` package
+4. The server should then start with an embedded database
+   <br>
+   Options in other IDEs may vary.
 
-# Editing this README
+## Project requirements
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com) for this template.
+The application has two important roles:
+1. Admin
+2. User
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+An admin can do everything that a user can but admins can access extra functionality that is not available to users.
 
-## Name
-Choose a self-explaining name for your project.
+A user can:
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+* [x] Signup and log in
+* [x] View products
+* [x] Send in an order
+* [x] Write a comment for a product
+* [x] Edit their own comment
+* [x] See other user's comments
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+An admin can:
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+* [x] Add a new product
+* [x] Update a product
+* [x] Delete a product
+* [x] See all user orders
+* [x] Mark an order as processed
+* [x] See all user comments for each product
+* [x] Delete any user comment
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+## Disclaimers
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
-
+* All product images used were fetched from [pngegg.com](https://www.pngegg.com) and are covered by their non-commercial use only license.
