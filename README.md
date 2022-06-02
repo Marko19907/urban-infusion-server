@@ -3,12 +3,12 @@
 This repository contains the backend made for the Application Development (IDATA2306) project.
 
 ### Built With
-* [Kotlin](https://kotlinlang.org) - A modern language that supports both object-oriented and functional paradigms 
-* [Spring Boot](https://spring.io/projects/spring-boot) - Server framework used to build the REST API
-* [Docker](https://www.docker.com) - Used to containerize the app
-* [MySQL](https://www.mysql.com) - For the persistent database
-* [Apache Derby](https://db.apache.org/derby/) - Used for the embedded database
-* [JWT](https://github.com/jwtk/jjwt) - As the authentication mechanism
+* [Kotlin](https://kotlinlang.org) - A modern language that supports both object-oriented and functional paradigms.
+* [Spring Boot](https://spring.io/projects/spring-boot) - Server framework used to build the REST API.
+* [Docker](https://www.docker.com) - Used to containerize the app.
+* [MySQL](https://www.mysql.com) - For the persistent database.
+* [Apache Derby](https://db.apache.org/derby/) - Used for the embedded database.
+* [JWT](https://github.com/jwtk/jjwt) - As the authentication mechanism.
 
 ## Project structure
 
@@ -92,8 +92,7 @@ or download it directly as a zip from [here](https://gitlab.com/web-development-
 
 1. Download the latest build from this repository's ["Releases" page](https://gitlab.com/web-development-group7/server/-/releases)
 2. Run the downloaded `.jar` with the CMD using the `java -jar nameOfTheJarFile.jar` command.
-3. The server should then start with an embedded database and be available at [https://localhost:8080](https://localhost:8080)
-<br>
+3. The server should then start with an embedded database and be available at [https://localhost:8080](https://localhost:8080) <br>
 This is the preferred method.
 
 ### Other installation methods
