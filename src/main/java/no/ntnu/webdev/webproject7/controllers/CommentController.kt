@@ -8,7 +8,6 @@ import no.ntnu.webdev.webproject7.models.CommentId
 import no.ntnu.webdev.webproject7.models.User
 import no.ntnu.webdev.webproject7.services.CommentService
 import no.ntnu.webdev.webproject7.services.UserService
-import no.ntnu.webdev.webproject7.utilities.CommentHelper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -26,8 +25,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("comments")
 class CommentController(
     @Autowired private val commentService: CommentService,
-    @Autowired private val userService: UserService,
-    @Autowired private val commentHelper: CommentHelper
+    @Autowired private val userService: UserService
 ) {
 
     @GetMapping("")
@@ -51,7 +49,7 @@ class CommentController(
     fun addOne(@RequestBody comment: CommentDTO): ResponseEntity<String> {
         return try {
             val user: User? = this.userService.getSessionUser();
-            if (this.commentHelper.add(comment, user)) ResponseEntity(HttpStatus.OK)
+            if (this.commentService.add(comment, user)) ResponseEntity(HttpStatus.OK)
             else ResponseEntity("Failed to add a comment, reason unknown", HttpStatus.BAD_REQUEST);
         } catch (e: CommentException) {
             ResponseEntity(e.message, HttpStatus.BAD_REQUEST);
@@ -63,7 +61,7 @@ class CommentController(
     fun update(@RequestBody comment: CommentUpdateDTO): ResponseEntity<String> {
         return try {
             val user: User? = this.userService.getSessionUser();
-            if (this.commentHelper.update(comment, user)) ResponseEntity(HttpStatus.OK)
+            if (this.commentService.update(comment, user)) ResponseEntity(HttpStatus.OK)
             else ResponseEntity("Failed to update a comment, reason unknown", HttpStatus.BAD_REQUEST);
         } catch (e: CommentException) {
             ResponseEntity(e.message, HttpStatus.BAD_REQUEST);
