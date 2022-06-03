@@ -117,6 +117,8 @@ class DummyDataInitializer(
             Product(mutableListOf(), 8.99, 0.00, 29, "Cinnamon Tea", "Black Chinese Keemmun with a round spiced cinnamon taste.", "5oz", Category.TEA);
         val product30 =
             Product(mutableListOf(), 8.99, 0.00, 30, "Emperor Tea", "The biggest hit from Anhui in China. A black tea with a smooth taste.", "5oz", Category.TEA);
+        val product31 =
+            Product(mutableListOf(), 29.99, 5.0, 31, "French Press", "Because there is no paper filter used with a french press, more of the oils can make it into the final brew. The oils are what gives the beverage it's taste and are therefore part of what will allow you to start distinguishing between the different varieties we sell.", "", Category.ACCESSORIES);
 
 
         val ordersProducts1 = OrdersProducts(product1, 2);
@@ -173,6 +175,7 @@ class DummyDataInitializer(
         val productImage28 = ProductImage(28 ,"28-IndianMorningTea", "png");
         val productImage29 = ProductImage(29 ,"29-CinnamonTea", "png");
         val productImage30 = ProductImage(30 ,"30-EmperorTea", "png");
+        val productImage31 = ProductImage(31 ,"31-FrenchPress", "png");
 
         val userImage1 = UserImage(1, "User1", "jpeg");
 
@@ -182,12 +185,12 @@ class DummyDataInitializer(
             ordersProducts9, ordersProducts10, ordersProducts11, ordersProducts12, ordersProducts13);
         val products = arrayOf(product1, product2, product3, product4, product5, product6, product7, product8, product9, product10, product11,
             product12, product13, product14, product15, product16, product17, product18, product19, product20, product21, product22, product23,
-            product24, product25, product26, product27, product28, product29, product30);
+            product24, product25, product26, product27, product28, product29, product30, product31);
         val orders = arrayOf(order1, order2, order3, order4, order5, order6, order7, order8, order9);
         val productImages = arrayOf(productImage1, productImage2, productImage3, productImage4, productImage5, productImage6, productImage7, productImage8,
             productImage9, productImage10, productImage11, productImage12, productImage13, productImage14, productImage15, productImage16, productImage17, productImage18,
             productImage19, productImage20, productImage21, productImage22, productImage23, productImage24, productImage25, productImage26, productImage27, productImage28,
-            productImage29, productImage30);
+            productImage29, productImage30, productImage31);
         val userImages = arrayOf(userImage1);
 
         users.forEach { this.userRepository.save(it) }
