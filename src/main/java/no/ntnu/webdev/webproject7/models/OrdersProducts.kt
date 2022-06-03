@@ -35,7 +35,21 @@ open class OrdersProducts(
      */
     @JsonIgnore
     fun getPrice(): BigDecimal {
-        return BigDecimal(this.product?.price!!).multiply(BigDecimal(this.quantity));
+        return BigDecimal(this.product?.price!!)
+            .multiply(this.getDiscountFactor())
+            .multiply(this.quantity.toBigDecimal());
+    }
+
+    /**
+     * Calculates the discount percentage factor.
+     */
+    private fun getDiscountFactor(): BigDecimal {
+        return when (this.product?.discount) {
+            0.0 -> 1.toBigDecimal();
+            else -> {
+                return (1 - this.product!!.discount!!).toBigDecimal();
+            }
+        }
     }
 
     override fun validate(): Boolean {
