@@ -8,7 +8,6 @@ import no.ntnu.webdev.webproject7.models.MAX_DESCRIPTION_LENGTH
 import no.ntnu.webdev.webproject7.models.Product
 import no.ntnu.webdev.webproject7.models.ProductId
 import no.ntnu.webdev.webproject7.repositories.ProductRepository
-import no.ntnu.webdev.webproject7.utilities.ProductHelper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
@@ -17,11 +16,11 @@ import org.springframework.stereotype.Service
 @Service
 class ProductService(
     @Autowired private val productRepository: ProductRepository,
-    @Autowired private val productHelper: ProductHelper
+    @Autowired private val productDeletionService: ProductDeletionService
 ) : CrudService<Product, ProductId>(productRepository) {
 
     override fun delete(id: ProductId): Boolean {
-        return this.productHelper.deleteProduct(id);
+        return this.productDeletionService.deleteProduct(id);
     }
 
     @Throws(ProductException::class)

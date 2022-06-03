@@ -1,4 +1,4 @@
-package no.ntnu.webdev.webproject7.utilities
+package no.ntnu.webdev.webproject7.services
 
 import no.ntnu.webdev.webproject7.models.Product
 import no.ntnu.webdev.webproject7.models.ProductId
@@ -6,10 +6,13 @@ import no.ntnu.webdev.webproject7.repositories.OrderRepository
 import no.ntnu.webdev.webproject7.repositories.ProductImageRepository
 import no.ntnu.webdev.webproject7.repositories.ProductRepository
 import org.springframework.data.repository.findByIdOrNull
-import org.springframework.stereotype.Component
+import org.springframework.stereotype.Service
 
-@Component
-class ProductHelper(
+/**
+ * Responsible for correctly removing Products from the database.
+ */
+@Service
+class ProductDeletionService(
     private val productRepository: ProductRepository,
     private val orderRepository: OrderRepository,
     private val productImageRepository: ProductImageRepository
