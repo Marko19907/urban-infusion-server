@@ -118,7 +118,7 @@ class DummyDataInitializer(
         val product30 =
             Product(mutableListOf(), 8.99, 0.00, 30, "Emperor Tea", "The biggest hit from Anhui in China. A black tea with a smooth taste.", "5oz", Category.TEA.toString());
         val product31 =
-            Product(mutableListOf(), 29.99, 5.0, 31, "French Press", "Because there is no paper filter used with a french press, more of the oils can make it into the final brew. The oils are what gives the beverage it's taste and are therefore part of what will allow you to start distinguishing between the different varieties we sell.", "", Category.ACCESSORIES.toString());
+            Product(mutableListOf(), 29.99, 0.05, 31, "French Press", "Because there is no paper filter used with a french press, more of the oils can make it into the final brew. The oils are what gives the beverage it's taste and are therefore part of what will allow you to start distinguishing between the different varieties we sell.", "", Category.ACCESSORIES.toString());
 
 
         val ordersProducts1 = OrdersProducts(product1, 2);
