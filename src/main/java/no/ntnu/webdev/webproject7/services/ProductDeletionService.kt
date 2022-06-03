@@ -18,7 +18,7 @@ class ProductDeletionService(
     private val productImageRepository: ProductImageRepository
 ) {
 
-    fun deleteProduct(id: ProductId): Boolean {
+    fun delete(id: ProductId): Boolean {
         val product = this.productRepository.findByIdOrNull(id) ?: return false;
 
         this.removeProductImages(product);

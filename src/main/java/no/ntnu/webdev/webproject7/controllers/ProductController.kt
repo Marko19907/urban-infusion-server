@@ -7,7 +7,9 @@ import no.ntnu.webdev.webproject7.exceptions.ProductException
 import no.ntnu.webdev.webproject7.models.Category
 import no.ntnu.webdev.webproject7.models.Product
 import no.ntnu.webdev.webproject7.models.ProductId
+import no.ntnu.webdev.webproject7.services.ProductDeletionService
 import no.ntnu.webdev.webproject7.services.ProductService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
@@ -23,7 +25,10 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("products")
-class ProductController(private val productService: ProductService) {
+class ProductController(
+    @Autowired private val productService: ProductService,
+    @Autowired private val productDeletionService: ProductDeletionService
+) {
 
     @GetMapping("")
     fun all(): ResponseEntity<List<Product>> {
@@ -39,7 +44,7 @@ class ProductController(private val productService: ProductService) {
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     fun delete(@PathVariable id: ProductId): ResponseEntity<String> {
-        return if (this.productService.delete(id)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
+        return if (this.productDeletionService.delete(id)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("")

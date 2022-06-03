@@ -12,16 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
-
 @Service
 class ProductService(
-    @Autowired private val productRepository: ProductRepository,
-    @Autowired private val productDeletionService: ProductDeletionService
+    @Autowired private val productRepository: ProductRepository
 ) : CrudService<Product, ProductId>(productRepository) {
-
-    override fun delete(id: ProductId): Boolean {
-        return this.productDeletionService.deleteProduct(id);
-    }
 
     @Throws(ProductException::class)
     fun add(productDTO: ProductDTO?): Boolean {
