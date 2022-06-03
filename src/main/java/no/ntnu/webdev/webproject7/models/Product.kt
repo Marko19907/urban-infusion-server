@@ -6,8 +6,6 @@ import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
-import javax.persistence.EnumType
-import javax.persistence.Enumerated
 import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -18,7 +16,7 @@ import javax.persistence.Table
 import javax.validation.constraints.Positive
 import javax.validation.constraints.PositiveOrZero
 
-typealias ProductId = Long
+typealias ProductId = Long;
 
 const val MAX_DESCRIPTION_LENGTH = 1000;
 
@@ -58,8 +56,7 @@ open class Product(
     open var weight: String? = null,
 
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    open var category: Category? = null,
+    open var category: String,
 
     ) : CrudModel<ProductId> {
     @Id
@@ -71,12 +68,6 @@ open class Product(
      */
     fun removeComment(comment: Comment) {
         this.comments.removeIf { it.id == comment.id };
-    }
-
-    fun containsCommentWithID(id: CommentId): Boolean {
-        return this.comments
-            .map { it.id }
-            .any { it == id };
     }
 
     override fun validate(): Boolean {

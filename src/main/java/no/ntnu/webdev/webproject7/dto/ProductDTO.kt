@@ -1,6 +1,5 @@
 package no.ntnu.webdev.webproject7.dto
 
-import no.ntnu.webdev.webproject7.models.Category
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 
 open class ProductDTO(
@@ -9,7 +8,7 @@ open class ProductDTO(
     open val discount: Double,
     open val description: String,
     open val weight: String,
-    open val category: Category,
+    open val category: String,
 ): DTO {
 
     override fun validate(): Boolean {

@@ -58,67 +58,67 @@ class DummyDataInitializer(
         val comment4 = Comment(user1, this.getLoremIpsum(), LocalDate.of(2020, 12, 12));
 
         val product1 =
-            Product(mutableListOf(comment1), 24.99, 0.00, 1, "Afternoon Mixture", "Afternoon's tea is a black Yunnan-tea, mixed with white Chinese tea. Contains hints of vanilla, pomegranate and pear.", "10oz", Category.TEA);
+            Product(mutableListOf(comment1), 24.99, 0.00, 1, "Afternoon Mixture", "Afternoon's tea is a black Yunnan-tea, mixed with white Chinese tea. Contains hints of vanilla, pomegranate and pear.", "10oz", Category.TEA.toString());
         val product2 =
-            Product(mutableListOf(comment2), 19.99, 0.00, 2, "Orange Tea", "Chinese black tea with a fresh taste of orange.", "10oz", Category.TEA);
+            Product(mutableListOf(comment2), 19.99, 0.00, 2, "Orange Tea", "Chinese black tea with a fresh taste of orange.", "10oz", Category.TEA.toString());
         val product3 =
-            Product(mutableListOf(comment3, comment4), 39.99, 0.15, 3, "Creylon Silver Tip", "This tea is harvested only a few times each year (3-4 times), and is considered one of the best teas in the world. Ceylon Silver Tip is a rare white tea with a mild and sweet honey-like taste.", "10oz", Category.TEA);
+            Product(mutableListOf(comment3, comment4), 39.99, 0.15, 3, "Creylon Silver Tip", "This tea is harvested only a few times each year (3-4 times), and is considered one of the best teas in the world. Ceylon Silver Tip is a rare white tea with a mild and sweet honey-like taste.", "10oz", Category.TEA.toString());
         val product4 =
-            Product(mutableListOf(), 4.99, 0.00, 4, "Tea Cup", "The elegant Urban Infusion™ tea cup. Do you need a boost in the morning? That's exactly what our cup is for! Now is the time to add this classic cup to your tea collection!", "6oz", Category.ACCESSORIES);
+            Product(mutableListOf(), 4.99, 0.00, 4, "Tea Cup", "The elegant Urban Infusion™ tea cup. Do you need a boost in the morning? That's exactly what our cup is for! Now is the time to add this classic cup to your tea collection!", "6oz", Category.ACCESSORIES.toString());
         val product5 =
-            Product(mutableListOf(), 29.99, 0.00, 5, "Golden tea", "Want to feel golden again? The distinctive blend and it's creamy, velvet taste help create an infusion that is both calming and refreshing. Don't miss this \"golden\" opportunity!", "10oz", Category.TEA);
+            Product(mutableListOf(), 29.99, 0.00, 5, "Golden tea", "Want to feel golden again? The distinctive blend and it's creamy, velvet taste help create an infusion that is both calming and refreshing. Don't miss this \"golden\" opportunity!", "10oz", Category.TEA.toString());
         val product6 =
-            Product(mutableListOf(), 19.99, 0.00, 6, "Kenya Silver Tip", "Kenya Silver Tip is a white tea with a nice, natural spicy taste.", "10oz", Category.TEA);
+            Product(mutableListOf(), 19.99, 0.00, 6, "Kenya Silver Tip", "Kenya Silver Tip is a white tea with a nice, natural spicy taste.", "10oz", Category.TEA.toString());
         val product7 =
-            Product(mutableListOf(), 19.99, 0.00, 7, "Nepal Silver Tip", "Nepal Silver tip is a white tea with a nice, natural mild taste.", "10oz", Category.TEA);
+            Product(mutableListOf(), 19.99, 0.00, 7, "Nepal Silver Tip", "Nepal Silver tip is a white tea with a nice, natural mild taste.", "10oz", Category.TEA.toString());
         val product8 =
-            Product(mutableListOf(), 9.99, 0.00, 8, "Caribbean Star", "On the occasion of summer, we have developed this wonderful mixture, which brings the mind to heat and holidays. Caribbean Star is a green tea with the lovely taste of peach, apple and papaya, and is perfectly usable for ice tea.", "10oz", Category.TEA);
+            Product(mutableListOf(), 9.99, 0.00, 8, "Caribbean Star", "On the occasion of summer, we have developed this wonderful mixture, which brings the mind to heat and holidays. Caribbean Star is a green tea with the lovely taste of peach, apple and papaya, and is perfectly usable for ice tea.", "10oz", Category.TEA.toString());
         val product9 =
-            Product(mutableListOf(), 7.99, 0.00, 9, "Chun Mee", "Chun Mee is a strong green Chinese tea with a sharp taste.", "10oz", Category.TEA);
+            Product(mutableListOf(), 7.99, 0.00, 9, "Chun Mee", "Chun Mee is a strong green Chinese tea with a sharp taste.", "10oz", Category.TEA.toString());
         val product10 =
-            Product(mutableListOf(), 12.99, 0.00, 10, "Globe Tea", "Special green tea from China. Hand made green tea, bound by a marigold. ", "10oz", Category.TEA);
+            Product(mutableListOf(), 12.99, 0.00, 10, "Globe Tea", "Special green tea from China. Hand made green tea, bound by a marigold. ", "10oz", Category.TEA.toString());
         val product11 =
-            Product(mutableListOf(), 7.99, 0.00, 11, "Green Bamboo Tea", "Green Japanese tea, with papaya, mango, pineapple, ginger, coconut, rosebuds, cardamom and bamboo shoots. \n Very sweet and aromatic tea.", "5oz", Category.TEA);
+            Product(mutableListOf(), 7.99, 0.00, 11, "Green Bamboo Tea", "Green Japanese tea, with papaya, mango, pineapple, ginger, coconut, rosebuds, cardamom and bamboo shoots. \n Very sweet and aromatic tea.", "5oz", Category.TEA.toString());
         val product12 =
-            Product(mutableListOf(), 4.99, 0.00, 12, "Assam Earl Grey", "Assam / Earl Grey mixture is a powerful Assam mixed with the traditional Earl Grey.", "5oz", Category.TEA);
+            Product(mutableListOf(), 4.99, 0.00, 12, "Assam Earl Grey", "Assam / Earl Grey mixture is a powerful Assam mixed with the traditional Earl Grey.", "5oz", Category.TEA.toString());
         val product13 =
-            Product(mutableListOf(), 4.99, 0.00, 13, "Baroness Mixture", "Baroness Mixture is a black Chinese Panyong tea, with a fresh citrus and bergamot flavor.", "5oz", Category.TEA);
+            Product(mutableListOf(), 4.99, 0.00, 13, "Baroness Mixture", "Baroness Mixture is a black Chinese Panyong tea, with a fresh citrus and bergamot flavor.", "5oz", Category.TEA.toString());
         val product14 =
-            Product(mutableListOf(), 7.99, 0.00, 14, "Boston Mixture", "Lovely Chinese Panyong tea mixed with Earl Grey.", "5oz", Category.TEA);
+            Product(mutableListOf(), 7.99, 0.00, 14, "Boston Mixture", "Lovely Chinese Panyong tea mixed with Earl Grey.", "5oz", Category.TEA.toString());
         val product15 =
-            Product(mutableListOf(), 109.99, 0.00, 15, "Arare Gold Teapot 1200 ml", "Traditional Japanese style cast-iron teapot in gold color. 1200 ml", "20oz", Category.POTS);
+            Product(mutableListOf(), 109.99, 0.00, 15, "Arare Gold Teapot 1200 ml", "Traditional Japanese style cast-iron teapot in gold color. 1200 ml", "20oz", Category.POTS.toString());
         val product16 =
-            Product(mutableListOf(), 99.99, 0.00, 16, "Sakura Black Teapot 1000 ml", "Traditional Japanese style cast-iron teapot in black color. 1000 ml", "18oz", Category.POTS);
+            Product(mutableListOf(), 99.99, 0.00, 16, "Sakura Black Teapot 1000 ml", "Traditional Japanese style cast-iron teapot in black color. 1000 ml", "18oz", Category.POTS.toString());
         val product17 =
-            Product(mutableListOf(), 44.99, 0.00, 17, "Bright Ivory Teapot 1100 ml", "Ivory white porcelain teapot, in the classic English style. 1100 ml", "20oz", Category.POTS);
+            Product(mutableListOf(), 44.99, 0.00, 17, "Bright Ivory Teapot 1100 ml", "Ivory white porcelain teapot, in the classic English style. 1100 ml", "20oz", Category.POTS.toString());
         val product18 =
-            Product(mutableListOf(), 39.99, 0.00, 18, "Blue Senbiki Teapot 600 ml", "Classy handmade iron teapot. 600 ml", "10oz", Category.POTS);
+            Product(mutableListOf(), 39.99, 0.00, 18, "Blue Senbiki Teapot 600 ml", "Classy handmade iron teapot. 600 ml", "10oz", Category.POTS.toString());
         val product19 =
-            Product(mutableListOf(), 59.00, 0.00, 19, "Red Geisha Teapot 300 ml", "Perfect for a cup of tea in the traditional Japanese style. 300 ml", "7oz", Category.POTS);
+            Product(mutableListOf(), 59.00, 0.00, 19, "Red Geisha Teapot 300 ml", "Perfect for a cup of tea in the traditional Japanese style. 300 ml", "7oz", Category.POTS.toString());
         val product20 =
-            Product(mutableListOf(), 5.99, 0.00, 20, "Tea Ball Infuser", "An original gadget to infuse our tea leaves.", "", Category.ACCESSORIES);
+            Product(mutableListOf(), 5.99, 0.00, 20, "Tea Ball Infuser", "An original gadget to infuse our tea leaves.", "", Category.ACCESSORIES.toString());
         val product21 =
-            Product(mutableListOf(), 10.99, 0.00, 21, "Tea Infuser", "Practical and resistant infuser." , "", Category.ACCESSORIES);
+            Product(mutableListOf(), 10.99, 0.00, 21, "Tea Infuser", "Practical and resistant infuser." , "", Category.ACCESSORIES.toString());
         val product22 =
-            Product(mutableListOf(), 15.99, 0.00, 22, "Classic White Mug", "A classic white mug in porcelain. 200 ml", "3oz", Category.ACCESSORIES);
+            Product(mutableListOf(), 15.99, 0.00, 22, "Classic White Mug", "A classic white mug in porcelain. 200 ml", "3oz", Category.ACCESSORIES.toString());
         val product23 =
-            Product(mutableListOf(), 11.99, 0.00, 23, "Classic White Tea Cup", "Classic white tea cup in porcelain. Plate included. 150 ml.", "3oz", Category.ACCESSORIES);
+            Product(mutableListOf(), 11.99, 0.00, 23, "Classic White Tea Cup", "Classic white tea cup in porcelain. Plate included. 150 ml.", "3oz", Category.ACCESSORIES.toString());
         val product24 =
-            Product(mutableListOf(), 9.99, 0.00, 24, "Copacabana Tea", "Copacabana is a sweet and fresh exotic mixture based on a black Chinese tea.", "5oz", Category.TEA);
+            Product(mutableListOf(), 9.99, 0.00, 24, "Copacabana Tea", "Copacabana is a sweet and fresh exotic mixture based on a black Chinese tea.", "5oz", Category.TEA.toString());
         val product25 =
-            Product(mutableListOf(), 5.99, 0.00, 25, "Daisy's Blend", "Daisy's Blend is a mixture put together on the occasion of Queen Margethe II's 40th anniversary.", "5oz", Category.TEA);
+            Product(mutableListOf(), 5.99, 0.00, 25, "Daisy's Blend", "Daisy's Blend is a mixture put together on the occasion of Queen Margethe II's 40th anniversary.", "5oz", Category.TEA.toString());
         val product26 =
-            Product(mutableListOf(), 7.99, 0.00, 26, "Decaff Ceylon", "Big leaf Ceylon without caffeine.", "5oz", Category.TEA);
+            Product(mutableListOf(), 7.99, 0.00, 26, "Decaff Ceylon", "Big leaf Ceylon without caffeine.", "5oz", Category.TEA.toString());
         val product27 =
-            Product(mutableListOf(), 6.99, 0.00, 27, "Indian Chai", "A a fresh breath from India and Nepal. A strong tea mixed with Indian chai of cinnamon, orange and juniper.", "5oz", Category.TEA);
+            Product(mutableListOf(), 6.99, 0.00, 27, "Indian Chai", "A a fresh breath from India and Nepal. A strong tea mixed with Indian chai of cinnamon, orange and juniper.", "5oz", Category.TEA.toString());
         val product28 =
-            Product(mutableListOf(), 5.99, 0.00, 28, "Indian Morning Tea", "Indian Morning Tea is an aromatic powerful morning mixture with Assam and Darjeeling.", "5oz", Category.TEA);
+            Product(mutableListOf(), 5.99, 0.00, 28, "Indian Morning Tea", "Indian Morning Tea is an aromatic powerful morning mixture with Assam and Darjeeling.", "5oz", Category.TEA.toString());
         val product29 =
-            Product(mutableListOf(), 8.99, 0.00, 29, "Cinnamon Tea", "Black Chinese Keemmun with a round spiced cinnamon taste.", "5oz", Category.TEA);
+            Product(mutableListOf(), 8.99, 0.00, 29, "Cinnamon Tea", "Black Chinese Keemmun with a round spiced cinnamon taste.", "5oz", Category.TEA.toString());
         val product30 =
-            Product(mutableListOf(), 8.99, 0.00, 30, "Emperor Tea", "The biggest hit from Anhui in China. A black tea with a smooth taste.", "5oz", Category.TEA);
+            Product(mutableListOf(), 8.99, 0.00, 30, "Emperor Tea", "The biggest hit from Anhui in China. A black tea with a smooth taste.", "5oz", Category.TEA.toString());
         val product31 =
-            Product(mutableListOf(), 29.99, 5.0, 31, "French Press", "Because there is no paper filter used with a french press, more of the oils can make it into the final brew. The oils are what gives the beverage it's taste and are therefore part of what will allow you to start distinguishing between the different varieties we sell.", "", Category.ACCESSORIES);
+            Product(mutableListOf(), 29.99, 5.0, 31, "French Press", "Because there is no paper filter used with a french press, more of the oils can make it into the final brew. The oils are what gives the beverage it's taste and are therefore part of what will allow you to start distinguishing between the different varieties we sell.", "", Category.ACCESSORIES.toString());
 
 
         val ordersProducts1 = OrdersProducts(product1, 2);

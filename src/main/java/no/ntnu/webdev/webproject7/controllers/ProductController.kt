@@ -4,7 +4,6 @@ import no.ntnu.webdev.webproject7.dto.ProductDTO
 import no.ntnu.webdev.webproject7.dto.ProductUpdateDTO
 import no.ntnu.webdev.webproject7.dto.ProductUpdatePartialDTO
 import no.ntnu.webdev.webproject7.exceptions.ProductException
-import no.ntnu.webdev.webproject7.models.Category
 import no.ntnu.webdev.webproject7.models.Product
 import no.ntnu.webdev.webproject7.models.ProductId
 import no.ntnu.webdev.webproject7.services.ProductDeletionService
@@ -81,7 +80,7 @@ class ProductController(
     }
 
     @GetMapping("/categories")
-    fun getCategories(): ResponseEntity<MutableSet<Category>> {
+    fun getCategories(): ResponseEntity<MutableSet<String>> {
         return ResponseEntity(this.productService.getCategoryMap(), HttpStatus.OK);
     }
 

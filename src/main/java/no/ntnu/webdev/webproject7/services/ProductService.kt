@@ -3,7 +3,6 @@ package no.ntnu.webdev.webproject7.services
 import no.ntnu.webdev.webproject7.dto.ProductDTO
 import no.ntnu.webdev.webproject7.dto.ProductUpdatePartialDTO
 import no.ntnu.webdev.webproject7.exceptions.ProductException
-import no.ntnu.webdev.webproject7.models.Category
 import no.ntnu.webdev.webproject7.models.MAX_DESCRIPTION_LENGTH
 import no.ntnu.webdev.webproject7.models.Product
 import no.ntnu.webdev.webproject7.models.ProductId
@@ -61,13 +60,15 @@ class ProductService(
         return super.update(product);
     }
 
-    fun getCategoryMap(): MutableSet<Category> {
-        return Category.values().toHashSet();
+    fun getCategoryMap(): MutableSet<String> {
+        return this.all()
+            .map { it.category.lowercase().trim() }
+            .toHashSet();
     }
 
     fun getByCategory(category: String): List<Product> {
         return this.all().stream()
-            .filter { it.category!!.name.lowercase() == category }
+            .filter { it.category.lowercase() == category }
             .toList();
     }
 

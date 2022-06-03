@@ -1,6 +1,5 @@
 package no.ntnu.webdev.webproject7.dto
 
-import no.ntnu.webdev.webproject7.models.Category
 import no.ntnu.webdev.webproject7.models.ProductId
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 
@@ -14,7 +13,7 @@ class ProductUpdateDTO(
     discount: Double,
     description: String,
     weight: String,
-    category: Category
+    category: String
 ) : ProductUpdatePartialDTO(id, title, price, discount, description, weight, category) {
 
     override fun validate(): Boolean {
