@@ -21,7 +21,7 @@ class ProductService(
         if (productDTO == null || !productDTO.validate()) {
             throw ProductException("The request is incorrectly formatted!");
         }
-        this.verifyProductParams(productDTO.title, productDTO.price, productDTO.description);
+        this.verifyProductParams(productDTO.title, productDTO.price, productDTO.discount, productDTO.description);
 
         val product = Product(
             mutableListOf(),
@@ -44,6 +44,7 @@ class ProductService(
         this.verifyProductParams(
             productUpdatePartialDTO.title,
             productUpdatePartialDTO.price,
+            productUpdatePartialDTO.discount,
             productUpdatePartialDTO.description
         );
 
@@ -73,7 +74,7 @@ class ProductService(
     }
 
     @Throws(ProductException::class)
-    private fun verifyProductParams(title: String?, price: Double?, description: String?) {
+    private fun verifyProductParams(title: String?, price: Double?, discount: Double?, description: String?) {
         if (title != null && title.isBlank()) {
             throw ProductException("The title field can not be empty!");
         }
@@ -83,6 +84,14 @@ class ProductService(
             }
             if (price < 0) {
                 throw ProductException("The price can not be negative!");
+            }
+        }
+        if (discount != null && discount !in 0.0 .. 1.0) {
+            if (discount > 1.0) {
+                throw ProductException("Discount can not be larger than 100%");
+            }
+            if (discount < 0.0) {
+                throw ProductException("Discount can not be negative!");
             }
         }
         if (description != null && description.length > MAX_DESCRIPTION_LENGTH) {
