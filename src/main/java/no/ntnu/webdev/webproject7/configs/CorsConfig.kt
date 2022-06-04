@@ -1,13 +1,11 @@
 package no.ntnu.webdev.webproject7.configs
 
-import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
 import java.io.IOException
 import javax.servlet.FilterChain
 import javax.servlet.ServletException
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-
 
 class CorsConfig : OncePerRequestFilter() {
     @Throws(ServletException::class, IOException::class)

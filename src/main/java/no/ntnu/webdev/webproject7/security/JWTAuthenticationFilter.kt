@@ -5,7 +5,7 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.security.Keys
-import no.ntnu.webdev.webproject7.add
+import no.ntnu.webdev.webproject7.utilities.add
 import no.ntnu.webdev.webproject7.configs.SecurityProperties
 import no.ntnu.webdev.webproject7.models.User
 import org.springframework.beans.factory.annotation.Autowired

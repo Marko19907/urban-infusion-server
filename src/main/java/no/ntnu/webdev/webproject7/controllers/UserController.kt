@@ -47,13 +47,12 @@ class UserController(@Autowired private val userService: UserService) {
             return ResponseEntity("The logged in user does not match the given user ID!", HttpStatus.BAD_REQUEST);
         }
 
-        try {
+        return try  {
             this.userService.updatePassword(userPasswordUpdateDTO, user);
+            ResponseEntity(HttpStatus.OK);
+        } catch (e: UserUpdateFailedException) {
+            ResponseEntity(e.message, HttpStatus.BAD_REQUEST);
         }
-        catch (e: UserUpdateFailedException) {
-            return ResponseEntity(e.message, HttpStatus.BAD_REQUEST);
-        }
-        return ResponseEntity(HttpStatus.OK);
     }
 
     @PutMapping("")
@@ -80,11 +79,11 @@ class UserController(@Autowired private val userService: UserService) {
             "Invalid authentication!",
             HttpStatus.BAD_REQUEST
         );
-        try {
+        return try {
             this.userService.update(userUpdatePartialDTO, user);
+            ResponseEntity(HttpStatus.OK);
         } catch (e: UserUpdateFailedException) {
-            return ResponseEntity(e.message, HttpStatus.BAD_REQUEST);
+            ResponseEntity(e.message, HttpStatus.BAD_REQUEST);
         }
-        return ResponseEntity(HttpStatus.OK);
     }
 }
