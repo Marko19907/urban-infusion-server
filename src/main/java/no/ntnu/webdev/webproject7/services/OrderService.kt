@@ -30,7 +30,7 @@ class OrderService(
         }
 
         val ordersProducts = orderDTO.products
-            .map { OrdersProducts(this.productService.getById(it.productId), it.quantity) }
+            .map { OrdersProducts(this.productService.getById(it.id), it.quantity) }
             .toList();
         val order = Order(ordersProducts, OrderStatus.PROCESSING, user);
 
@@ -56,7 +56,7 @@ class OrderService(
      */
     private fun verifyOrderDTOProducts(orderDTO: OrderDTO): Boolean {
         return !orderDTO.products
-            .map { it.productId }
+            .map { it.id }
             .map { this.productService.getById(it) }
             .any { it == null }
     }
