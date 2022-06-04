@@ -1,7 +1,15 @@
 package no.ntnu.webdev.webproject7.utilities
 
-import com.thedeanda.lorem.LoremIpsum
-import no.ntnu.webdev.webproject7.models.*
+import no.ntnu.webdev.webproject7.models.Category
+import no.ntnu.webdev.webproject7.models.Comment
+import no.ntnu.webdev.webproject7.models.Order
+import no.ntnu.webdev.webproject7.models.OrderStatus
+import no.ntnu.webdev.webproject7.models.OrdersProducts
+import no.ntnu.webdev.webproject7.models.Product
+import no.ntnu.webdev.webproject7.models.ProductImage
+import no.ntnu.webdev.webproject7.models.Role
+import no.ntnu.webdev.webproject7.models.User
+import no.ntnu.webdev.webproject7.models.UserImage
 import no.ntnu.webdev.webproject7.repositories.CommentRepository
 import no.ntnu.webdev.webproject7.repositories.OrderRepository
 import no.ntnu.webdev.webproject7.repositories.OrdersProductsRepository
@@ -33,16 +41,7 @@ class DummyDataInitializer(
         this.logger.info("Initializing test data...");
 
         // Check if all repositories are empty
-        if (arrayOf(
-                this.commentRepository,
-                this.productRepository,
-                this.userRepository,
-                this.orderRepository,
-                this.productImageRepository,
-                this.ordersProductsRepository,
-                this.userImageRepository
-            ).any { it.count() > 0 }
-        ) {
+        if (this.isDatabaseEmpty()) {
             this.logger.info("The database is not empty, did not initialize test data...");
             return;
         }
@@ -55,7 +54,7 @@ class DummyDataInitializer(
         val comment1 = Comment(user1, "Very nice", null);
         val comment2 = Comment(user2, "I love this product", LocalDate.now());
         val comment3 = Comment(user3, "This product sucks!", LocalDate.now());
-        val comment4 = Comment(user1, this.getLoremIpsum(), LocalDate.of(2020, 12, 12));
+        val comment4 = Comment(user1, "Got this product a while ago, love it!", LocalDate.of(2020, 12, 12));
 
         val product1 =
             Product(mutableListOf(comment1), 24.99, 0.00, 1, "Afternoon Mixture", "Afternoon's tea is a black Yunnan-tea, mixed with white Chinese tea. Contains hints of vanilla, pomegranate and pear.", "10oz", Category.TEA.toString());
@@ -203,8 +202,15 @@ class DummyDataInitializer(
 
         this.logger.info("Test data initialized");
     }
-
-    private fun getLoremIpsum(): String {
-        return LoremIpsum.getInstance().getWords(20, 50);
+    private fun isDatabaseEmpty(): Boolean {
+        return arrayOf(
+            this.commentRepository,
+            this.productRepository,
+            this.userRepository,
+            this.orderRepository,
+            this.productImageRepository,
+            this.ordersProductsRepository,
+            this.userImageRepository
+        ).any { it.count() > 0 }
     }
 }
