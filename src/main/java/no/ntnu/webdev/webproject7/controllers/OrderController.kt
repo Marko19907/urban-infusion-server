@@ -40,6 +40,7 @@ class OrderController(
     }
 
     @PostMapping("")
+    @PreAuthorize("hasAuthority('USER')")
     fun addOne(@RequestBody entity: OrderDTO): ResponseEntity<String> {
         val user: User = this.userService.getSessionUser() ?: return ResponseEntity("Invalid login", HttpStatus.BAD_REQUEST);
         return if (this.orderService.add(entity, user)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
