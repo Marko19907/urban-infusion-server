@@ -6,6 +6,7 @@ import no.ntnu.webdev.webproject7.exceptions.CommentException
 import no.ntnu.webdev.webproject7.models.Comment
 import no.ntnu.webdev.webproject7.models.CommentId
 import no.ntnu.webdev.webproject7.models.MAX_COMMENT_LENGTH
+import no.ntnu.webdev.webproject7.models.Role
 import no.ntnu.webdev.webproject7.models.User
 import no.ntnu.webdev.webproject7.repositories.CommentRepository
 import no.ntnu.webdev.webproject7.repositories.ProductRepository
@@ -58,9 +59,14 @@ class CommentService(
         return this.commentRepository.findByIdOrNull(comment.id) != null;
     }
 
-    override fun delete(id: CommentId): Boolean {
+    fun delete(id: CommentId, user: User): Boolean {
         val comment = this.commentRepository.findByIdOrNull(id) ?: return false;
         val product = this.productRepository.findProductByCommentsId(id) ?: return false;
+
+        // Only admins can delete any comment
+        if (user.role != Role.ADMIN && user != comment.user) {
+            return false;
+        }
 
         product.removeComment(comment);
         this.commentRepository.deleteById(comment.id);

@@ -39,9 +39,10 @@ class CommentController(
         return if (entity != null) ResponseEntity(entity, HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
     }
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('USER')")
     fun delete(@PathVariable id: CommentId): ResponseEntity<String> {
-        return if (this.commentService.delete(id)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
+        val user: User = this.userService.getSessionUser() ?: return ResponseEntity("You must be logged in!", HttpStatus.BAD_REQUEST);
+        return if (this.commentService.delete(id, user)) ResponseEntity(HttpStatus.OK) else ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("")
