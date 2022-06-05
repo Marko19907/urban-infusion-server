@@ -8,6 +8,7 @@ This repository contains the backend made for the Application Development (IDATA
 * [Docker](https://www.docker.com) - Used to containerize the app.
 * [MySQL](https://www.mysql.com) - For the persistent database.
 * [Apache Derby](https://db.apache.org/derby/) - Used for the embedded database.
+* [HTTPS](https://www.rfc-editor.org/rfc/pdfrfc/rfc8446.txt.pdf) - Used for communications security in production.
 * [JWT](https://github.com/jwtk/jjwt) - As the authentication mechanism.
 
 ## Getting Started
@@ -41,7 +42,7 @@ or download it directly as a zip from [here](https://gitlab.com/web-development-
 
 1. Download the latest build from this repository's ["Releases" page](https://gitlab.com/web-development-group7/server/-/releases)
 2. Run the downloaded `.jar` with the CMD using the `java -jar nameOfTheJarFile.jar` command.
-3. The server should then start with an embedded database and be available at [https://localhost:8080](https://localhost:8080) <br>
+3. The server should then start with an embedded database and be available at [http://localhost:8080](http://localhost:8080) <br>
    This is the preferred method.
 
 ### Other installation methods
@@ -52,7 +53,7 @@ or download it directly as a zip from [here](https://gitlab.com/web-development-
 2. Download and the extract zip-file **or** clone project to the desired location as specified in the ["Downloading the project"](#downloading-the-project) section.
 3. Open the `pom.xml` file with IntelliJ.
 4. In IntelliJ, launch the `Application` class located in the `no.ntnu.webdev.webproject7` package.
-5. The server should then start with an embedded database and be available at [https://localhost:8080](https://localhost:8080)
+5. The server should then start with an embedded database and be available at [http://localhost:8080](http://localhost:8080)
    <br>
    Options in other IDEs may vary.
 
@@ -61,7 +62,7 @@ or download it directly as a zip from [here](https://gitlab.com/web-development-
 1. Clone **or** download the repo as a zip as specified in the ["Downloading the project"](#downloading-the-project) section.
 2. Run `mvn package` in the project folder with an IDE of your choice.
 3. Navigate to the `/target` folder and launch the generated `.jar` with the CMD.
-4. The server should then start with an embedded database and be available at [https://localhost:8080](https://localhost:8080)
+4. The server should then start with an embedded database and be available at [http://localhost:8080](http://localhost:8080)
 
 ## Project structure
 
