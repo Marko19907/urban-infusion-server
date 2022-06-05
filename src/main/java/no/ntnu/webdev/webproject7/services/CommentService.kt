@@ -31,7 +31,7 @@ class CommentService(
 
         val product = this.productRepository.findByIdOrNull(commentDTO.id)
             ?: throw CommentException("A product with the id: ${commentDTO.id} does not exist!");
-        val comment = Comment(user, commentDTO.text, null);
+        val comment = Comment(user, commentDTO.text);
 
         product.comments.add(comment);
         return this.productRepository.save(product).id == product.id;

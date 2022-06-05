@@ -22,7 +22,6 @@ import org.slf4j.LoggerFactory
 import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.ApplicationListener
 import org.springframework.stereotype.Component
-import java.time.LocalDate
 
 @Component
 class DummyDataInitializer(
@@ -51,10 +50,10 @@ class DummyDataInitializer(
         user2.role = Role.ADMIN;
         val user3 = User("user@example.no", "other_user", hashPassword("987"), "Bergen", "5003", "Juvik 12", "43219876");
 
-        val comment1 = Comment(user1, "Very nice", null);
-        val comment2 = Comment(user2, "I love this product", LocalDate.now());
-        val comment3 = Comment(user3, "This product sucks!", LocalDate.now());
-        val comment4 = Comment(user1, "Got this product a while ago, love it!", LocalDate.of(2020, 12, 12));
+        val comment1 = Comment(user1, "Very nice");
+        val comment2 = Comment(user2, "I love this product");
+        val comment3 = Comment(user3, "This product sucks!");
+        val comment4 = Comment(user1, "Got this product a while ago, love it!");
 
         val product1 =
             Product(mutableListOf(comment1), 24.99, 0.00, 1, "Afternoon Mixture", "Afternoon's tea is a black Yunnan-tea, mixed with white Chinese tea. Contains hints of vanilla, pomegranate and pear.", "10oz", Category.TEA.toString());

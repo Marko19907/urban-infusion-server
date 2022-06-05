@@ -2,7 +2,7 @@ package no.ntnu.webdev.webproject7.models
 
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import org.hibernate.annotations.CreationTimestamp
-import java.time.LocalDate
+import java.time.LocalDateTime
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -27,9 +27,6 @@ open class Comment(
     @Column(nullable = false, length = MAX_COMMENT_LENGTH)
     open var text: String? = null,
 
-    @Column(nullable = true, updatable = true)
-    open var lastUpdated: LocalDate? = null,
-
 ) : CrudModel<CommentId> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,11 +34,14 @@ open class Comment(
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
-    open var created: LocalDate = LocalDate.now();
+    open var created: LocalDateTime = LocalDateTime.now();
+
+    @Column(nullable = true, updatable = true)
+    open var lastUpdated: LocalDateTime? = null;
 
     @PreUpdate
     protected open fun onUpdate() {
-        this.lastUpdated = LocalDate.now();
+        this.lastUpdated = LocalDateTime.now();
     }
 
     override fun validate(): Boolean {
