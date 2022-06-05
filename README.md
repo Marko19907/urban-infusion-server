@@ -141,6 +141,18 @@ An admin can:
 * [x] See all user comments for each product
 * [x] Delete any user comment
 
+Our app currently has a predefined admin user and a regular user used under testing:
+
+_Admin:_
+* username: admin
+* password: admin
+
+_User:_
+* username: user
+* password: user
+
+Note: These predefined users are **only** meant to be used for demo and development purposes, they should not be included in a real scenario.
+
 ## Disclaimers
 
 * All product images used were fetched from [pngegg.com](https://www.pngegg.com) and are covered by their _non-commercial use only_ license.
