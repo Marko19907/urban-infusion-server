@@ -10,6 +10,59 @@ This repository contains the backend made for the Application Development (IDATA
 * [Apache Derby](https://db.apache.org/derby/) - Used for the embedded database.
 * [JWT](https://github.com/jwtk/jjwt) - As the authentication mechanism.
 
+## Getting Started
+
+To get a local copy up and running follow these simple steps.
+
+### Prerequisites
+
+This is a list of things you need in order to use this application.
+
+* **IntelliJ IDEA 2022.1.0 or newer**, necessary as Kotlin is bundled in the IDE, not needed if building directly with Maven
+* **JDK 17 or newer**, always needed
+* Docker is not needed
+* A database installation is not needed, the server can run in embedded mode with the Apache Derby database
+
+#### Downloading the project
+
+**Via HTTPS:**
+```sh
+git clone https://gitlab.com/web-development-group7/server.git
+```
+**Via SSH:**
+```sh
+git clone git@gitlab.com:web-development-group7/server.git
+```
+or download it directly as a zip from [here](https://gitlab.com/web-development-group7/server/-/archive/main/server-main.zip).
+
+### Install methods
+
+#### GitLab Releases [Recommended]
+
+1. Download the latest build from this repository's ["Releases" page](https://gitlab.com/web-development-group7/server/-/releases)
+2. Run the downloaded `.jar` with the CMD using the `java -jar nameOfTheJarFile.jar` command.
+3. The server should then start with an embedded database and be available at [https://localhost:8080](https://localhost:8080) <br>
+   This is the preferred method.
+
+### Other installation methods
+
+#### Via IntelliJ
+
+1. Make sure you have installed the correct version of IntelliJ as specified in the ["Prerequisites"](#prerequisites) section.
+2. Download and the extract zip-file **or** clone project to the desired location as specified in the ["Downloading the project"](#downloading-the-project) section.
+3. Open the `pom.xml` file with IntelliJ.
+4. In IntelliJ, launch the `Application` class located in the `no.ntnu.webdev.webproject7` package.
+5. The server should then start with an embedded database and be available at [https://localhost:8080](https://localhost:8080)
+   <br>
+   Options in other IDEs may vary.
+
+#### Via Maven in any IDE
+
+1. Clone **or** download the repo as a zip as specified in the ["Downloading the project"](#downloading-the-project) section.
+2. Run `mvn package` in the project folder with an IDE of your choice.
+3. Navigate to the `/target` folder and launch the generated `.jar` with the CMD.
+4. The server should then start with an embedded database and be available at [https://localhost:8080](https://localhost:8080)
+
 ## Project structure
 
 ```
@@ -61,59 +114,6 @@ The following is our database schema:
 
 <img src="assets/db-schema.svg" alt="An image of the database schema" width="700"/>
 
-## Getting Started
-
-To get a local copy up and running follow these simple steps.
-
-### Prerequisites
-
-This is a list of things you need in order to use this application.
-
-* **IntelliJ IDEA 2022.1.0 or newer**, necessary as Kotlin is bundled in the IDE, not needed if building directly with Maven
-* **JDK 17 or newer**, always needed
-* Docker is not needed
-* A database installation is not needed, the server can run in embedded mode with the Apache Derby database
-
-#### Downloading the project
-
-**Via HTTPS:**
-```sh
-git clone https://gitlab.com/web-development-group7/server.git
-```
-**Via SSH:**
-```sh
-git clone git@gitlab.com:web-development-group7/server.git
-```
-or download it directly as a zip from [here](https://gitlab.com/web-development-group7/server/-/archive/main/server-main.zip).
-
-### Install methods
-
-#### GitLab Releases [Recommended]
-
-1. Download the latest build from this repository's ["Releases" page](https://gitlab.com/web-development-group7/server/-/releases)
-2. Run the downloaded `.jar` with the CMD using the `java -jar nameOfTheJarFile.jar` command.
-3. The server should then start with an embedded database and be available at [https://localhost:8080](https://localhost:8080) <br>
-This is the preferred method.
-
-### Other installation methods
-
-#### Via IntelliJ
-
-1. Make sure you have installed the correct version of IntelliJ as specified in the ["Prerequisites"](#prerequisites) section.
-2. Download and the extract zip-file **or** clone project to the desired location as specified in the ["Downloading the project"](#downloading-the-project) section.
-3. Open the `pom.xml` file with IntelliJ.
-4. In IntelliJ, launch the `Application` class located in the `no.ntnu.webdev.webproject7` package.
-5. The server should then start with an embedded database and be available at [https://localhost:8080](https://localhost:8080)
-   <br>
-   Options in other IDEs may vary.
-
-#### Via Maven in any IDE
-
-1. Clone **or** download the repo as a zip as specified in the ["Downloading the project"](#downloading-the-project) section.
-2. Run `mvn package` in the project folder with an IDE of your choice.
-3. Navigate to the `/target` folder and launch the generated `.jar` with the CMD.
-4. The server should then start with an embedded database and be available at [https://localhost:8080](https://localhost:8080)
-
 ## Project requirements
 
 The application has two main roles:
@@ -144,4 +144,4 @@ An admin can:
 ## Disclaimers
 
 * All product images used were fetched from [pngegg.com](https://www.pngegg.com) and are covered by their _non-commercial use only_ license.
-* The user images used in this project have been generated by an AI and do not depict any person currently alive.
+* The user images used in this project have been generated by an AI and do not depict any person currently alive or dead.
