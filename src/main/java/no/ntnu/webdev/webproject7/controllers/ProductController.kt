@@ -85,7 +85,7 @@ class ProductController(
     }
 
     @GetMapping("/categories/{category}")
-    fun getOneByCategory(@PathVariable category: String): ResponseEntity<List<Product>> {
+    fun getAllByCategory(@PathVariable category: String): ResponseEntity<List<Product>> {
         return ResponseEntity(this.productService.getByCategory(category.lowercase()), HttpStatus.OK);
     }
 }
