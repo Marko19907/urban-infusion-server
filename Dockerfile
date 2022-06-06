@@ -1,6 +1,10 @@
 # Let's use Amazon Corretto as the base image. It includes a performance-optimized version of OpenJDK
 FROM amazoncorretto:17.0.2
 
+# Set a timezone to fix the timezone issue
+ENV TZ=Europe/Oslo
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 # Copy the JAR file to /app.jar
 COPY target/*.jar app.jar
 
