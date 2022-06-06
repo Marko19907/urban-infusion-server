@@ -1,7 +1,5 @@
 package no.ntnu.webdev.webproject7.models
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize
-import no.ntnu.webdev.webproject7.serializers.CategoryEnumDeserializer
 import no.ntnu.webdev.webproject7.utilities.objectsNotNull
 import javax.persistence.CascadeType
 import javax.persistence.Column
@@ -19,13 +17,6 @@ import javax.validation.constraints.PositiveOrZero
 typealias ProductId = Long;
 
 const val MAX_DESCRIPTION_LENGTH = 1000;
-
-@JsonDeserialize(using = CategoryEnumDeserializer::class)
-enum class Category(val type: String) {
-    TEA("tea"),
-    POTS("pots"),
-    ACCESSORIES("accessories")
-}
 
 @Entity
 @Table(name = "product")

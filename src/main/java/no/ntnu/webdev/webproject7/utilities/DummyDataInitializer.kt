@@ -1,6 +1,5 @@
 package no.ntnu.webdev.webproject7.utilities
 
-import no.ntnu.webdev.webproject7.models.Category
 import no.ntnu.webdev.webproject7.models.Comment
 import no.ntnu.webdev.webproject7.models.Order
 import no.ntnu.webdev.webproject7.models.OrderStatus
