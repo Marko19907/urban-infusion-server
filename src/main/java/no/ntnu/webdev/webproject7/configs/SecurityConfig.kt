@@ -51,6 +51,7 @@ class SecurityConfig(
             .antMatchers("/categories").permitAll()
             .antMatchers("/orders/users/{\\d+}").permitAll()
             .antMatchers("/user-images/{\\d+}").permitAll()
+            .antMatchers("/swagger-ui/*", "/swagger-ui.html", "/webjars/**", "/v3/**", "/swagger-resources/**").permitAll()
             .antMatchers(HttpMethod.POST, "/register").permitAll()
             .antMatchers(HttpMethod.POST, "/login").permitAll()
             .anyRequest().authenticated()
