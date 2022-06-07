@@ -21,9 +21,6 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.FilterInvocation
 import org.springframework.security.web.access.channel.ChannelProcessingFilter
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler
-import org.springframework.web.cors.CorsConfiguration
-import org.springframework.web.cors.CorsConfigurationSource
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 
 
 @Configuration
@@ -93,30 +90,5 @@ class SecurityConfig(
         val defaultWebSecurityExpressionHandler = DefaultWebSecurityExpressionHandler();
         defaultWebSecurityExpressionHandler.setRoleHierarchy(this.roleHierarchy());
         return defaultWebSecurityExpressionHandler;
-    }
-
-    @Bean
-    fun corsConfigurationSource(): CorsConfigurationSource = UrlBasedCorsConfigurationSource().also { cors ->
-        CorsConfiguration().apply {
-            this.allowedOrigins = listOf("http://localhost:3000")
-            this.allowedMethods = listOf("POST", "PUT", "DELETE", "GET", "OPTIONS", "HEAD")
-            this.allowedHeaders = listOf(
-                "Authorization",
-                "Content-Type",
-                "X-Requested-With",
-                "Accept",
-                "Origin",
-                "Access-Control-Request-Method",
-                "Access-Control-Request-Headers"
-            )
-            this.exposedHeaders = listOf(
-                "Access-Control-Allow-Origin",
-                "Access-Control-Allow-Credentials",
-                "Authorization",
-                "Content-Disposition"
-            )
-            this.maxAge = 3600
-            cors.registerCorsConfiguration("/**", this)
-        }
     }
 }

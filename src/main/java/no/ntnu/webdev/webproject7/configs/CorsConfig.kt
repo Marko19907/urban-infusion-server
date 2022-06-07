@@ -8,12 +8,24 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 class CorsConfig : OncePerRequestFilter() {
+
+    private val allowedOrigins = hashSetOf(
+        "http://localhost:3000",
+        "https://localhost:3000",
+        "https://urbaninfusion.netlify.app"
+    );
+
     @Throws(ServletException::class, IOException::class)
     override fun doFilterInternal(
         request: HttpServletRequest, response: HttpServletResponse,
         filterChain: FilterChain
     ) {
-        response.addHeader("Access-Control-Allow-Origin", "*")
+        var accessControlAllowOrigin = "";
+        if (this.allowedOrigins.contains(request.getHeader("Origin"))) {
+            accessControlAllowOrigin = request.getHeader("Origin");
+        }
+
+        response.addHeader("Access-Control-Allow-Origin", accessControlAllowOrigin);
         response.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH, HEAD, OPTIONS")
         response.addHeader(
             "Access-Control-Allow-Headers",
