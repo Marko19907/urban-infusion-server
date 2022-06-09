@@ -10,7 +10,7 @@
     </parent>
     <groupId>no.ntnu.webdev</groupId>
     <artifactId>webproject7</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>webproject7</name>
     <description>Server for the urban infusion shop</description>
 
