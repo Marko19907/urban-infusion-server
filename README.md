@@ -1,9 +1,12 @@
 # Urban Infusion server, group 7
 
-This repository contains the backend made for the Application Development (IDATA2306) project.
+This repository contains the backend made for the Urban Infusion project from NTNU's Application Development (IDATA2306) subject.
+The project counts towards 100% of the final grade in the subject.
+
+[![Java CI with Maven](https://github.com/Marko19907/Urban-Infusion-server/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/Marko19907/Urban-Infusion-server/actions/workflows/maven.yml)
 
 ### Built With
-* [Kotlin](https://kotlinlang.org) - A modern language that supports both object-oriented and functional paradigms.
+* [Kotlin](https://kotlinlang.org) - A modern, cross-platform, statically typed, general-purpose programming language.
 * [Spring Boot](https://spring.io/projects/spring-boot) - Server framework used to build the REST API.
 * [Docker](https://www.docker.com) - Used to containerize the app.
 * [MySQL](https://www.mysql.com) - For the persistent database.
@@ -28,19 +31,19 @@ This is a list of things you need in order to use this application.
 
 **Via HTTPS:**
 ```sh
-git clone https://gitlab.com/web-development-group7/server.git
+git clone https://github.com/Marko19907/Urban-Infusion-server.git
 ```
 **Via SSH:**
 ```sh
-git clone git@gitlab.com:web-development-group7/server.git
+git clone git@github.com:Marko19907/Urban-Infusion-server.git
 ```
-or download it directly as a zip from [here](https://gitlab.com/web-development-group7/server/-/archive/main/server-main.zip).
+or download it directly as a zip from [here](https://github.com/Marko19907/Urban-Infusion-server/archive/refs/heads/main.zip).
 
 ### Install methods
 
 #### GitLab Releases [Recommended]
 
-1. Download the latest build from this repository's ["Releases" page](https://gitlab.com/web-development-group7/server/-/releases)
+1. Download the latest build from this repository's ["Releases" page](https://github.com/Marko19907/Urban-Infusion-server/releases)
 2. Run the downloaded `.jar` with the CMD using the `java -jar nameOfTheJarFile.jar` command.
 3. The server should then start with an embedded database and be available at [http://localhost:8080](http://localhost:8080) <br>
    This is the preferred method.
