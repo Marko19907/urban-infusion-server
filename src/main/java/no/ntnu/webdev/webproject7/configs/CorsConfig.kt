@@ -12,7 +12,8 @@ class CorsConfig : OncePerRequestFilter() {
     private val allowedOrigins = hashSetOf(
         "http://localhost:3000",
         "https://localhost:3000",
-        "https://urbaninfusion.netlify.app"
+        "https://urbaninfusion.netlify.app",
+        "https://marko19907.github.io"
     );
 
     @Throws(ServletException::class, IOException::class)
