@@ -3,6 +3,8 @@
 This repository contains the backend made for the Urban Infusion project from NTNU's Application Development (IDATA2306) subject.
 The project counts towards 100% of the final grade in the subject.
 
+The front-end part can be found here: [https://github.com/Marko19907/urban-infusion-website](https://github.com/Marko19907/urban-infusion-website)
+
 [![Java CI with Maven](https://github.com/Marko19907/Urban-Infusion-server/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/Marko19907/Urban-Infusion-server/actions/workflows/maven.yml)
 
 ### Built With
